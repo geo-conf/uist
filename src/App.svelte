@@ -8,7 +8,7 @@
     Collapse,
   } from 'sveltestrap';
 
-  import { beforeUpdate } from 'svelte';
+  import { beforeUpdate, onMount } from 'svelte';
 
   import jQ from 'jquery';
   import Title from './ui/Title.svelte';
@@ -20,6 +20,7 @@
   import ContinentStack from './chart/ContinentStack.svelte';
   import CommitteeStacked from './chart/CommitteeStacked.svelte';
   import CollaborationOverview from './chart/CollaborationOverview.svelte';
+  import Forkme from './ui/Forkme.svelte';
   import Footer from './ui/Footer.svelte';
 
   let overviewStats = true;
@@ -29,6 +30,7 @@
   const defaultYear = 20;
   let selectedYear = defaultYear;
   let dataset = undefined;
+  let imagesLoaded = false;
 
   // load the data first from online repo
   jQ.getJSON(
@@ -37,6 +39,12 @@
       dataset = data;
     }
   );
+
+  onMount(() => {
+    if ('loading' in HTMLImageElement.prototype) {
+      imagesLoaded = true;
+    }
+  });
 
   let logoButton = [];
   for (let year = startYear; year <= endYear; year += 1) {
@@ -79,6 +87,7 @@
 
 <body>
   <div class="main">
+    <Forkme url="https://github.com/geo-conf/uist" />
     <Container class="mb-5 mt-5">
       <Row><Title conferenceName="UIST" /></Row>
     </Container>
@@ -87,23 +96,28 @@
     <Container class="mb-4 mt-4">
       <Row>
         <p class="lead">
-          This website provides some insights into the geographical outreach and
-          growth of the UIST community since 2010. The visualizations below show
-          the main trends across the years or the statistics for each edition of
-          the conference. Data of the proceedings was collected from the ACM
-          digital library, while data for committee members was collected from
-          the individual websites of the past editions of UIST. Raw data is
-          available for download at this link, while summative data used for the
-          visualizations is available here. The code used to gather this data
-          and analyze is publicly available on Github.
+          This website showcases an <a
+            href="https://github.com/orgs/geo-conf/dashboard">open-source</a>
+          and independent visualization project that provides some insights into
+          the geographical outreach and growth of the community of the
+          <a href="uist.acm.org">UIST conference</a>. The graphs below are based
+          upon
+          <a href="https://github.com/geo-conf/geo-dataset">open-source data</a>
+          and show the main trends across the years or per year for each edition
+          of the conference. See below about how data was collected and analyzed.
         </p>
+
         <p class="lead">
           This project was developed by Andrea Bianchi at the MAKinteract lab
-          (KAIST, Korea). The views, opinions, data analysis, and visualization
-          expressed in this website are those of the author and by no means are
-          meant to represent those of the ACM or the author's institution and
-          colleagues. Please report mistakes, incorrect data, or suggestions as
-          issues via Github.
+          (KAIST, Korea). <i>
+            The views, opinions, data analysis, and visualization expressed in
+            this website are those of the author and by no means are meant to
+            represent those of the ACM or the author's institution and
+            colleagues.
+          </i>
+          Please report mistakes, incorrect data, or suggestions as issues via
+          <a href="https://github.com/geo-conf/uist/issues">Github</a>. To
+          contribute to the project, consider forking the repository.
         </p>
       </Row>
       <Row class="mb-5">
@@ -186,13 +200,15 @@
         <!-- Stats per year -->
       {:else}
         <!-- Grid of all UIST buttons -->
-        <Container fluid={true}>
-          <Col sm="12" md={{ size: 9, offset: 2 }}>
-            {#each logoButton as buttonData}
-              <Logo on:click={select} {...buttonData} />
-            {/each}
-          </Col>
-        </Container>
+        {#if imagesLoaded}
+          <Container fluid={true}>
+            <Col sm="12" md={{ size: 9, offset: 2 }}>
+              {#each logoButton as buttonData}
+                <Logo on:click={select} {...buttonData} />
+              {/each}
+            </Col>
+          </Container>
+        {/if}
 
         <Container class="mb-5 mt-5" fluid={true}>
           <Row class="mb-5 mt-5">

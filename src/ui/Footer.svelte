@@ -10,6 +10,8 @@
     KAIST.
   </div>
   <div class="text-center">
-    Source code available from <a href=""> Github </a><i class="bi bi-github" />
+    Source code available from <a href="https://github.com/geo-conf/uist">
+      Github
+    </a><i class="bi bi-github" />
   </div>
 </footer>
