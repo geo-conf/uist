@@ -9,6 +9,10 @@
 # Node artifact files
 node_modules/
 
+# eslint
+.eslintrc.js
+.eslintignore
+
 # vscode
 .vscode
 

@@ -5,7 +5,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public",
-    "deploy": "echo deploy",
+    "deploy": "npm run build && git subtree push --prefix public origin gh-pages",
     "lint": "npx install-peerdeps --dev eslint-config-wesbos"
   },
   "devDependencies": {
