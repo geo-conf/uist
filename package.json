@@ -1,0 +1,47 @@
+{
+  "name": "geouist",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv public",
+    "deploy": "echo deploy",
+    "lint": "npx install-peerdeps --dev eslint-config-wesbos"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@zerodevx/svelte-toast": "^0.1.4",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-wesbos": "^1.0.1",
+    "eslint-plugin-html": "^6.1.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-svelte3": "^3.1.2",
+    "prettier": "^2.2.1",
+    "rollup": "^2.3.4",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "surge": "^0.21.7",
+    "svelte": "^3.35.0"
+  },
+  "dependencies": {
+    "chart.js": "2.9.3",
+    "fs-extra": "^9.1.0",
+    "jquery": "^3.6.0",
+    "lodash": "^4.17.21",
+    "sirv-cli": "^1.0.0",
+    "sveltestrap": "^3.13.0"
+  }
+}
