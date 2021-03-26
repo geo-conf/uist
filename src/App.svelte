@@ -127,8 +127,8 @@
             was used to and aggregate this data in a single
             <a href="https://github.com/geo-conf/geo-dataset">dataset</a>.
             <b>Countries</b>
-            of affiliations are reported as indicated by the authors of the
-            papers and indicated here following the
+            of affiliations are reported as indicated by the authors of the papers
+            and indicated here following the
             <a href="https://www.iso.org/iso-3166-country-codes.html"
               >ISO 3166</a>
             country code standard. <b>Continents</b> are inferred using the
@@ -232,7 +232,7 @@
       {/if}
 
       <Container class="mb-5 mt-5" fluid={true}>
-        <Row class="mb-5 mt-5">
+        <Row>
           <Col lg={{ size: 6, offset: 0 }}>
             {#if selectedYear === 10}
               <CountryBar {dataset} year={10} />
@@ -260,33 +260,6 @@
           </Col>
           <Col lg={{ size: 6, offset: 0 }}>
             {#if selectedYear === 10}
-              <ContinentBar {dataset} year={10} />
-            {:else if selectedYear === 11}
-              <ContinentBar {dataset} year={11} />
-            {:else if selectedYear === 12}
-              <ContinentBar {dataset} year={12} />
-            {:else if selectedYear === 13}
-              <ContinentBar {dataset} year={13} />
-            {:else if selectedYear === 14}
-              <ContinentBar {dataset} year={14} />
-            {:else if selectedYear === 15}
-              <ContinentBar {dataset} year={15} />
-            {:else if selectedYear === 16}
-              <ContinentBar {dataset} year={16} />
-            {:else if selectedYear === 17}
-              <ContinentBar {dataset} year={17} />
-            {:else if selectedYear === 18}
-              <ContinentBar {dataset} year={18} />
-            {:else if selectedYear === 19}
-              <ContinentBar {dataset} year={19} />
-            {:else if selectedYear === 20}
-              <ContinentBar {dataset} year={20} />
-            {/if}
-          </Col>
-        </Row>
-        <Row class="mb-5 mt-5">
-          <Col lg={{ size: 6, offset: 0 }}>
-            {#if selectedYear === 10}
               <CollaborationBar {dataset} year={10} />
             {:else if selectedYear === 11}
               <CollaborationBar {dataset} year={11} />
@@ -310,6 +283,34 @@
               <CollaborationBar {dataset} year={20} />
             {/if}
           </Col>
+        </Row>
+        <Row>
+          <Col lg={{ size: 6, offset: 0 }}>
+            {#if selectedYear === 10}
+              <ContinentBar {dataset} year={10} />
+            {:else if selectedYear === 11}
+              <ContinentBar {dataset} year={11} />
+            {:else if selectedYear === 12}
+              <ContinentBar {dataset} year={12} />
+            {:else if selectedYear === 13}
+              <ContinentBar {dataset} year={13} />
+            {:else if selectedYear === 14}
+              <ContinentBar {dataset} year={14} />
+            {:else if selectedYear === 15}
+              <ContinentBar {dataset} year={15} />
+            {:else if selectedYear === 16}
+              <ContinentBar {dataset} year={16} />
+            {:else if selectedYear === 17}
+              <ContinentBar {dataset} year={17} />
+            {:else if selectedYear === 18}
+              <ContinentBar {dataset} year={18} />
+            {:else if selectedYear === 19}
+              <ContinentBar {dataset} year={19} />
+            {:else if selectedYear === 20}
+              <ContinentBar {dataset} year={20} />
+            {/if}
+          </Col>
+
           <Col lg={{ size: 6, offset: 0 }}>
             {#if selectedYear === 10}
               <CommitteeBar {dataset} year={10} />

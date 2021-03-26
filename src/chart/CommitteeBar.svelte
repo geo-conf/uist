@@ -61,6 +61,8 @@
         legend: {
           display: false,
         },
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
           yAxes: [
             {
@@ -87,4 +89,12 @@
   });
 </script>
 
-<canvas bind:this={canvas} />
+<div class="container">
+  <canvas bind:this={canvas} />
+</div>
+
+<style>
+  .container {
+    min-height: 200px;
+  }
+</style>

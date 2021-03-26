@@ -53111,25 +53111,30 @@ var app = (function () {
     const file$8 = "src/chart/CountryBar.svelte";
 
     function create_fragment$8(ctx) {
+    	let div;
     	let canvas_1;
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			canvas_1 = element("canvas");
-    			add_location(canvas_1, file$8, 84, 0, 2014);
+    			add_location(canvas_1, file$8, 87, 2, 2102);
+    			attr_dev(div, "class", "container svelte-elhjxb");
+    			add_location(div, file$8, 86, 0, 2076);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, canvas_1, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, canvas_1);
     			/*canvas_1_binding*/ ctx[6](canvas_1);
     		},
     		p: noop,
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(canvas_1);
+    			if (detaching) detach_dev(div);
     			/*canvas_1_binding*/ ctx[6](null);
     		}
     	};
@@ -53194,6 +53199,8 @@ var app = (function () {
     				options: {
     					title: { display: true, text: `${title}` },
     					legend: { display: false },
+    					responsive: true,
+    					maintainAspectRatio: false,
     					scales: {
     						yAxes: [{ ticks: { beginAtZero: true } }],
     						xAxes: [
@@ -53328,25 +53335,30 @@ var app = (function () {
     const file$9 = "src/chart/CommitteeBar.svelte";
 
     function create_fragment$9(ctx) {
+    	let div;
     	let canvas_1;
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			canvas_1 = element("canvas");
-    			add_location(canvas_1, file$9, 89, 0, 2158);
+    			add_location(canvas_1, file$9, 92, 2, 2246);
+    			attr_dev(div, "class", "container svelte-1ch2a6t");
+    			add_location(div, file$9, 91, 0, 2220);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, canvas_1, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, canvas_1);
     			/*canvas_1_binding*/ ctx[6](canvas_1);
     		},
     		p: noop,
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(canvas_1);
+    			if (detaching) detach_dev(div);
     			/*canvas_1_binding*/ ctx[6](null);
     		}
     	};
@@ -53412,6 +53424,8 @@ var app = (function () {
     				options: {
     					title: { display: true, text: `${title}` },
     					legend: { display: false },
+    					responsive: true,
+    					maintainAspectRatio: false,
     					scales: {
     						yAxes: [{ ticks: { beginAtZero: true } }],
     						xAxes: [
@@ -53548,25 +53562,30 @@ var app = (function () {
     const file$a = "src/chart/ContinentBar.svelte";
 
     function create_fragment$a(ctx) {
+    	let div;
     	let canvas_1;
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			canvas_1 = element("canvas");
-    			add_location(canvas_1, file$a, 87, 0, 2138);
+    			add_location(canvas_1, file$a, 90, 2, 2226);
+    			attr_dev(div, "class", "container svelte-1ch2a6t");
+    			add_location(div, file$a, 89, 0, 2200);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, canvas_1, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, canvas_1);
     			/*canvas_1_binding*/ ctx[6](canvas_1);
     		},
     		p: noop,
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(canvas_1);
+    			if (detaching) detach_dev(div);
     			/*canvas_1_binding*/ ctx[6](null);
     		}
     	};
@@ -53631,6 +53650,8 @@ var app = (function () {
     				options: {
     					title: { display: true, text: `${title}` },
     					legend: { display: false },
+    					responsive: true,
+    					maintainAspectRatio: false,
     					scales: {
     						yAxes: [{ ticks: { beginAtZero: true } }],
     						xAxes: [
@@ -53768,25 +53789,30 @@ var app = (function () {
     const file$b = "src/chart/CollaborationBar.svelte";
 
     function create_fragment$b(ctx) {
+    	let div;
     	let canvas_1;
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			canvas_1 = element("canvas");
-    			add_location(canvas_1, file$b, 87, 0, 2000);
+    			add_location(canvas_1, file$b, 88, 2, 2026);
+    			attr_dev(div, "class", "container svelte-1ch2a6t");
+    			add_location(div, file$b, 87, 0, 2000);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, canvas_1, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, canvas_1);
     			/*canvas_1_binding*/ ctx[6](canvas_1);
     		},
     		p: noop,
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(canvas_1);
+    			if (detaching) detach_dev(div);
     			/*canvas_1_binding*/ ctx[6](null);
     		}
     	};
@@ -55263,7 +55289,7 @@ var app = (function () {
     			t8 = text(".\n            ");
     			b0 = element("b");
     			b0.textContent = "Countries";
-    			t10 = text("\n            of affiliations are reported as indicated by the authors of the\n            papers and indicated here following the\n            ");
+    			t10 = text("\n            of affiliations are reported as indicated by the authors of the papers\n            and indicated here following the\n            ");
     			a4 = element("a");
     			a4.textContent = "ISO 3166";
     			t12 = text("\n            country code standard. ");
@@ -57039,38 +57065,38 @@ var app = (function () {
 
     // (282:42) 
     function create_if_block_34(ctx) {
-    	let continentbar;
+    	let collaborationbar;
     	let current;
 
-    	continentbar = new ContinentBar({
+    	collaborationbar = new CollaborationBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 20 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(continentbar.$$.fragment);
+    			create_component(collaborationbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(continentbar, target, anchor);
+    			mount_component(collaborationbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const continentbar_changes = {};
-    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
-    			continentbar.$set(continentbar_changes);
+    			const collaborationbar_changes = {};
+    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
+    			collaborationbar.$set(collaborationbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(continentbar.$$.fragment, local);
+    			transition_in(collaborationbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(continentbar.$$.fragment, local);
+    			transition_out(collaborationbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(continentbar, detaching);
+    			destroy_component(collaborationbar, detaching);
     		}
     	};
 
@@ -57087,38 +57113,38 @@ var app = (function () {
 
     // (280:42) 
     function create_if_block_33(ctx) {
-    	let continentbar;
+    	let collaborationbar;
     	let current;
 
-    	continentbar = new ContinentBar({
+    	collaborationbar = new CollaborationBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 19 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(continentbar.$$.fragment);
+    			create_component(collaborationbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(continentbar, target, anchor);
+    			mount_component(collaborationbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const continentbar_changes = {};
-    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
-    			continentbar.$set(continentbar_changes);
+    			const collaborationbar_changes = {};
+    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
+    			collaborationbar.$set(collaborationbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(continentbar.$$.fragment, local);
+    			transition_in(collaborationbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(continentbar.$$.fragment, local);
+    			transition_out(collaborationbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(continentbar, detaching);
+    			destroy_component(collaborationbar, detaching);
     		}
     	};
 
@@ -57135,38 +57161,38 @@ var app = (function () {
 
     // (278:42) 
     function create_if_block_32(ctx) {
-    	let continentbar;
+    	let collaborationbar;
     	let current;
 
-    	continentbar = new ContinentBar({
+    	collaborationbar = new CollaborationBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 18 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(continentbar.$$.fragment);
+    			create_component(collaborationbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(continentbar, target, anchor);
+    			mount_component(collaborationbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const continentbar_changes = {};
-    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
-    			continentbar.$set(continentbar_changes);
+    			const collaborationbar_changes = {};
+    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
+    			collaborationbar.$set(collaborationbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(continentbar.$$.fragment, local);
+    			transition_in(collaborationbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(continentbar.$$.fragment, local);
+    			transition_out(collaborationbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(continentbar, detaching);
+    			destroy_component(collaborationbar, detaching);
     		}
     	};
 
@@ -57183,38 +57209,38 @@ var app = (function () {
 
     // (276:42) 
     function create_if_block_31(ctx) {
-    	let continentbar;
+    	let collaborationbar;
     	let current;
 
-    	continentbar = new ContinentBar({
+    	collaborationbar = new CollaborationBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 17 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(continentbar.$$.fragment);
+    			create_component(collaborationbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(continentbar, target, anchor);
+    			mount_component(collaborationbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const continentbar_changes = {};
-    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
-    			continentbar.$set(continentbar_changes);
+    			const collaborationbar_changes = {};
+    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
+    			collaborationbar.$set(collaborationbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(continentbar.$$.fragment, local);
+    			transition_in(collaborationbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(continentbar.$$.fragment, local);
+    			transition_out(collaborationbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(continentbar, detaching);
+    			destroy_component(collaborationbar, detaching);
     		}
     	};
 
@@ -57231,38 +57257,38 @@ var app = (function () {
 
     // (274:42) 
     function create_if_block_30(ctx) {
-    	let continentbar;
+    	let collaborationbar;
     	let current;
 
-    	continentbar = new ContinentBar({
+    	collaborationbar = new CollaborationBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 16 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(continentbar.$$.fragment);
+    			create_component(collaborationbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(continentbar, target, anchor);
+    			mount_component(collaborationbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const continentbar_changes = {};
-    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
-    			continentbar.$set(continentbar_changes);
+    			const collaborationbar_changes = {};
+    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
+    			collaborationbar.$set(collaborationbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(continentbar.$$.fragment, local);
+    			transition_in(collaborationbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(continentbar.$$.fragment, local);
+    			transition_out(collaborationbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(continentbar, detaching);
+    			destroy_component(collaborationbar, detaching);
     		}
     	};
 
@@ -57279,38 +57305,38 @@ var app = (function () {
 
     // (272:42) 
     function create_if_block_29(ctx) {
-    	let continentbar;
+    	let collaborationbar;
     	let current;
 
-    	continentbar = new ContinentBar({
+    	collaborationbar = new CollaborationBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 15 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(continentbar.$$.fragment);
+    			create_component(collaborationbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(continentbar, target, anchor);
+    			mount_component(collaborationbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const continentbar_changes = {};
-    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
-    			continentbar.$set(continentbar_changes);
+    			const collaborationbar_changes = {};
+    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
+    			collaborationbar.$set(collaborationbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(continentbar.$$.fragment, local);
+    			transition_in(collaborationbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(continentbar.$$.fragment, local);
+    			transition_out(collaborationbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(continentbar, detaching);
+    			destroy_component(collaborationbar, detaching);
     		}
     	};
 
@@ -57327,38 +57353,38 @@ var app = (function () {
 
     // (270:42) 
     function create_if_block_28(ctx) {
-    	let continentbar;
+    	let collaborationbar;
     	let current;
 
-    	continentbar = new ContinentBar({
+    	collaborationbar = new CollaborationBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 14 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(continentbar.$$.fragment);
+    			create_component(collaborationbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(continentbar, target, anchor);
+    			mount_component(collaborationbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const continentbar_changes = {};
-    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
-    			continentbar.$set(continentbar_changes);
+    			const collaborationbar_changes = {};
+    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
+    			collaborationbar.$set(collaborationbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(continentbar.$$.fragment, local);
+    			transition_in(collaborationbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(continentbar.$$.fragment, local);
+    			transition_out(collaborationbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(continentbar, detaching);
+    			destroy_component(collaborationbar, detaching);
     		}
     	};
 
@@ -57375,38 +57401,38 @@ var app = (function () {
 
     // (268:42) 
     function create_if_block_27(ctx) {
-    	let continentbar;
+    	let collaborationbar;
     	let current;
 
-    	continentbar = new ContinentBar({
+    	collaborationbar = new CollaborationBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 13 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(continentbar.$$.fragment);
+    			create_component(collaborationbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(continentbar, target, anchor);
+    			mount_component(collaborationbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const continentbar_changes = {};
-    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
-    			continentbar.$set(continentbar_changes);
+    			const collaborationbar_changes = {};
+    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
+    			collaborationbar.$set(collaborationbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(continentbar.$$.fragment, local);
+    			transition_in(collaborationbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(continentbar.$$.fragment, local);
+    			transition_out(collaborationbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(continentbar, detaching);
+    			destroy_component(collaborationbar, detaching);
     		}
     	};
 
@@ -57423,38 +57449,38 @@ var app = (function () {
 
     // (266:42) 
     function create_if_block_26(ctx) {
-    	let continentbar;
+    	let collaborationbar;
     	let current;
 
-    	continentbar = new ContinentBar({
+    	collaborationbar = new CollaborationBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 12 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(continentbar.$$.fragment);
+    			create_component(collaborationbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(continentbar, target, anchor);
+    			mount_component(collaborationbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const continentbar_changes = {};
-    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
-    			continentbar.$set(continentbar_changes);
+    			const collaborationbar_changes = {};
+    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
+    			collaborationbar.$set(collaborationbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(continentbar.$$.fragment, local);
+    			transition_in(collaborationbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(continentbar.$$.fragment, local);
+    			transition_out(collaborationbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(continentbar, detaching);
+    			destroy_component(collaborationbar, detaching);
     		}
     	};
 
@@ -57471,38 +57497,38 @@ var app = (function () {
 
     // (264:42) 
     function create_if_block_25(ctx) {
-    	let continentbar;
+    	let collaborationbar;
     	let current;
 
-    	continentbar = new ContinentBar({
+    	collaborationbar = new CollaborationBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 11 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(continentbar.$$.fragment);
+    			create_component(collaborationbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(continentbar, target, anchor);
+    			mount_component(collaborationbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const continentbar_changes = {};
-    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
-    			continentbar.$set(continentbar_changes);
+    			const collaborationbar_changes = {};
+    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
+    			collaborationbar.$set(collaborationbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(continentbar.$$.fragment, local);
+    			transition_in(collaborationbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(continentbar.$$.fragment, local);
+    			transition_out(collaborationbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(continentbar, detaching);
+    			destroy_component(collaborationbar, detaching);
     		}
     	};
 
@@ -57519,38 +57545,38 @@ var app = (function () {
 
     // (262:12) {#if selectedYear === 10}
     function create_if_block_24(ctx) {
-    	let continentbar;
+    	let collaborationbar;
     	let current;
 
-    	continentbar = new ContinentBar({
+    	collaborationbar = new CollaborationBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 10 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(continentbar.$$.fragment);
+    			create_component(collaborationbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(continentbar, target, anchor);
+    			mount_component(collaborationbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const continentbar_changes = {};
-    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
-    			continentbar.$set(continentbar_changes);
+    			const collaborationbar_changes = {};
+    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
+    			collaborationbar.$set(collaborationbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(continentbar.$$.fragment, local);
+    			transition_in(collaborationbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(continentbar.$$.fragment, local);
+    			transition_out(collaborationbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(continentbar, detaching);
+    			destroy_component(collaborationbar, detaching);
     		}
     	};
 
@@ -57685,7 +57711,7 @@ var app = (function () {
     	return block;
     }
 
-    // (235:8) <Row class="mb-5 mt-5">
+    // (235:8) <Row>
     function create_default_slot_11(ctx) {
     	let col0;
     	let t;
@@ -57760,7 +57786,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_11.name,
     		type: "slot",
-    		source: "(235:8) <Row class=\\\"mb-5 mt-5\\\">",
+    		source: "(235:8) <Row>",
     		ctx
     	});
 
@@ -57769,38 +57795,38 @@ var app = (function () {
 
     // (309:42) 
     function create_if_block_23(ctx) {
-    	let collaborationbar;
+    	let continentbar;
     	let current;
 
-    	collaborationbar = new CollaborationBar({
+    	continentbar = new ContinentBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 20 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(collaborationbar.$$.fragment);
+    			create_component(continentbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(collaborationbar, target, anchor);
+    			mount_component(continentbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const collaborationbar_changes = {};
-    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
-    			collaborationbar.$set(collaborationbar_changes);
+    			const continentbar_changes = {};
+    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
+    			continentbar.$set(continentbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(collaborationbar.$$.fragment, local);
+    			transition_in(continentbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(collaborationbar.$$.fragment, local);
+    			transition_out(continentbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(collaborationbar, detaching);
+    			destroy_component(continentbar, detaching);
     		}
     	};
 
@@ -57817,38 +57843,38 @@ var app = (function () {
 
     // (307:42) 
     function create_if_block_22(ctx) {
-    	let collaborationbar;
+    	let continentbar;
     	let current;
 
-    	collaborationbar = new CollaborationBar({
+    	continentbar = new ContinentBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 19 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(collaborationbar.$$.fragment);
+    			create_component(continentbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(collaborationbar, target, anchor);
+    			mount_component(continentbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const collaborationbar_changes = {};
-    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
-    			collaborationbar.$set(collaborationbar_changes);
+    			const continentbar_changes = {};
+    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
+    			continentbar.$set(continentbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(collaborationbar.$$.fragment, local);
+    			transition_in(continentbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(collaborationbar.$$.fragment, local);
+    			transition_out(continentbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(collaborationbar, detaching);
+    			destroy_component(continentbar, detaching);
     		}
     	};
 
@@ -57865,38 +57891,38 @@ var app = (function () {
 
     // (305:42) 
     function create_if_block_21(ctx) {
-    	let collaborationbar;
+    	let continentbar;
     	let current;
 
-    	collaborationbar = new CollaborationBar({
+    	continentbar = new ContinentBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 18 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(collaborationbar.$$.fragment);
+    			create_component(continentbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(collaborationbar, target, anchor);
+    			mount_component(continentbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const collaborationbar_changes = {};
-    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
-    			collaborationbar.$set(collaborationbar_changes);
+    			const continentbar_changes = {};
+    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
+    			continentbar.$set(continentbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(collaborationbar.$$.fragment, local);
+    			transition_in(continentbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(collaborationbar.$$.fragment, local);
+    			transition_out(continentbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(collaborationbar, detaching);
+    			destroy_component(continentbar, detaching);
     		}
     	};
 
@@ -57913,38 +57939,38 @@ var app = (function () {
 
     // (303:42) 
     function create_if_block_20(ctx) {
-    	let collaborationbar;
+    	let continentbar;
     	let current;
 
-    	collaborationbar = new CollaborationBar({
+    	continentbar = new ContinentBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 17 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(collaborationbar.$$.fragment);
+    			create_component(continentbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(collaborationbar, target, anchor);
+    			mount_component(continentbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const collaborationbar_changes = {};
-    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
-    			collaborationbar.$set(collaborationbar_changes);
+    			const continentbar_changes = {};
+    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
+    			continentbar.$set(continentbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(collaborationbar.$$.fragment, local);
+    			transition_in(continentbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(collaborationbar.$$.fragment, local);
+    			transition_out(continentbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(collaborationbar, detaching);
+    			destroy_component(continentbar, detaching);
     		}
     	};
 
@@ -57961,38 +57987,38 @@ var app = (function () {
 
     // (301:42) 
     function create_if_block_19(ctx) {
-    	let collaborationbar;
+    	let continentbar;
     	let current;
 
-    	collaborationbar = new CollaborationBar({
+    	continentbar = new ContinentBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 16 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(collaborationbar.$$.fragment);
+    			create_component(continentbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(collaborationbar, target, anchor);
+    			mount_component(continentbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const collaborationbar_changes = {};
-    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
-    			collaborationbar.$set(collaborationbar_changes);
+    			const continentbar_changes = {};
+    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
+    			continentbar.$set(continentbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(collaborationbar.$$.fragment, local);
+    			transition_in(continentbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(collaborationbar.$$.fragment, local);
+    			transition_out(continentbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(collaborationbar, detaching);
+    			destroy_component(continentbar, detaching);
     		}
     	};
 
@@ -58009,38 +58035,38 @@ var app = (function () {
 
     // (299:42) 
     function create_if_block_18(ctx) {
-    	let collaborationbar;
+    	let continentbar;
     	let current;
 
-    	collaborationbar = new CollaborationBar({
+    	continentbar = new ContinentBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 15 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(collaborationbar.$$.fragment);
+    			create_component(continentbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(collaborationbar, target, anchor);
+    			mount_component(continentbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const collaborationbar_changes = {};
-    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
-    			collaborationbar.$set(collaborationbar_changes);
+    			const continentbar_changes = {};
+    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
+    			continentbar.$set(continentbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(collaborationbar.$$.fragment, local);
+    			transition_in(continentbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(collaborationbar.$$.fragment, local);
+    			transition_out(continentbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(collaborationbar, detaching);
+    			destroy_component(continentbar, detaching);
     		}
     	};
 
@@ -58057,38 +58083,38 @@ var app = (function () {
 
     // (297:42) 
     function create_if_block_17(ctx) {
-    	let collaborationbar;
+    	let continentbar;
     	let current;
 
-    	collaborationbar = new CollaborationBar({
+    	continentbar = new ContinentBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 14 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(collaborationbar.$$.fragment);
+    			create_component(continentbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(collaborationbar, target, anchor);
+    			mount_component(continentbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const collaborationbar_changes = {};
-    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
-    			collaborationbar.$set(collaborationbar_changes);
+    			const continentbar_changes = {};
+    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
+    			continentbar.$set(continentbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(collaborationbar.$$.fragment, local);
+    			transition_in(continentbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(collaborationbar.$$.fragment, local);
+    			transition_out(continentbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(collaborationbar, detaching);
+    			destroy_component(continentbar, detaching);
     		}
     	};
 
@@ -58105,38 +58131,38 @@ var app = (function () {
 
     // (295:42) 
     function create_if_block_16(ctx) {
-    	let collaborationbar;
+    	let continentbar;
     	let current;
 
-    	collaborationbar = new CollaborationBar({
+    	continentbar = new ContinentBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 13 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(collaborationbar.$$.fragment);
+    			create_component(continentbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(collaborationbar, target, anchor);
+    			mount_component(continentbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const collaborationbar_changes = {};
-    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
-    			collaborationbar.$set(collaborationbar_changes);
+    			const continentbar_changes = {};
+    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
+    			continentbar.$set(continentbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(collaborationbar.$$.fragment, local);
+    			transition_in(continentbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(collaborationbar.$$.fragment, local);
+    			transition_out(continentbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(collaborationbar, detaching);
+    			destroy_component(continentbar, detaching);
     		}
     	};
 
@@ -58153,38 +58179,38 @@ var app = (function () {
 
     // (293:42) 
     function create_if_block_15(ctx) {
-    	let collaborationbar;
+    	let continentbar;
     	let current;
 
-    	collaborationbar = new CollaborationBar({
+    	continentbar = new ContinentBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 12 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(collaborationbar.$$.fragment);
+    			create_component(continentbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(collaborationbar, target, anchor);
+    			mount_component(continentbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const collaborationbar_changes = {};
-    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
-    			collaborationbar.$set(collaborationbar_changes);
+    			const continentbar_changes = {};
+    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
+    			continentbar.$set(continentbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(collaborationbar.$$.fragment, local);
+    			transition_in(continentbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(collaborationbar.$$.fragment, local);
+    			transition_out(continentbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(collaborationbar, detaching);
+    			destroy_component(continentbar, detaching);
     		}
     	};
 
@@ -58201,38 +58227,38 @@ var app = (function () {
 
     // (291:42) 
     function create_if_block_14(ctx) {
-    	let collaborationbar;
+    	let continentbar;
     	let current;
 
-    	collaborationbar = new CollaborationBar({
+    	continentbar = new ContinentBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 11 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(collaborationbar.$$.fragment);
+    			create_component(continentbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(collaborationbar, target, anchor);
+    			mount_component(continentbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const collaborationbar_changes = {};
-    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
-    			collaborationbar.$set(collaborationbar_changes);
+    			const continentbar_changes = {};
+    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
+    			continentbar.$set(continentbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(collaborationbar.$$.fragment, local);
+    			transition_in(continentbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(collaborationbar.$$.fragment, local);
+    			transition_out(continentbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(collaborationbar, detaching);
+    			destroy_component(continentbar, detaching);
     		}
     	};
 
@@ -58249,38 +58275,38 @@ var app = (function () {
 
     // (289:12) {#if selectedYear === 10}
     function create_if_block_13(ctx) {
-    	let collaborationbar;
+    	let continentbar;
     	let current;
 
-    	collaborationbar = new CollaborationBar({
+    	continentbar = new ContinentBar({
     			props: { dataset: /*dataset*/ ctx[3], year: 10 },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(collaborationbar.$$.fragment);
+    			create_component(continentbar.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(collaborationbar, target, anchor);
+    			mount_component(continentbar, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const collaborationbar_changes = {};
-    			if (dirty & /*dataset*/ 8) collaborationbar_changes.dataset = /*dataset*/ ctx[3];
-    			collaborationbar.$set(collaborationbar_changes);
+    			const continentbar_changes = {};
+    			if (dirty & /*dataset*/ 8) continentbar_changes.dataset = /*dataset*/ ctx[3];
+    			continentbar.$set(continentbar_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(collaborationbar.$$.fragment, local);
+    			transition_in(continentbar.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(collaborationbar.$$.fragment, local);
+    			transition_out(continentbar.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(collaborationbar, detaching);
+    			destroy_component(continentbar, detaching);
     		}
     	};
 
@@ -58415,7 +58441,7 @@ var app = (function () {
     	return block;
     }
 
-    // (334:42) 
+    // (335:42) 
     function create_if_block_12(ctx) {
     	let committeebar;
     	let current;
@@ -58456,14 +58482,14 @@ var app = (function () {
     		block,
     		id: create_if_block_12.name,
     		type: "if",
-    		source: "(334:42) ",
+    		source: "(335:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (332:42) 
+    // (333:42) 
     function create_if_block_11(ctx) {
     	let committeebar;
     	let current;
@@ -58504,14 +58530,14 @@ var app = (function () {
     		block,
     		id: create_if_block_11.name,
     		type: "if",
-    		source: "(332:42) ",
+    		source: "(333:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (330:42) 
+    // (331:42) 
     function create_if_block_10(ctx) {
     	let committeebar;
     	let current;
@@ -58552,14 +58578,14 @@ var app = (function () {
     		block,
     		id: create_if_block_10.name,
     		type: "if",
-    		source: "(330:42) ",
+    		source: "(331:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (328:42) 
+    // (329:42) 
     function create_if_block_9(ctx) {
     	let committeebar;
     	let current;
@@ -58600,14 +58626,14 @@ var app = (function () {
     		block,
     		id: create_if_block_9.name,
     		type: "if",
-    		source: "(328:42) ",
+    		source: "(329:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (326:42) 
+    // (327:42) 
     function create_if_block_8(ctx) {
     	let committeebar;
     	let current;
@@ -58648,14 +58674,14 @@ var app = (function () {
     		block,
     		id: create_if_block_8.name,
     		type: "if",
-    		source: "(326:42) ",
+    		source: "(327:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (324:42) 
+    // (325:42) 
     function create_if_block_7(ctx) {
     	let committeebar;
     	let current;
@@ -58696,14 +58722,14 @@ var app = (function () {
     		block,
     		id: create_if_block_7.name,
     		type: "if",
-    		source: "(324:42) ",
+    		source: "(325:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (322:42) 
+    // (323:42) 
     function create_if_block_6(ctx) {
     	let committeebar;
     	let current;
@@ -58744,14 +58770,14 @@ var app = (function () {
     		block,
     		id: create_if_block_6.name,
     		type: "if",
-    		source: "(322:42) ",
+    		source: "(323:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (320:42) 
+    // (321:42) 
     function create_if_block_5(ctx) {
     	let committeebar;
     	let current;
@@ -58792,14 +58818,14 @@ var app = (function () {
     		block,
     		id: create_if_block_5.name,
     		type: "if",
-    		source: "(320:42) ",
+    		source: "(321:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (318:42) 
+    // (319:42) 
     function create_if_block_4(ctx) {
     	let committeebar;
     	let current;
@@ -58840,14 +58866,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(318:42) ",
+    		source: "(319:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (316:42) 
+    // (317:42) 
     function create_if_block_3$1(ctx) {
     	let committeebar;
     	let current;
@@ -58888,14 +58914,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3$1.name,
     		type: "if",
-    		source: "(316:42) ",
+    		source: "(317:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (314:12) {#if selectedYear === 10}
+    // (315:12) {#if selectedYear === 10}
     function create_if_block_2$1(ctx) {
     	let committeebar;
     	let current;
@@ -58936,14 +58962,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2$1.name,
     		type: "if",
-    		source: "(314:12) {#if selectedYear === 10}",
+    		source: "(315:12) {#if selectedYear === 10}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (313:10) <Col lg={{ size: 6, offset: 0 }}>
+    // (314:10) <Col lg={{ size: 6, offset: 0 }}>
     function create_default_slot_9(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -59056,14 +59082,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_9.name,
     		type: "slot",
-    		source: "(313:10) <Col lg={{ size: 6, offset: 0 }}>",
+    		source: "(314:10) <Col lg={{ size: 6, offset: 0 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (287:8) <Row class="mb-5 mt-5">
+    // (287:8) <Row>
     function create_default_slot_8(ctx) {
     	let col0;
     	let t;
@@ -59138,7 +59164,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_8.name,
     		type: "slot",
-    		source: "(287:8) <Row class=\\\"mb-5 mt-5\\\">",
+    		source: "(287:8) <Row>",
     		ctx
     	});
 
@@ -59154,7 +59180,6 @@ var app = (function () {
 
     	row0 = new Row({
     			props: {
-    				class: "mb-5 mt-5",
     				$$slots: { default: [create_default_slot_11] },
     				$$scope: { ctx }
     			},
@@ -59163,7 +59188,6 @@ var app = (function () {
 
     	row1 = new Row({
     			props: {
-    				class: "mb-5 mt-5",
     				$$slots: { default: [create_default_slot_8] },
     				$$scope: { ctx }
     			},
@@ -59593,7 +59617,7 @@ var app = (function () {
     	return block;
     }
 
-    // (343:2) <Container class="mb-5" fluid={true}>
+    // (344:2) <Container class="mb-5" fluid={true}>
     function create_default_slot(ctx) {
     	let div;
     	let footer;
@@ -59605,7 +59629,7 @@ var app = (function () {
     			div = element("div");
     			create_component(footer.$$.fragment);
     			attr_dev(div, "class", "d-flex justify-content-center");
-    			add_location(div, file$h, 343, 4, 12630);
+    			add_location(div, file$h, 344, 4, 12595);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -59631,7 +59655,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(343:2) <Container class=\\\"mb-5\\\" fluid={true}>",
+    		source: "(344:2) <Container class=\\\"mb-5\\\" fluid={true}>",
     		ctx
     	});
 
