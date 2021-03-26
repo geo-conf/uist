@@ -80,6 +80,7 @@
           intersect: false,
         },
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
           xAxes: [
             {
@@ -95,4 +96,12 @@
   });
 </script>
 
-<canvas bind:this={canvas} />
+<div class="container">
+  <canvas bind:this={canvas} />
+</div>
+
+<style>
+  .container {
+    min-height: 400px;
+  }
+</style>

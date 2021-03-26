@@ -31,6 +31,7 @@
   let selectedYear = defaultYear;
   let dataset = undefined;
   let imagesLoaded = false;
+  let w; // window's width
 
   // load the data first from online repo
   jQ.getJSON(
@@ -85,254 +86,280 @@
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 </svelte:head>
 
-<body>
-  <div class="main">
-    <Forkme url="https://github.com/geo-conf/uist" />
-    <Container class="mb-5 mt-5">
-      <Row><Title conferenceName="UIST" /></Row>
-    </Container>
+<div class="main" bind:clientWidth={w}>
+  <Container class="mb-5 mt-5" fluid="sm">
+    <!-- Hid banner in small sizes -->
+    {#if w > 700}
+      <Forkme url="https://github.com/geo-conf/uist" />
+    {/if}
+    <Row><Title conferenceName="UIST" /></Row>
+  </Container>
 
-    <!-- Description -->
-    <Container class="mb-4 mt-4">
-      <Row>
-        <p class="lead">
-          This website showcases an <a
-            href="https://github.com/orgs/geo-conf/dashboard">open-source</a>
-          and independent visualization project that provides some insights into
-          the geographical outreach and growth of the community of the
-          <a href="uist.acm.org">UIST conference</a>. The graphs below are based
-          upon
-          <a href="https://github.com/geo-conf/geo-dataset">open-source data</a>
-          and show the main trends across the years or per year for each edition
-          of the conference. See below about how data was collected and analyzed.
-        </p>
+  <!-- Description -->
+  <Container class="mb-4 mt-4">
+    <Row>
+      <p class="lead">
+        This website showcases an <a
+          href="https://github.com/orgs/geo-conf/dashboard">open-source</a>
+        and independent visualization project that provides some insights into the
+        geographical outreach and growth of the community of the
+        <a href="http://uist.acm.org">UIST conference</a>. The graphs below are
+        based upon
+        <a href="https://github.com/geo-conf/geo-dataset">open-source data</a>
+        and show the main trends across the years or per year for each edition of
+        the conference.
+      </p>
+    </Row>
+    <Row>
+      <h2 on:click={() => (detailView = !detailView)} class="pointer-hand">
+        👉 Click for details about data collection and analysis
+      </h2>
+    </Row>
+    <Row class="mb-2">
+      <Collapse isOpen={detailView}>
+        <ul>
+          <li class="lead">
+            Data was <a href="">collected</a> directly from the
+            <a href="">ACM digital library</a>
+            and the webpages of each conference's edition.
+            <a href="">A script</a>
+            was used to and aggregate this data in a single
+            <a href="">dataset</a>. <b>Countries</b> of affiliations are
+            reported as indicated by the authors of the papers and indicated
+            here following the
+            <a href="https://www.iso.org/iso-3166-country-codes.html"
+              >ISO 3166</a>
+            country code standard. <b>Continents</b> are inferred using the
+            <a href="https://en.wikipedia.org/wiki/Continent"
+              >seven-continent model</a
+            >. Countries of affiliation are counted only once per paper, no
+            matter how many authors from institutions of the same country
+            participated in the paper. If authors belong to institutions from
+            different countries, each country is counted once per paper. Color
+            coding follows the same notation as
+            <a href="https://en.wikipedia.org/wiki/Continent">Wikipedia</a>.
+          </li>
 
-        <p class="lead">
-          This project was developed by Andrea Bianchi at the MAKinteract lab
-          (KAIST, Korea). <i>
-            The views, opinions, data analysis, and visualization expressed in
-            this website are those of the author and by no means are meant to
-            represent those of the ACM or the author's institution and
-            colleagues.
-          </i>
-          Please report mistakes, incorrect data, or suggestions as issues via
-          <a href="https://github.com/geo-conf/uist/issues">Github</a>. To
-          contribute to the project, consider forking the repository.
-        </p>
-      </Row>
-      <Row class="mb-5">
-        <h2 on:click={() => (detailView = !detailView)} class="pointer-hand">
-          👉 Click for details about data collection
-        </h2>
-      </Row>
-      <Row class="mb-5">
-        <Collapse isOpen={detailView}>
-          <div>
-            <p class="lead">
-              Countries of affiliation were extracted from each paper of the
-              proceedings directly from the ACM digital library. They are
-              indicated here as reported by the authors, or, if they are
-              omitted, were inserted programmatically (link). Countries of the
-              affiliations are counted only once per paper, no matter how many
-              authors from institutions of the same country participated in the
-              paper. If authors belong to institutions from different countries,
-              each country is counted once per paper. Data were then aggregated
-              in continents (link) following a similar way.
-            </p>
-            <p class="lead">
-              The list of the committee members (Associate Chairs a.k.a. ACs in
-              the papers track) was obtained from the web pages of the
-              individual editions of UIST. Program chairs or conference
-              organizers with other roles are not included in this count.
-              Affiliations were considered as listed on the websites (i.e., the
-              affiliation "at that time", and not necessarily today).
-            </p>
-            <p class="lead">
-              Collaborations are counted as international and collaborations.
-              International collaborations are counted if the authors of the
-              same paper are from different countries. Intercontinental
-              collaborations are a subset of the former and are counted if two
-              or more of the authors are from institutions in different
-              continents.
-            </p>
-          </div>
-        </Collapse>
-      </Row>
-    </Container>
+          <li class="lead">
+            The list of the <b>committee members</b> (Associate Chairs a.k.a. ACs
+            in the papers track) was obtained from the web pages of the individual
+            editions of UIST. Program chairs or conference organizers with other
+            roles are not included in the reported numbers. Affiliations were considered
+            as listed on the websites (i.e., the affiliation at the time of the event,
+            which are is necessarily the same today).
+          </li>
+          <li class="lead">
+            <b>Collaborations</b> are counted as international and collaborations.
+            International collaborations are counted if the authors of the same paper
+            are from different countries. Intercontinental collaborations are a subset
+            of the former and are counted if two or more of the authors are from
+            institutions in different continents.
+          </li>
+        </ul>
+      </Collapse>
+    </Row>
+    <Row>
+      <p class="lead">
+        This project was developed by <a
+          href="https://makinteract.kaist.ac.kr/andrea">Andrea Bianchi</a>
+        at the <a href="https://makinteract.kaist.ac.kr" /> MAKinteract lab (<a
+          href="https://kaist.ac.kr/kr/">KAIST</a
+        >, Korea).
+        <i>
+          The views, opinions, data analysis, and visualization expressed in
+          this website are those of the author and by no means are meant to
+          represent those of the ACM or the author's institution and colleagues.
+        </i>
+        Please report mistakes, incorrect data, or suggestions as
+        <a href="https://github.com/geo-conf/uist/issues">issues via Github</a>.
+        To contribute to the project, consider forking the repository.
+      </p>
+    </Row>
+  </Container>
 
-    <Container class="mb-5" fluid={true}>
-      <div class="d-flex justify-content-center">
-        <ButtonGroup>
-          <Button
-            on:click={overview}
-            active={overviewStats}
-            outline
-            color="primary">Overview</Button>
-          <Button
-            on:click={yearlyStats}
-            active={!overviewStats}
-            outline
-            color="primary">Yearly stats</Button>
-        </ButtonGroup>
-      </div>
-    </Container>
+  <Container class="mb-5" fluid={true}>
+    <div class="d-flex justify-content-center">
+      <ButtonGroup>
+        <Button
+          on:click={overview}
+          active={overviewStats}
+          outline
+          color="primary">Overview</Button>
+        <Button
+          on:click={yearlyStats}
+          active={!overviewStats}
+          outline
+          color="primary">Yearly stats</Button>
+      </ButtonGroup>
+    </div>
+  </Container>
 
-    <!-- Overview stats -->
+  <!-- Overview stats -->
 
-    {#if dataset !== undefined}
-      {#if overviewStats}
-        <Container class="mb-5 mt-5" fluid={true}>
-          <Row class="mb-5 mt-5">
-            <Col lg={{ size: 6, offset: 0 }}>
-              <ContinentStack {dataset} />
-            </Col>
-            <Col lg={{ size: 6, offset: 0 }}>
-              <CommitteeStacked {dataset} />
-            </Col>
-          </Row>
-          <Row class="mb-5 mt-5">
-            <Col lg={{ size: 6, offset: 3 }}>
-              <CollaborationOverview {dataset} />
-            </Col>
-          </Row>
-        </Container>
+  {#if dataset !== undefined}
+    {#if overviewStats}
+      <Container class="mb-5 mt-5" fluid={true}>
+        <Row class="mt-5">
+          <Col class="mb-5" lg={{ size: 6, offset: 0 }}>
+            <ContinentStack {dataset} />
+          </Col>
+          <Col class="mb-5" lg={{ size: 6, offset: 0 }}>
+            <CommitteeStacked {dataset} />
+          </Col>
+        </Row>
+        <Row class="mb-5">
+          <Col lg={{ size: 6, offset: 3 }}>
+            <CollaborationOverview {dataset} />
+          </Col>
+        </Row>
+      </Container>
 
-        <!-- Stats per year -->
-      {:else}
-        <!-- Grid of all UIST buttons -->
-        {#if imagesLoaded}
-          <Container fluid={true}>
-            <Col sm="12" md={{ size: 9, offset: 2 }}>
-              {#each logoButton as buttonData}
+      <!-- Stats per year -->
+    {:else}
+      <!-- Grid of all UIST buttons -->
+      {#if imagesLoaded}
+        <Container>
+          <Row class="justify-content-center">
+            {#each logoButton as buttonData}
+              <Col xs="4" sm="4" md="2" lg="2" xl="2" class="mb-2">
                 <Logo on:click={select} {...buttonData} />
-              {/each}
-            </Col>
-          </Container>
-        {/if}
-
-        <Container class="mb-5 mt-5" fluid={true}>
-          <Row class="mb-5 mt-5">
-            <Col lg={{ size: 6, offset: 0 }}>
-              {#if selectedYear === 10}
-                <CountryBar {dataset} year={10} />
-              {:else if selectedYear === 11}
-                <CountryBar {dataset} year={11} />
-              {:else if selectedYear === 12}
-                <CountryBar {dataset} year={12} />
-              {:else if selectedYear === 13}
-                <CountryBar {dataset} year={13} />
-              {:else if selectedYear === 14}
-                <CountryBar {dataset} year={14} />
-              {:else if selectedYear === 15}
-                <CountryBar {dataset} year={15} />
-              {:else if selectedYear === 16}
-                <CountryBar {dataset} year={16} />
-              {:else if selectedYear === 17}
-                <CountryBar {dataset} year={17} />
-              {:else if selectedYear === 18}
-                <CountryBar {dataset} year={18} />
-              {:else if selectedYear === 19}
-                <CountryBar {dataset} year={19} />
-              {:else if selectedYear === 20}
-                <CountryBar {dataset} year={20} />
-              {/if}
-            </Col>
-            <Col lg={{ size: 6, offset: 0 }}>
-              {#if selectedYear === 10}
-                <ContinentBar {dataset} year={10} />
-              {:else if selectedYear === 11}
-                <ContinentBar {dataset} year={11} />
-              {:else if selectedYear === 12}
-                <ContinentBar {dataset} year={12} />
-              {:else if selectedYear === 13}
-                <ContinentBar {dataset} year={13} />
-              {:else if selectedYear === 14}
-                <ContinentBar {dataset} year={14} />
-              {:else if selectedYear === 15}
-                <ContinentBar {dataset} year={15} />
-              {:else if selectedYear === 16}
-                <ContinentBar {dataset} year={16} />
-              {:else if selectedYear === 17}
-                <ContinentBar {dataset} year={17} />
-              {:else if selectedYear === 18}
-                <ContinentBar {dataset} year={18} />
-              {:else if selectedYear === 19}
-                <ContinentBar {dataset} year={19} />
-              {:else if selectedYear === 20}
-                <ContinentBar {dataset} year={20} />
-              {/if}
-            </Col>
-          </Row>
-          <Row class="mb-5 mt-5">
-            <Col lg={{ size: 6, offset: 0 }}>
-              {#if selectedYear === 10}
-                <CollaborationBar {dataset} year={10} />
-              {:else if selectedYear === 11}
-                <CollaborationBar {dataset} year={11} />
-              {:else if selectedYear === 12}
-                <CollaborationBar {dataset} year={12} />
-              {:else if selectedYear === 13}
-                <CollaborationBar {dataset} year={13} />
-              {:else if selectedYear === 14}
-                <CollaborationBar {dataset} year={14} />
-              {:else if selectedYear === 15}
-                <CollaborationBar {dataset} year={15} />
-              {:else if selectedYear === 16}
-                <CollaborationBar {dataset} year={16} />
-              {:else if selectedYear === 17}
-                <CollaborationBar {dataset} year={17} />
-              {:else if selectedYear === 18}
-                <CollaborationBar {dataset} year={18} />
-              {:else if selectedYear === 19}
-                <CollaborationBar {dataset} year={19} />
-              {:else if selectedYear === 20}
-                <CollaborationBar {dataset} year={20} />
-              {/if}
-            </Col>
-            <Col lg={{ size: 6, offset: 0 }}>
-              {#if selectedYear === 10}
-                <CommitteeBar {dataset} year={10} />
-              {:else if selectedYear === 11}
-                <CommitteeBar {dataset} year={11} />
-              {:else if selectedYear === 12}
-                <CommitteeBar {dataset} year={12} />
-              {:else if selectedYear === 13}
-                <CommitteeBar {dataset} year={13} />
-              {:else if selectedYear === 14}
-                <CommitteeBar {dataset} year={14} />
-              {:else if selectedYear === 15}
-                <CommitteeBar {dataset} year={15} />
-              {:else if selectedYear === 16}
-                <CommitteeBar {dataset} year={16} />
-              {:else if selectedYear === 17}
-                <CommitteeBar {dataset} year={17} />
-              {:else if selectedYear === 18}
-                <CommitteeBar {dataset} year={18} />
-              {:else if selectedYear === 19}
-                <CommitteeBar {dataset} year={19} />
-              {:else if selectedYear === 20}
-                <CommitteeBar {dataset} year={20} />
-              {/if}
-            </Col>
+              </Col>
+            {/each}
           </Row>
         </Container>
       {/if}
-    {/if}
 
-    <Container class="mb-5" fluid={true}>
-      <div class="d-flex justify-content-center">
-        <Footer />
-      </div>
-    </Container>
-  </div>
-</body>
+      <Container class="mb-5 mt-5" fluid={true}>
+        <Row class="mb-5 mt-5">
+          <Col lg={{ size: 6, offset: 0 }}>
+            {#if selectedYear === 10}
+              <CountryBar {dataset} year={10} />
+            {:else if selectedYear === 11}
+              <CountryBar {dataset} year={11} />
+            {:else if selectedYear === 12}
+              <CountryBar {dataset} year={12} />
+            {:else if selectedYear === 13}
+              <CountryBar {dataset} year={13} />
+            {:else if selectedYear === 14}
+              <CountryBar {dataset} year={14} />
+            {:else if selectedYear === 15}
+              <CountryBar {dataset} year={15} />
+            {:else if selectedYear === 16}
+              <CountryBar {dataset} year={16} />
+            {:else if selectedYear === 17}
+              <CountryBar {dataset} year={17} />
+            {:else if selectedYear === 18}
+              <CountryBar {dataset} year={18} />
+            {:else if selectedYear === 19}
+              <CountryBar {dataset} year={19} />
+            {:else if selectedYear === 20}
+              <CountryBar {dataset} year={20} />
+            {/if}
+          </Col>
+          <Col lg={{ size: 6, offset: 0 }}>
+            {#if selectedYear === 10}
+              <ContinentBar {dataset} year={10} />
+            {:else if selectedYear === 11}
+              <ContinentBar {dataset} year={11} />
+            {:else if selectedYear === 12}
+              <ContinentBar {dataset} year={12} />
+            {:else if selectedYear === 13}
+              <ContinentBar {dataset} year={13} />
+            {:else if selectedYear === 14}
+              <ContinentBar {dataset} year={14} />
+            {:else if selectedYear === 15}
+              <ContinentBar {dataset} year={15} />
+            {:else if selectedYear === 16}
+              <ContinentBar {dataset} year={16} />
+            {:else if selectedYear === 17}
+              <ContinentBar {dataset} year={17} />
+            {:else if selectedYear === 18}
+              <ContinentBar {dataset} year={18} />
+            {:else if selectedYear === 19}
+              <ContinentBar {dataset} year={19} />
+            {:else if selectedYear === 20}
+              <ContinentBar {dataset} year={20} />
+            {/if}
+          </Col>
+        </Row>
+        <Row class="mb-5 mt-5">
+          <Col lg={{ size: 6, offset: 0 }}>
+            {#if selectedYear === 10}
+              <CollaborationBar {dataset} year={10} />
+            {:else if selectedYear === 11}
+              <CollaborationBar {dataset} year={11} />
+            {:else if selectedYear === 12}
+              <CollaborationBar {dataset} year={12} />
+            {:else if selectedYear === 13}
+              <CollaborationBar {dataset} year={13} />
+            {:else if selectedYear === 14}
+              <CollaborationBar {dataset} year={14} />
+            {:else if selectedYear === 15}
+              <CollaborationBar {dataset} year={15} />
+            {:else if selectedYear === 16}
+              <CollaborationBar {dataset} year={16} />
+            {:else if selectedYear === 17}
+              <CollaborationBar {dataset} year={17} />
+            {:else if selectedYear === 18}
+              <CollaborationBar {dataset} year={18} />
+            {:else if selectedYear === 19}
+              <CollaborationBar {dataset} year={19} />
+            {:else if selectedYear === 20}
+              <CollaborationBar {dataset} year={20} />
+            {/if}
+          </Col>
+          <Col lg={{ size: 6, offset: 0 }}>
+            {#if selectedYear === 10}
+              <CommitteeBar {dataset} year={10} />
+            {:else if selectedYear === 11}
+              <CommitteeBar {dataset} year={11} />
+            {:else if selectedYear === 12}
+              <CommitteeBar {dataset} year={12} />
+            {:else if selectedYear === 13}
+              <CommitteeBar {dataset} year={13} />
+            {:else if selectedYear === 14}
+              <CommitteeBar {dataset} year={14} />
+            {:else if selectedYear === 15}
+              <CommitteeBar {dataset} year={15} />
+            {:else if selectedYear === 16}
+              <CommitteeBar {dataset} year={16} />
+            {:else if selectedYear === 17}
+              <CommitteeBar {dataset} year={17} />
+            {:else if selectedYear === 18}
+              <CommitteeBar {dataset} year={18} />
+            {:else if selectedYear === 19}
+              <CommitteeBar {dataset} year={19} />
+            {:else if selectedYear === 20}
+              <CommitteeBar {dataset} year={20} />
+            {/if}
+          </Col>
+        </Row>
+      </Container>
+    {/if}
+  {/if}
+
+  <Container class="mb-5" fluid={true}>
+    <div class="d-flex justify-content-center">
+      <Footer />
+    </div>
+  </Container>
+</div>
 
 <style>
-  :global(body) {
-    background-color: #2e2e31;
+  .main {
+    width: 100%;
+    height: 100%;
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    overflow: hidden;
   }
 
   .pointer-hand {
     cursor: pointer;
+  }
+
+  b {
+    text-decoration: underline;
   }
 </style>

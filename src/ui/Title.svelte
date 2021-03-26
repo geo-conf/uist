@@ -3,8 +3,11 @@
 </script>
 
 <div>
-  <h1>The GE🌐GRAPHY of</h1>
-  <h1 class="gradient-text">{conferenceName}</h1>
+  <h1>The <span class="nobr">GE🌐GRAPHY</span></h1>
+  <h1>
+    <span class="nobr"
+      >of <span class="gradient-text">{conferenceName}</span></span>
+  </h1>
 </div>
 
 <style>
@@ -15,7 +18,7 @@
   h1 {
     font-family: helvetica, arial, sans-serif;
     color: #2e2e31;
-    font-size: 80px;
+    font-size: 50px;
     font-weight: bold;
     text-decoration: none;
     letter-spacing: -3px;
@@ -23,12 +26,16 @@
     display: inline;
   }
 
+  .nobr {
+    white-space: nowrap;
+  }
+
   /* Tutorial on https://fossheim.io/writing/posts/css-text-gradient. */
 
   .gradient-text {
     /* Fallback: Set a background color. */
     background-color: #ca4246;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
 
     /* Create the gradient. */
     background-image: linear-gradient(

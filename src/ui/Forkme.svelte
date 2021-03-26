@@ -2,21 +2,23 @@
   export let url = '';
 </script>
 
-<div class="container" style="z-index:70;">
-  <div class="ribbon red right">
-    <a href={url}>Fork me on GitHub</a>
-  </div>
+<!-- <div class="container" style="z-index:70;"> -->
+<div class="ribbon red right">
+  <a href={url}>Fork me on GitHub</a>
 </div>
 
+<!-- </div> -->
 <style>
   /* Ribbon from here: https://github.com/petethepig/github-ribbons-css */
 
   div.container {
     position: absolute;
-    height: 200px;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
     top: 0;
-    right: 0;
+    left: 0;
+    display: block;
   }
 
   @import url(http://fonts.googleapis.com/css?family=Cabin+Condensed:500&text=Fork%20me%20on%20GitHub);

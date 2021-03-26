@@ -12,18 +12,18 @@
   }
 </script>
 
-<span>
-  <img
-    on:click={forward}
-    src={imgSrc}
-    alt={imgSrc}
-    class="rounded border border-primary hadow-sm mb-3 mr-1 bg-white rounded"
-    class:unselected={!selected} />
-</span>
+<!-- hadow-sm mb-3 mr-1 -->
+
+<img
+  on:click={forward}
+  src={imgSrc}
+  alt={imgSrc}
+  class="rounded border border-primary bg-white rounded"
+  class:unselected={!selected} />
 
 <style>
   img {
-    height: 7em;
+    width: 100%;
   }
   .unselected {
     filter: grayscale(100%);

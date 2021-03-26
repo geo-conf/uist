@@ -182,8 +182,58 @@ var app = (function () {
     function children(element) {
         return Array.from(element.childNodes);
     }
-    function set_style(node, key, value, important) {
-        node.style.setProperty(key, value, important ? 'important' : '');
+    // unfortunately this can't be a constant as that wouldn't be tree-shakeable
+    // so we cache the result instead
+    let crossorigin;
+    function is_crossorigin() {
+        if (crossorigin === undefined) {
+            crossorigin = false;
+            try {
+                if (typeof window !== 'undefined' && window.parent) {
+                    void window.parent.document;
+                }
+            }
+            catch (error) {
+                crossorigin = true;
+            }
+        }
+        return crossorigin;
+    }
+    function add_resize_listener(node, fn) {
+        const computed_style = getComputedStyle(node);
+        if (computed_style.position === 'static') {
+            node.style.position = 'relative';
+        }
+        const iframe = element('iframe');
+        iframe.setAttribute('style', 'display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; ' +
+            'overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;');
+        iframe.setAttribute('aria-hidden', 'true');
+        iframe.tabIndex = -1;
+        const crossorigin = is_crossorigin();
+        let unsubscribe;
+        if (crossorigin) {
+            iframe.src = "data:text/html,<script>onresize=function(){parent.postMessage(0,'*')}</script>";
+            unsubscribe = listen(window, 'message', (event) => {
+                if (event.source === iframe.contentWindow)
+                    fn();
+            });
+        }
+        else {
+            iframe.src = 'about:blank';
+            iframe.onload = () => {
+                unsubscribe = listen(iframe.contentWindow, 'resize', fn);
+            };
+        }
+        append(node, iframe);
+        return () => {
+            if (crossorigin) {
+                unsubscribe();
+            }
+            else if (unsubscribe && iframe.contentWindow) {
+                unsubscribe();
+            }
+            detach(iframe);
+        };
     }
     function toggle_class(element, name, toggle) {
         element.classList[toggle ? 'add' : 'remove'](name);
@@ -13737,23 +13787,39 @@ var app = (function () {
     function create_fragment$6(ctx) {
     	let div;
     	let h10;
-    	let t1;
-    	let h11;
+    	let t0;
+    	let span0;
     	let t2;
+    	let h11;
+    	let span2;
+    	let t3;
+    	let span1;
+    	let t4;
 
     	const block = {
     		c: function create() {
     			div = element("div");
     			h10 = element("h1");
-    			h10.textContent = "The GE🌐GRAPHY of";
-    			t1 = space();
+    			t0 = text("The ");
+    			span0 = element("span");
+    			span0.textContent = "GE🌐GRAPHY";
+    			t2 = space();
     			h11 = element("h1");
-    			t2 = text(/*conferenceName*/ ctx[0]);
-    			attr_dev(h10, "class", "svelte-1k50g28");
+    			span2 = element("span");
+    			t3 = text("of ");
+    			span1 = element("span");
+    			t4 = text(/*conferenceName*/ ctx[0]);
+    			attr_dev(span0, "class", "nobr svelte-huzzvc");
+    			add_location(span0, file$6, 5, 10, 65);
+    			attr_dev(h10, "class", "svelte-huzzvc");
     			add_location(h10, file$6, 5, 2, 57);
-    			attr_dev(h11, "class", "gradient-text svelte-1k50g28");
-    			add_location(h11, file$6, 6, 2, 86);
-    			attr_dev(div, "class", "svelte-1k50g28");
+    			attr_dev(span1, "class", "gradient-text svelte-huzzvc");
+    			add_location(span1, file$6, 8, 10, 147);
+    			attr_dev(span2, "class", "nobr svelte-huzzvc");
+    			add_location(span2, file$6, 7, 4, 118);
+    			attr_dev(h11, "class", "svelte-huzzvc");
+    			add_location(h11, file$6, 6, 2, 109);
+    			attr_dev(div, "class", "svelte-huzzvc");
     			add_location(div, file$6, 4, 0, 49);
     		},
     		l: function claim(nodes) {
@@ -13762,12 +13828,17 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			append_dev(div, h10);
-    			append_dev(div, t1);
+    			append_dev(h10, t0);
+    			append_dev(h10, span0);
+    			append_dev(div, t2);
     			append_dev(div, h11);
-    			append_dev(h11, t2);
+    			append_dev(h11, span2);
+    			append_dev(span2, t3);
+    			append_dev(span2, span1);
+    			append_dev(span1, t4);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*conferenceName*/ 1) set_data_dev(t2, /*conferenceName*/ ctx[0]);
+    			if (dirty & /*conferenceName*/ 1) set_data_dev(t4, /*conferenceName*/ ctx[0]);
     		},
     		i: noop,
     		o: noop,
@@ -13847,7 +13918,6 @@ var app = (function () {
     const file$7 = "src/ui/Logo.svelte";
 
     function create_fragment$7(ctx) {
-    	let span;
     	let img;
     	let img_src_value;
     	let mounted;
@@ -13855,21 +13925,18 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			span = element("span");
     			img = element("img");
     			if (img.src !== (img_src_value = /*imgSrc*/ ctx[0])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", /*imgSrc*/ ctx[0]);
-    			attr_dev(img, "class", "rounded border border-primary hadow-sm mb-3 mr-1 bg-white rounded svelte-1gw9xj2");
+    			attr_dev(img, "class", "rounded border border-primary bg-white rounded svelte-1biq156");
     			toggle_class(img, "unselected", !/*selected*/ ctx[1]);
-    			add_location(img, file$7, 15, 2, 267);
-    			add_location(span, file$7, 14, 0, 258);
+    			add_location(img, file$7, 16, 0, 287);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, span, anchor);
-    			append_dev(span, img);
+    			insert_dev(target, img, anchor);
 
     			if (!mounted) {
     				dispose = listen_dev(img, "click", /*forward*/ ctx[2], false, false, false);
@@ -13892,7 +13959,7 @@ var app = (function () {
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(span);
+    			if (detaching) detach_dev(img);
     			mounted = false;
     			dispose();
     		}
@@ -53706,7 +53773,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			canvas_1 = element("canvas");
-    			add_location(canvas_1, file$b, 85, 0, 1938);
+    			add_location(canvas_1, file$b, 87, 0, 2000);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -53784,6 +53851,8 @@ var app = (function () {
     				options: {
     					title: { display: true, text: `${title}` },
     					legend: { display: false },
+    					responsive: true,
+    					maintainAspectRatio: false,
     					scales: {
     						yAxes: [{ ticks: { beginAtZero: true } }],
     						xAxes: [
@@ -53917,25 +53986,30 @@ var app = (function () {
     const file$c = "src/chart/ContinentStack.svelte";
 
     function create_fragment$c(ctx) {
+    	let div;
     	let canvas_1;
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			canvas_1 = element("canvas");
-    			add_location(canvas_1, file$c, 138, 0, 3760);
+    			add_location(canvas_1, file$c, 140, 2, 3822);
+    			attr_dev(div, "class", "container svelte-elhjxb");
+    			add_location(div, file$c, 139, 0, 3796);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, canvas_1, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, canvas_1);
     			/*canvas_1_binding*/ ctx[4](canvas_1);
     		},
     		p: noop,
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(canvas_1);
+    			if (detaching) detach_dev(div);
     			/*canvas_1_binding*/ ctx[4](null);
     		}
     	};
@@ -54058,6 +54132,7 @@ var app = (function () {
     					title: { display: true, text: `${title}` },
     					tooltips: { mode: "index", intersect: false },
     					responsive: true,
+    					maintainAspectRatio: false,
     					scales: {
     						xAxes: [
     							{
@@ -54170,25 +54245,30 @@ var app = (function () {
     const file$d = "src/chart/CommitteeStacked.svelte";
 
     function create_fragment$d(ctx) {
+    	let div;
     	let canvas_1;
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			canvas_1 = element("canvas");
-    			add_location(canvas_1, file$d, 139, 0, 3840);
+    			add_location(canvas_1, file$d, 141, 2, 3902);
+    			attr_dev(div, "class", "container svelte-elhjxb");
+    			add_location(div, file$d, 140, 0, 3876);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, canvas_1, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, canvas_1);
     			/*canvas_1_binding*/ ctx[4](canvas_1);
     		},
     		p: noop,
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(canvas_1);
+    			if (detaching) detach_dev(div);
     			/*canvas_1_binding*/ ctx[4](null);
     		}
     	};
@@ -54311,6 +54391,7 @@ var app = (function () {
     					title: { display: true, text: `${title}` },
     					tooltips: { mode: "index", intersect: false },
     					responsive: true,
+    					maintainAspectRatio: false,
     					scales: {
     						xAxes: [
     							{
@@ -54423,25 +54504,30 @@ var app = (function () {
     const file$e = "src/chart/CollaborationOverview.svelte";
 
     function create_fragment$e(ctx) {
+    	let div;
     	let canvas_1;
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			canvas_1 = element("canvas");
-    			add_location(canvas_1, file$e, 97, 0, 2425);
+    			add_location(canvas_1, file$e, 99, 2, 2487);
+    			attr_dev(div, "class", "container svelte-elhjxb");
+    			add_location(div, file$e, 98, 0, 2461);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, canvas_1, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, canvas_1);
     			/*canvas_1_binding*/ ctx[4](canvas_1);
     		},
     		p: noop,
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(canvas_1);
+    			if (detaching) detach_dev(div);
     			/*canvas_1_binding*/ ctx[4](null);
     		}
     	};
@@ -54528,6 +54614,7 @@ var app = (function () {
     					title: { display: true, text: `${title}` },
     					tooltips: { mode: "index", intersect: false },
     					responsive: true,
+    					maintainAspectRatio: false,
     					scales: {
     						xAxes: [
     							{
@@ -54635,33 +54722,27 @@ var app = (function () {
     const file$f = "src/ui/Forkme.svelte";
 
     function create_fragment$f(ctx) {
-    	let div1;
-    	let div0;
+    	let div;
     	let a;
     	let t;
 
     	const block = {
     		c: function create() {
-    			div1 = element("div");
-    			div0 = element("div");
+    			div = element("div");
     			a = element("a");
     			t = text("Fork me on GitHub");
     			attr_dev(a, "href", /*url*/ ctx[0]);
-    			attr_dev(a, "class", "svelte-1ds4m6t");
-    			add_location(a, file$f, 6, 4, 124);
-    			attr_dev(div0, "class", "ribbon red right svelte-1ds4m6t");
-    			add_location(div0, file$f, 5, 2, 89);
-    			attr_dev(div1, "class", "container svelte-1ds4m6t");
-    			set_style(div1, "z-index", "70");
-    			add_location(div1, file$f, 4, 0, 43);
+    			attr_dev(a, "class", "svelte-k2m75b");
+    			add_location(a, file$f, 6, 2, 129);
+    			attr_dev(div, "class", "ribbon red right svelte-k2m75b");
+    			add_location(div, file$f, 5, 0, 96);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, div0);
-    			append_dev(div0, a);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, a);
     			append_dev(a, t);
     		},
     		p: function update(ctx, [dirty]) {
@@ -54672,7 +54753,7 @@ var app = (function () {
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(div);
     		}
     	};
 
@@ -54854,12 +54935,55 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[11] = list[i];
+    	child_ctx[13] = list[i];
     	return child_ctx;
     }
 
-    // (92:6) <Row>
-    function create_default_slot_26(ctx) {
+    // (92:4) {#if w > 700}
+    function create_if_block_47(ctx) {
+    	let forkme;
+    	let current;
+
+    	forkme = new Forkme({
+    			props: { url: "https://github.com/geo-conf/uist" },
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(forkme.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(forkme, target, anchor);
+    			current = true;
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(forkme.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(forkme.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(forkme, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_47.name,
+    		type: "if",
+    		source: "(92:4) {#if w > 700}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (95:4) <Row>
+    function create_default_slot_28(ctx) {
     	let title;
     	let current;
 
@@ -54893,23 +55017,25 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_26.name,
+    		id: create_default_slot_28.name,
     		type: "slot",
-    		source: "(92:6) <Row>",
+    		source: "(95:4) <Row>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (91:4) <Container class="mb-5 mt-5">
-    function create_default_slot_25(ctx) {
+    // (90:2) <Container class="mb-5 mt-5" fluid="sm">
+    function create_default_slot_27(ctx) {
+    	let t;
     	let row;
     	let current;
+    	let if_block = /*w*/ ctx[5] > 700 && create_if_block_47(ctx);
 
     	row = new Row({
     			props: {
-    				$$slots: { default: [create_default_slot_26] },
+    				$$slots: { default: [create_default_slot_28] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -54917,16 +55043,41 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			if (if_block) if_block.c();
+    			t = space();
     			create_component(row.$$.fragment);
     		},
     		m: function mount(target, anchor) {
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, t, anchor);
     			mount_component(row, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
+    			if (/*w*/ ctx[5] > 700) {
+    				if (if_block) {
+    					if (dirty & /*w*/ 32) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block_47(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(t.parentNode, t);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+
     			const row_changes = {};
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope*/ 65536) {
     				row_changes.$$scope = { dirty, ctx };
     			}
 
@@ -54934,32 +55085,36 @@ var app = (function () {
     		},
     		i: function intro(local) {
     			if (current) return;
+    			transition_in(if_block);
     			transition_in(row.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
+    			transition_out(if_block);
     			transition_out(row.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(t);
     			destroy_component(row, detaching);
     		}
     	};
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_25.name,
+    		id: create_default_slot_27.name,
     		type: "slot",
-    		source: "(91:4) <Container class=\\\"mb-5 mt-5\\\">",
+    		source: "(90:2) <Container class=\\\"mb-5 mt-5\\\" fluid=\\\"sm\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (97:6) <Row>
-    function create_default_slot_24(ctx) {
-    	let p0;
+    // (100:4) <Row>
+    function create_default_slot_26(ctx) {
+    	let p;
     	let t0;
     	let a0;
     	let t2;
@@ -54967,87 +55122,57 @@ var app = (function () {
     	let t4;
     	let a2;
     	let t6;
-    	let t7;
-    	let p1;
-    	let t8;
-    	let i;
-    	let t10;
-    	let a3;
-    	let t12;
 
     	const block = {
     		c: function create() {
-    			p0 = element("p");
+    			p = element("p");
     			t0 = text("This website showcases an ");
     			a0 = element("a");
     			a0.textContent = "open-source";
-    			t2 = text("\n          and independent visualization project that provides some insights into\n          the geographical outreach and growth of the community of the\n          ");
+    			t2 = text("\n        and independent visualization project that provides some insights into the\n        geographical outreach and growth of the community of the\n        ");
     			a1 = element("a");
     			a1.textContent = "UIST conference";
-    			t4 = text(". The graphs below are based\n          upon\n          ");
+    			t4 = text(". The graphs below are\n        based upon\n        ");
     			a2 = element("a");
     			a2.textContent = "open-source data";
-    			t6 = text("\n          and show the main trends across the years or per year for each edition\n          of the conference. See below about how data was collected and analyzed.");
-    			t7 = space();
-    			p1 = element("p");
-    			t8 = text("This project was developed by Andrea Bianchi at the MAKinteract lab\n          (KAIST, Korea). ");
-    			i = element("i");
-    			i.textContent = "The views, opinions, data analysis, and visualization expressed in\n            this website are those of the author and by no means are meant to\n            represent those of the ACM or the author's institution and\n            colleagues.";
-    			t10 = text("\n          Please report mistakes, incorrect data, or suggestions as issues via\n          ");
-    			a3 = element("a");
-    			a3.textContent = "Github";
-    			t12 = text(". To\n          contribute to the project, consider forking the repository.");
+    			t6 = text("\n        and show the main trends across the years or per year for each edition of\n        the conference.");
     			attr_dev(a0, "href", "https://github.com/orgs/geo-conf/dashboard");
-    			add_location(a0, file$h, 98, 36, 2453);
-    			attr_dev(a1, "href", "uist.acm.org");
-    			add_location(a1, file$h, 102, 10, 2696);
+    			add_location(a0, file$h, 101, 34, 2556);
+    			attr_dev(a1, "href", "http://uist.acm.org");
+    			add_location(a1, file$h, 105, 8, 2791);
     			attr_dev(a2, "href", "https://github.com/geo-conf/geo-dataset");
-    			add_location(a2, file$h, 104, 10, 2792);
-    			attr_dev(p0, "class", "lead");
-    			add_location(p0, file$h, 97, 8, 2400);
-    			add_location(i, file$h, 111, 26, 3169);
-    			attr_dev(a3, "href", "https://github.com/geo-conf/uist/issues");
-    			add_location(a3, file$h, 118, 10, 3529);
-    			attr_dev(p1, "class", "lead");
-    			add_location(p1, file$h, 109, 8, 3048);
+    			add_location(a2, file$h, 107, 8, 2890);
+    			attr_dev(p, "class", "lead");
+    			add_location(p, file$h, 100, 6, 2505);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, p0, anchor);
-    			append_dev(p0, t0);
-    			append_dev(p0, a0);
-    			append_dev(p0, t2);
-    			append_dev(p0, a1);
-    			append_dev(p0, t4);
-    			append_dev(p0, a2);
-    			append_dev(p0, t6);
-    			insert_dev(target, t7, anchor);
-    			insert_dev(target, p1, anchor);
-    			append_dev(p1, t8);
-    			append_dev(p1, i);
-    			append_dev(p1, t10);
-    			append_dev(p1, a3);
-    			append_dev(p1, t12);
+    			insert_dev(target, p, anchor);
+    			append_dev(p, t0);
+    			append_dev(p, a0);
+    			append_dev(p, t2);
+    			append_dev(p, a1);
+    			append_dev(p, t4);
+    			append_dev(p, a2);
+    			append_dev(p, t6);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(p0);
-    			if (detaching) detach_dev(t7);
-    			if (detaching) detach_dev(p1);
+    			if (detaching) detach_dev(p);
     		}
     	};
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_24.name,
+    		id: create_default_slot_26.name,
     		type: "slot",
-    		source: "(97:6) <Row>",
+    		source: "(100:4) <Row>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (123:6) <Row class="mb-5">
-    function create_default_slot_23(ctx) {
+    // (113:4) <Row>
+    function create_default_slot_25(ctx) {
     	let h2;
     	let mounted;
     	let dispose;
@@ -55055,15 +55180,15 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			h2 = element("h2");
-    			h2.textContent = "👉 Click for details about data collection";
-    			attr_dev(h2, "class", "pointer-hand svelte-1h72q8");
-    			add_location(h2, file$h, 123, 8, 3723);
+    			h2.textContent = "👉 Click for details about data collection and analysis";
+    			attr_dev(h2, "class", "pointer-hand svelte-17zdsd1");
+    			add_location(h2, file$h, 113, 6, 3105);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h2, anchor);
 
     			if (!mounted) {
-    				dispose = listen_dev(h2, "click", /*click_handler*/ ctx[9], false, false, false);
+    				dispose = listen_dev(h2, "click", /*click_handler*/ ctx[10], false, false, false);
     				mounted = true;
     			}
     		},
@@ -55077,76 +55202,178 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_23.name,
+    		id: create_default_slot_25.name,
     		type: "slot",
-    		source: "(123:6) <Row class=\\\"mb-5\\\">",
+    		source: "(113:4) <Row>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (129:8) <Collapse isOpen={detailView}>
-    function create_default_slot_22(ctx) {
-    	let div;
-    	let p0;
-    	let t1;
-    	let p1;
-    	let t3;
-    	let p2;
+    // (119:6) <Collapse isOpen={detailView}>
+    function create_default_slot_24(ctx) {
+    	let ul;
+    	let li0;
+    	let t0;
+    	let a0;
+    	let t2;
+    	let a1;
+    	let t4;
+    	let a2;
+    	let t6;
+    	let a3;
+    	let t8;
+    	let b0;
+    	let t10;
+    	let a4;
+    	let t12;
+    	let b1;
+    	let t14;
+    	let a5;
+    	let t16;
+    	let a6;
+    	let t18;
+    	let t19;
+    	let li1;
+    	let t20;
+    	let b2;
+    	let t22;
+    	let t23;
+    	let li2;
+    	let b3;
+    	let t25;
 
     	const block = {
     		c: function create() {
-    			div = element("div");
-    			p0 = element("p");
-    			p0.textContent = "Countries of affiliation were extracted from each paper of the\n              proceedings directly from the ACM digital library. They are\n              indicated here as reported by the authors, or, if they are\n              omitted, were inserted programmatically (link). Countries of the\n              affiliations are counted only once per paper, no matter how many\n              authors from institutions of the same country participated in the\n              paper. If authors belong to institutions from different countries,\n              each country is counted once per paper. Data were then aggregated\n              in continents (link) following a similar way.";
-    			t1 = space();
-    			p1 = element("p");
-    			p1.textContent = "The list of the committee members (Associate Chairs a.k.a. ACs in\n              the papers track) was obtained from the web pages of the\n              individual editions of UIST. Program chairs or conference\n              organizers with other roles are not included in this count.\n              Affiliations were considered as listed on the websites (i.e., the\n              affiliation \"at that time\", and not necessarily today).";
-    			t3 = space();
-    			p2 = element("p");
-    			p2.textContent = "Collaborations are counted as international and collaborations.\n              International collaborations are counted if the authors of the\n              same paper are from different countries. Intercontinental\n              collaborations are a subset of the former and are counted if two\n              or more of the authors are from institutions in different\n              continents.";
-    			attr_dev(p0, "class", "lead");
-    			add_location(p0, file$h, 130, 12, 3965);
-    			attr_dev(p1, "class", "lead");
-    			add_location(p1, file$h, 141, 12, 4694);
-    			attr_dev(p2, "class", "lead");
-    			add_location(p2, file$h, 149, 12, 5187);
-    			add_location(div, file$h, 129, 10, 3947);
+    			ul = element("ul");
+    			li0 = element("li");
+    			t0 = text("Data was ");
+    			a0 = element("a");
+    			a0.textContent = "collected";
+    			t2 = text(" directly from the\n            ");
+    			a1 = element("a");
+    			a1.textContent = "ACM digital library";
+    			t4 = text("\n            and the webpages of each conference's edition.\n            ");
+    			a2 = element("a");
+    			a2.textContent = "A script";
+    			t6 = text("\n            was used to and aggregate this data in a single\n            ");
+    			a3 = element("a");
+    			a3.textContent = "dataset";
+    			t8 = text(". ");
+    			b0 = element("b");
+    			b0.textContent = "Countries";
+    			t10 = text(" of affiliations are\n            reported as indicated by the authors of the papers and indicated\n            here following the\n            ");
+    			a4 = element("a");
+    			a4.textContent = "ISO 3166";
+    			t12 = text("\n            country code standard. ");
+    			b1 = element("b");
+    			b1.textContent = "Continents";
+    			t14 = text(" are inferred using the\n            ");
+    			a5 = element("a");
+    			a5.textContent = "seven-continent model";
+    			t16 = text(". Countries of affiliation are counted only once per paper, no\n            matter how many authors from institutions of the same country\n            participated in the paper. If authors belong to institutions from\n            different countries, each country is counted once per paper. Color\n            coding follows the same notation as\n            ");
+    			a6 = element("a");
+    			a6.textContent = "Wikipedia";
+    			t18 = text(".");
+    			t19 = space();
+    			li1 = element("li");
+    			t20 = text("The list of the ");
+    			b2 = element("b");
+    			b2.textContent = "committee members";
+    			t22 = text(" (Associate Chairs a.k.a. ACs\n            in the papers track) was obtained from the web pages of the individual\n            editions of UIST. Program chairs or conference organizers with other\n            roles are not included in the reported numbers. Affiliations were considered\n            as listed on the websites (i.e., the affiliation at the time of the event,\n            which are is necessarily the same today).");
+    			t23 = space();
+    			li2 = element("li");
+    			b3 = element("b");
+    			b3.textContent = "Collaborations";
+    			t25 = text(" are counted as international and collaborations.\n            International collaborations are counted if the authors of the same paper\n            are from different countries. Intercontinental collaborations are a subset\n            of the former and are counted if two or more of the authors are from\n            institutions in different continents.");
+    			attr_dev(a0, "href", "");
+    			add_location(a0, file$h, 121, 21, 3384);
+    			attr_dev(a1, "href", "");
+    			add_location(a1, file$h, 122, 12, 3439);
+    			attr_dev(a2, "href", "");
+    			add_location(a2, file$h, 124, 12, 3545);
+    			attr_dev(a3, "href", "");
+    			add_location(a3, file$h, 126, 12, 3641);
+    			attr_dev(b0, "class", "svelte-17zdsd1");
+    			add_location(b0, file$h, 126, 36, 3665);
+    			attr_dev(a4, "href", "https://www.iso.org/iso-3166-country-codes.html");
+    			add_location(a4, file$h, 129, 12, 3822);
+    			attr_dev(b1, "class", "svelte-17zdsd1");
+    			add_location(b1, file$h, 131, 35, 3943);
+    			attr_dev(a5, "href", "https://en.wikipedia.org/wiki/Continent");
+    			add_location(a5, file$h, 132, 12, 3996);
+    			attr_dev(a6, "href", "https://en.wikipedia.org/wiki/Continent");
+    			add_location(a6, file$h, 139, 12, 4453);
+    			attr_dev(li0, "class", "lead");
+    			add_location(li0, file$h, 120, 10, 3345);
+    			attr_dev(b2, "class", "svelte-17zdsd1");
+    			add_location(b2, file$h, 143, 28, 4591);
+    			attr_dev(li1, "class", "lead");
+    			add_location(li1, file$h, 142, 10, 4545);
+    			attr_dev(b3, "class", "svelte-17zdsd1");
+    			add_location(b3, file$h, 151, 12, 5095);
+    			attr_dev(li2, "class", "lead");
+    			add_location(li2, file$h, 150, 10, 5065);
+    			add_location(ul, file$h, 119, 8, 3330);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, p0);
-    			append_dev(div, t1);
-    			append_dev(div, p1);
-    			append_dev(div, t3);
-    			append_dev(div, p2);
+    			insert_dev(target, ul, anchor);
+    			append_dev(ul, li0);
+    			append_dev(li0, t0);
+    			append_dev(li0, a0);
+    			append_dev(li0, t2);
+    			append_dev(li0, a1);
+    			append_dev(li0, t4);
+    			append_dev(li0, a2);
+    			append_dev(li0, t6);
+    			append_dev(li0, a3);
+    			append_dev(li0, t8);
+    			append_dev(li0, b0);
+    			append_dev(li0, t10);
+    			append_dev(li0, a4);
+    			append_dev(li0, t12);
+    			append_dev(li0, b1);
+    			append_dev(li0, t14);
+    			append_dev(li0, a5);
+    			append_dev(li0, t16);
+    			append_dev(li0, a6);
+    			append_dev(li0, t18);
+    			append_dev(ul, t19);
+    			append_dev(ul, li1);
+    			append_dev(li1, t20);
+    			append_dev(li1, b2);
+    			append_dev(li1, t22);
+    			append_dev(ul, t23);
+    			append_dev(ul, li2);
+    			append_dev(li2, b3);
+    			append_dev(li2, t25);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(ul);
     		}
     	};
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_22.name,
+    		id: create_default_slot_24.name,
     		type: "slot",
-    		source: "(129:8) <Collapse isOpen={detailView}>",
+    		source: "(119:6) <Collapse isOpen={detailView}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (128:6) <Row class="mb-5">
-    function create_default_slot_21(ctx) {
+    // (118:4) <Row class="mb-2">
+    function create_default_slot_23(ctx) {
     	let collapse;
     	let current;
 
     	collapse = new Collapse({
     			props: {
     				isOpen: /*detailView*/ ctx[1],
-    				$$slots: { default: [create_default_slot_22] },
+    				$$slots: { default: [create_default_slot_24] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -55164,7 +55391,7 @@ var app = (function () {
     			const collapse_changes = {};
     			if (dirty & /*detailView*/ 2) collapse_changes.isOpen = /*detailView*/ ctx[1];
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope*/ 65536) {
     				collapse_changes.$$scope = { dirty, ctx };
     			}
 
@@ -55186,27 +55413,104 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_21.name,
+    		id: create_default_slot_23.name,
     		type: "slot",
-    		source: "(128:6) <Row class=\\\"mb-5\\\">",
+    		source: "(118:4) <Row class=\\\"mb-2\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (96:4) <Container class="mb-4 mt-4">
-    function create_default_slot_20(ctx) {
+    // (161:4) <Row>
+    function create_default_slot_22(ctx) {
+    	let p;
+    	let t0;
+    	let a0;
+    	let t2;
+    	let a1;
+    	let t3;
+    	let a2;
+    	let t5;
+    	let i;
+    	let t7;
+    	let a3;
+    	let t9;
+
+    	const block = {
+    		c: function create() {
+    			p = element("p");
+    			t0 = text("This project was developed by ");
+    			a0 = element("a");
+    			a0.textContent = "Andrea Bianchi";
+    			t2 = text("\n        at the ");
+    			a1 = element("a");
+    			t3 = text(" MAKinteract lab (");
+    			a2 = element("a");
+    			a2.textContent = "KAIST";
+    			t5 = text(", Korea).\n        ");
+    			i = element("i");
+    			i.textContent = "The views, opinions, data analysis, and visualization expressed in\n          this website are those of the author and by no means are meant to\n          represent those of the ACM or the author's institution and colleagues.";
+    			t7 = text("\n        Please report mistakes, incorrect data, or suggestions as\n        ");
+    			a3 = element("a");
+    			a3.textContent = "issues via Github";
+    			t9 = text(".\n        To contribute to the project, consider forking the repository.");
+    			attr_dev(a0, "href", "https://makinteract.kaist.ac.kr/andrea");
+    			add_location(a0, file$h, 162, 38, 5600);
+    			attr_dev(a1, "href", "https://makinteract.kaist.ac.kr");
+    			add_location(a1, file$h, 164, 15, 5693);
+    			attr_dev(a2, "href", "https://kaist.ac.kr/kr/");
+    			add_location(a2, file$h, 164, 77, 5755);
+    			add_location(i, file$h, 167, 8, 5835);
+    			attr_dev(a3, "href", "https://github.com/geo-conf/uist/issues");
+    			add_location(a3, file$h, 173, 8, 6160);
+    			attr_dev(p, "class", "lead");
+    			add_location(p, file$h, 161, 6, 5545);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    			append_dev(p, t0);
+    			append_dev(p, a0);
+    			append_dev(p, t2);
+    			append_dev(p, a1);
+    			append_dev(p, t3);
+    			append_dev(p, a2);
+    			append_dev(p, t5);
+    			append_dev(p, i);
+    			append_dev(p, t7);
+    			append_dev(p, a3);
+    			append_dev(p, t9);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_22.name,
+    		type: "slot",
+    		source: "(161:4) <Row>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (99:2) <Container class="mb-4 mt-4">
+    function create_default_slot_21(ctx) {
     	let row0;
     	let t0;
     	let row1;
     	let t1;
     	let row2;
+    	let t2;
+    	let row3;
     	let current;
 
     	row0 = new Row({
     			props: {
-    				$$slots: { default: [create_default_slot_24] },
+    				$$slots: { default: [create_default_slot_26] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -55214,8 +55518,7 @@ var app = (function () {
 
     	row1 = new Row({
     			props: {
-    				class: "mb-5",
-    				$$slots: { default: [create_default_slot_23] },
+    				$$slots: { default: [create_default_slot_25] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -55223,8 +55526,16 @@ var app = (function () {
 
     	row2 = new Row({
     			props: {
-    				class: "mb-5",
-    				$$slots: { default: [create_default_slot_21] },
+    				class: "mb-2",
+    				$$slots: { default: [create_default_slot_23] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	row3 = new Row({
+    			props: {
+    				$$slots: { default: [create_default_slot_22] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -55237,6 +55548,8 @@ var app = (function () {
     			create_component(row1.$$.fragment);
     			t1 = space();
     			create_component(row2.$$.fragment);
+    			t2 = space();
+    			create_component(row3.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(row0, target, anchor);
@@ -55244,42 +55557,53 @@ var app = (function () {
     			mount_component(row1, target, anchor);
     			insert_dev(target, t1, anchor);
     			mount_component(row2, target, anchor);
+    			insert_dev(target, t2, anchor);
+    			mount_component(row3, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
     			const row0_changes = {};
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope*/ 65536) {
     				row0_changes.$$scope = { dirty, ctx };
     			}
 
     			row0.$set(row0_changes);
     			const row1_changes = {};
 
-    			if (dirty & /*$$scope, detailView*/ 16386) {
+    			if (dirty & /*$$scope, detailView*/ 65538) {
     				row1_changes.$$scope = { dirty, ctx };
     			}
 
     			row1.$set(row1_changes);
     			const row2_changes = {};
 
-    			if (dirty & /*$$scope, detailView*/ 16386) {
+    			if (dirty & /*$$scope, detailView*/ 65538) {
     				row2_changes.$$scope = { dirty, ctx };
     			}
 
     			row2.$set(row2_changes);
+    			const row3_changes = {};
+
+    			if (dirty & /*$$scope*/ 65536) {
+    				row3_changes.$$scope = { dirty, ctx };
+    			}
+
+    			row3.$set(row3_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(row0.$$.fragment, local);
     			transition_in(row1.$$.fragment, local);
     			transition_in(row2.$$.fragment, local);
+    			transition_in(row3.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(row0.$$.fragment, local);
     			transition_out(row1.$$.fragment, local);
     			transition_out(row2.$$.fragment, local);
+    			transition_out(row3.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -55288,22 +55612,24 @@ var app = (function () {
     			destroy_component(row1, detaching);
     			if (detaching) detach_dev(t1);
     			destroy_component(row2, detaching);
+    			if (detaching) detach_dev(t2);
+    			destroy_component(row3, detaching);
     		}
     	};
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_20.name,
+    		id: create_default_slot_21.name,
     		type: "slot",
-    		source: "(96:4) <Container class=\\\"mb-4 mt-4\\\">",
+    		source: "(99:2) <Container class=\\\"mb-4 mt-4\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (166:10) <Button             on:click={overview}             active={overviewStats}             outline             color="primary">
-    function create_default_slot_19(ctx) {
+    // (183:8) <Button           on:click={overview}           active={overviewStats}           outline           color="primary">
+    function create_default_slot_20(ctx) {
     	let t;
 
     	const block = {
@@ -55320,17 +55646,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_19.name,
+    		id: create_default_slot_20.name,
     		type: "slot",
-    		source: "(166:10) <Button             on:click={overview}             active={overviewStats}             outline             color=\\\"primary\\\">",
+    		source: "(183:8) <Button           on:click={overview}           active={overviewStats}           outline           color=\\\"primary\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (171:10) <Button             on:click={yearlyStats}             active={!overviewStats}             outline             color="primary">
-    function create_default_slot_18(ctx) {
+    // (188:8) <Button           on:click={yearlyStats}           active={!overviewStats}           outline           color="primary">
+    function create_default_slot_19(ctx) {
     	let t;
 
     	const block = {
@@ -55347,17 +55673,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_18.name,
+    		id: create_default_slot_19.name,
     		type: "slot",
-    		source: "(171:10) <Button             on:click={yearlyStats}             active={!overviewStats}             outline             color=\\\"primary\\\">",
+    		source: "(188:8) <Button           on:click={yearlyStats}           active={!overviewStats}           outline           color=\\\"primary\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (165:8) <ButtonGroup>
-    function create_default_slot_17(ctx) {
+    // (182:6) <ButtonGroup>
+    function create_default_slot_18(ctx) {
     	let button0;
     	let t;
     	let button1;
@@ -55368,26 +55694,26 @@ var app = (function () {
     				active: /*overviewStats*/ ctx[0],
     				outline: true,
     				color: "primary",
-    				$$slots: { default: [create_default_slot_19] },
+    				$$slots: { default: [create_default_slot_20] },
     				$$scope: { ctx }
     			},
     			$$inline: true
     		});
 
-    	button0.$on("click", /*overview*/ ctx[7]);
+    	button0.$on("click", /*overview*/ ctx[8]);
 
     	button1 = new Button({
     			props: {
     				active: !/*overviewStats*/ ctx[0],
     				outline: true,
     				color: "primary",
-    				$$slots: { default: [create_default_slot_18] },
+    				$$slots: { default: [create_default_slot_19] },
     				$$scope: { ctx }
     			},
     			$$inline: true
     		});
 
-    	button1.$on("click", /*yearlyStats*/ ctx[8]);
+    	button1.$on("click", /*yearlyStats*/ ctx[9]);
 
     	const block = {
     		c: function create() {
@@ -55405,7 +55731,7 @@ var app = (function () {
     			const button0_changes = {};
     			if (dirty & /*overviewStats*/ 1) button0_changes.active = /*overviewStats*/ ctx[0];
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope*/ 65536) {
     				button0_changes.$$scope = { dirty, ctx };
     			}
 
@@ -55413,7 +55739,7 @@ var app = (function () {
     			const button1_changes = {};
     			if (dirty & /*overviewStats*/ 1) button1_changes.active = !/*overviewStats*/ ctx[0];
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope*/ 65536) {
     				button1_changes.$$scope = { dirty, ctx };
     			}
 
@@ -55439,24 +55765,24 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_17.name,
+    		id: create_default_slot_18.name,
     		type: "slot",
-    		source: "(165:8) <ButtonGroup>",
+    		source: "(182:6) <ButtonGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (163:4) <Container class="mb-5" fluid={true}>
-    function create_default_slot_16(ctx) {
+    // (180:2) <Container class="mb-5" fluid={true}>
+    function create_default_slot_17(ctx) {
     	let div;
     	let buttongroup;
     	let current;
 
     	buttongroup = new ButtonGroup({
     			props: {
-    				$$slots: { default: [create_default_slot_17] },
+    				$$slots: { default: [create_default_slot_18] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -55467,7 +55793,7 @@ var app = (function () {
     			div = element("div");
     			create_component(buttongroup.$$.fragment);
     			attr_dev(div, "class", "d-flex justify-content-center");
-    			add_location(div, file$h, 163, 6, 5741);
+    			add_location(div, file$h, 180, 4, 6386);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -55477,7 +55803,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const buttongroup_changes = {};
 
-    			if (dirty & /*$$scope, overviewStats*/ 16385) {
+    			if (dirty & /*$$scope, overviewStats*/ 65537) {
     				buttongroup_changes.$$scope = { dirty, ctx };
     			}
 
@@ -55500,16 +55826,16 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_16.name,
+    		id: create_default_slot_17.name,
     		type: "slot",
-    		source: "(163:4) <Container class=\\\"mb-5\\\" fluid={true}>",
+    		source: "(180:2) <Container class=\\\"mb-5\\\" fluid={true}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (182:4) {#if dataset !== undefined}
+    // (199:2) {#if dataset !== undefined}
     function create_if_block$2(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -55582,14 +55908,14 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(182:4) {#if dataset !== undefined}",
+    		source: "(199:2) {#if dataset !== undefined}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (201:6) {:else}
+    // (218:4) {:else}
     function create_else_block$1(ctx) {
     	let t;
     	let container;
@@ -55644,7 +55970,7 @@ var app = (function () {
 
     			const container_changes = {};
 
-    			if (dirty & /*$$scope, dataset, selectedYear*/ 16396) {
+    			if (dirty & /*$$scope, dataset, selectedYear*/ 65548) {
     				container_changes.$$scope = { dirty, ctx };
     			}
 
@@ -55672,14 +55998,14 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(201:6) {:else}",
+    		source: "(218:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (183:6) {#if overviewStats}
+    // (200:4) {#if overviewStats}
     function create_if_block_1$1(ctx) {
     	let container;
     	let current;
@@ -55705,7 +56031,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const container_changes = {};
 
-    			if (dirty & /*$$scope, dataset*/ 16392) {
+    			if (dirty & /*$$scope, dataset*/ 65544) {
     				container_changes.$$scope = { dirty, ctx };
     			}
 
@@ -55729,21 +56055,20 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(183:6) {#if overviewStats}",
+    		source: "(200:4) {#if overviewStats}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (203:8) {#if imagesLoaded}
+    // (220:6) {#if imagesLoaded}
     function create_if_block_46(ctx) {
     	let container;
     	let current;
 
     	container = new Container({
     			props: {
-    				fluid: true,
     				$$slots: { default: [create_default_slot_14] },
     				$$scope: { ctx }
     			},
@@ -55761,7 +56086,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const container_changes = {};
 
-    			if (dirty & /*$$scope, logoButton*/ 16416) {
+    			if (dirty & /*$$scope, logoButton*/ 65600) {
     				container_changes.$$scope = { dirty, ctx };
     			}
 
@@ -55785,18 +56110,19 @@ var app = (function () {
     		block,
     		id: create_if_block_46.name,
     		type: "if",
-    		source: "(203:8) {#if imagesLoaded}",
+    		source: "(220:6) {#if imagesLoaded}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (206:14) {#each logoButton as buttonData}
-    function create_each_block(ctx) {
+    // (224:14) <Col xs="4" sm="4" md="2" lg="2" xl="2" class="mb-2">
+    function create_default_slot_16(ctx) {
     	let logo;
+    	let t;
     	let current;
-    	const logo_spread_levels = [/*buttonData*/ ctx[11]];
+    	const logo_spread_levels = [/*buttonData*/ ctx[13]];
     	let logo_props = {};
 
     	for (let i = 0; i < logo_spread_levels.length; i += 1) {
@@ -55804,19 +56130,21 @@ var app = (function () {
     	}
 
     	logo = new Logo({ props: logo_props, $$inline: true });
-    	logo.$on("click", /*select*/ ctx[6]);
+    	logo.$on("click", /*select*/ ctx[7]);
 
     	const block = {
     		c: function create() {
     			create_component(logo.$$.fragment);
+    			t = space();
     		},
     		m: function mount(target, anchor) {
     			mount_component(logo, target, anchor);
+    			insert_dev(target, t, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const logo_changes = (dirty & /*logoButton*/ 32)
-    			? get_spread_update(logo_spread_levels, [get_spread_object(/*buttonData*/ ctx[11])])
+    			const logo_changes = (dirty & /*logoButton*/ 64)
+    			? get_spread_update(logo_spread_levels, [get_spread_object(/*buttonData*/ ctx[13])])
     			: {};
 
     			logo.$set(logo_changes);
@@ -55832,6 +56160,68 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			destroy_component(logo, detaching);
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_16.name,
+    		type: "slot",
+    		source: "(224:14) <Col xs=\\\"4\\\" sm=\\\"4\\\" md=\\\"2\\\" lg=\\\"2\\\" xl=\\\"2\\\" class=\\\"mb-2\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (223:12) {#each logoButton as buttonData}
+    function create_each_block(ctx) {
+    	let col;
+    	let current;
+
+    	col = new Col({
+    			props: {
+    				xs: "4",
+    				sm: "4",
+    				md: "2",
+    				lg: "2",
+    				xl: "2",
+    				class: "mb-2",
+    				$$slots: { default: [create_default_slot_16] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(col.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(col, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const col_changes = {};
+
+    			if (dirty & /*$$scope, logoButton*/ 65600) {
+    				col_changes.$$scope = { dirty, ctx };
+    			}
+
+    			col.$set(col_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(col.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(col.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(col, detaching);
     		}
     	};
 
@@ -55839,18 +56229,18 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(206:14) {#each logoButton as buttonData}",
+    		source: "(223:12) {#each logoButton as buttonData}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (205:12) <Col sm="12" md={{ size: 9, offset: 2 }}>
+    // (222:10) <Row class="justify-content-center">
     function create_default_slot_15(ctx) {
     	let each_1_anchor;
     	let current;
-    	let each_value = /*logoButton*/ ctx[5];
+    	let each_value = /*logoButton*/ ctx[6];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -55879,8 +56269,8 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*logoButton, select*/ 96) {
-    				each_value = /*logoButton*/ ctx[5];
+    			if (dirty & /*logoButton, select*/ 192) {
+    				each_value = /*logoButton*/ ctx[6];
     				validate_each_argument(each_value);
     				let i;
 
@@ -55935,22 +56325,21 @@ var app = (function () {
     		block,
     		id: create_default_slot_15.name,
     		type: "slot",
-    		source: "(205:12) <Col sm=\\\"12\\\" md={{ size: 9, offset: 2 }}>",
+    		source: "(222:10) <Row class=\\\"justify-content-center\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (204:10) <Container fluid={true}>
+    // (221:8) <Container>
     function create_default_slot_14(ctx) {
-    	let col;
+    	let row;
     	let current;
 
-    	col = new Col({
+    	row = new Row({
     			props: {
-    				sm: "12",
-    				md: { size: 9, offset: 2 },
+    				class: "justify-content-center",
     				$$slots: { default: [create_default_slot_15] },
     				$$scope: { ctx }
     			},
@@ -55959,32 +56348,32 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(col.$$.fragment);
+    			create_component(row.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(col, target, anchor);
+    			mount_component(row, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const col_changes = {};
+    			const row_changes = {};
 
-    			if (dirty & /*$$scope, logoButton*/ 16416) {
-    				col_changes.$$scope = { dirty, ctx };
+    			if (dirty & /*$$scope, logoButton*/ 65600) {
+    				row_changes.$$scope = { dirty, ctx };
     			}
 
-    			col.$set(col_changes);
+    			row.$set(row_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(col.$$.fragment, local);
+    			transition_in(row.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(col.$$.fragment, local);
+    			transition_out(row.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(col, detaching);
+    			destroy_component(row, detaching);
     		}
     	};
 
@@ -55992,14 +56381,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_14.name,
     		type: "slot",
-    		source: "(204:10) <Container fluid={true}>",
+    		source: "(221:8) <Container>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (236:44) 
+    // (255:42) 
     function create_if_block_45(ctx) {
     	let countrybar;
     	let current;
@@ -56040,14 +56429,14 @@ var app = (function () {
     		block,
     		id: create_if_block_45.name,
     		type: "if",
-    		source: "(236:44) ",
+    		source: "(255:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (234:44) 
+    // (253:42) 
     function create_if_block_44(ctx) {
     	let countrybar;
     	let current;
@@ -56088,14 +56477,14 @@ var app = (function () {
     		block,
     		id: create_if_block_44.name,
     		type: "if",
-    		source: "(234:44) ",
+    		source: "(253:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (232:44) 
+    // (251:42) 
     function create_if_block_43(ctx) {
     	let countrybar;
     	let current;
@@ -56136,14 +56525,14 @@ var app = (function () {
     		block,
     		id: create_if_block_43.name,
     		type: "if",
-    		source: "(232:44) ",
+    		source: "(251:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (230:44) 
+    // (249:42) 
     function create_if_block_42(ctx) {
     	let countrybar;
     	let current;
@@ -56184,14 +56573,14 @@ var app = (function () {
     		block,
     		id: create_if_block_42.name,
     		type: "if",
-    		source: "(230:44) ",
+    		source: "(249:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (228:44) 
+    // (247:42) 
     function create_if_block_41(ctx) {
     	let countrybar;
     	let current;
@@ -56232,14 +56621,14 @@ var app = (function () {
     		block,
     		id: create_if_block_41.name,
     		type: "if",
-    		source: "(228:44) ",
+    		source: "(247:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (226:44) 
+    // (245:42) 
     function create_if_block_40(ctx) {
     	let countrybar;
     	let current;
@@ -56280,14 +56669,14 @@ var app = (function () {
     		block,
     		id: create_if_block_40.name,
     		type: "if",
-    		source: "(226:44) ",
+    		source: "(245:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (224:44) 
+    // (243:42) 
     function create_if_block_39(ctx) {
     	let countrybar;
     	let current;
@@ -56328,14 +56717,14 @@ var app = (function () {
     		block,
     		id: create_if_block_39.name,
     		type: "if",
-    		source: "(224:44) ",
+    		source: "(243:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (222:44) 
+    // (241:42) 
     function create_if_block_38(ctx) {
     	let countrybar;
     	let current;
@@ -56376,14 +56765,14 @@ var app = (function () {
     		block,
     		id: create_if_block_38.name,
     		type: "if",
-    		source: "(222:44) ",
+    		source: "(241:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (220:44) 
+    // (239:42) 
     function create_if_block_37(ctx) {
     	let countrybar;
     	let current;
@@ -56424,14 +56813,14 @@ var app = (function () {
     		block,
     		id: create_if_block_37.name,
     		type: "if",
-    		source: "(220:44) ",
+    		source: "(239:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (218:44) 
+    // (237:42) 
     function create_if_block_36(ctx) {
     	let countrybar;
     	let current;
@@ -56472,14 +56861,14 @@ var app = (function () {
     		block,
     		id: create_if_block_36.name,
     		type: "if",
-    		source: "(218:44) ",
+    		source: "(237:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (216:14) {#if selectedYear === 10}
+    // (235:12) {#if selectedYear === 10}
     function create_if_block_35(ctx) {
     	let countrybar;
     	let current;
@@ -56520,14 +56909,14 @@ var app = (function () {
     		block,
     		id: create_if_block_35.name,
     		type: "if",
-    		source: "(216:14) {#if selectedYear === 10}",
+    		source: "(235:12) {#if selectedYear === 10}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (215:12) <Col lg={{ size: 6, offset: 0 }}>
+    // (234:10) <Col lg={{ size: 6, offset: 0 }}>
     function create_default_slot_13(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -56640,14 +57029,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_13.name,
     		type: "slot",
-    		source: "(215:12) <Col lg={{ size: 6, offset: 0 }}>",
+    		source: "(234:10) <Col lg={{ size: 6, offset: 0 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (261:44) 
+    // (280:42) 
     function create_if_block_34(ctx) {
     	let continentbar;
     	let current;
@@ -56688,14 +57077,14 @@ var app = (function () {
     		block,
     		id: create_if_block_34.name,
     		type: "if",
-    		source: "(261:44) ",
+    		source: "(280:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (259:44) 
+    // (278:42) 
     function create_if_block_33(ctx) {
     	let continentbar;
     	let current;
@@ -56736,14 +57125,14 @@ var app = (function () {
     		block,
     		id: create_if_block_33.name,
     		type: "if",
-    		source: "(259:44) ",
+    		source: "(278:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (257:44) 
+    // (276:42) 
     function create_if_block_32(ctx) {
     	let continentbar;
     	let current;
@@ -56784,14 +57173,14 @@ var app = (function () {
     		block,
     		id: create_if_block_32.name,
     		type: "if",
-    		source: "(257:44) ",
+    		source: "(276:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (255:44) 
+    // (274:42) 
     function create_if_block_31(ctx) {
     	let continentbar;
     	let current;
@@ -56832,14 +57221,14 @@ var app = (function () {
     		block,
     		id: create_if_block_31.name,
     		type: "if",
-    		source: "(255:44) ",
+    		source: "(274:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (253:44) 
+    // (272:42) 
     function create_if_block_30(ctx) {
     	let continentbar;
     	let current;
@@ -56880,14 +57269,14 @@ var app = (function () {
     		block,
     		id: create_if_block_30.name,
     		type: "if",
-    		source: "(253:44) ",
+    		source: "(272:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (251:44) 
+    // (270:42) 
     function create_if_block_29(ctx) {
     	let continentbar;
     	let current;
@@ -56928,14 +57317,14 @@ var app = (function () {
     		block,
     		id: create_if_block_29.name,
     		type: "if",
-    		source: "(251:44) ",
+    		source: "(270:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (249:44) 
+    // (268:42) 
     function create_if_block_28(ctx) {
     	let continentbar;
     	let current;
@@ -56976,14 +57365,14 @@ var app = (function () {
     		block,
     		id: create_if_block_28.name,
     		type: "if",
-    		source: "(249:44) ",
+    		source: "(268:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (247:44) 
+    // (266:42) 
     function create_if_block_27(ctx) {
     	let continentbar;
     	let current;
@@ -57024,14 +57413,14 @@ var app = (function () {
     		block,
     		id: create_if_block_27.name,
     		type: "if",
-    		source: "(247:44) ",
+    		source: "(266:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (245:44) 
+    // (264:42) 
     function create_if_block_26(ctx) {
     	let continentbar;
     	let current;
@@ -57072,14 +57461,14 @@ var app = (function () {
     		block,
     		id: create_if_block_26.name,
     		type: "if",
-    		source: "(245:44) ",
+    		source: "(264:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (243:44) 
+    // (262:42) 
     function create_if_block_25(ctx) {
     	let continentbar;
     	let current;
@@ -57120,14 +57509,14 @@ var app = (function () {
     		block,
     		id: create_if_block_25.name,
     		type: "if",
-    		source: "(243:44) ",
+    		source: "(262:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (241:14) {#if selectedYear === 10}
+    // (260:12) {#if selectedYear === 10}
     function create_if_block_24(ctx) {
     	let continentbar;
     	let current;
@@ -57168,14 +57557,14 @@ var app = (function () {
     		block,
     		id: create_if_block_24.name,
     		type: "if",
-    		source: "(241:14) {#if selectedYear === 10}",
+    		source: "(260:12) {#if selectedYear === 10}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (240:12) <Col lg={{ size: 6, offset: 0 }}>
+    // (259:10) <Col lg={{ size: 6, offset: 0 }}>
     function create_default_slot_12(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -57288,14 +57677,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_12.name,
     		type: "slot",
-    		source: "(240:12) <Col lg={{ size: 6, offset: 0 }}>",
+    		source: "(259:10) <Col lg={{ size: 6, offset: 0 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (214:10) <Row class="mb-5 mt-5">
+    // (233:8) <Row class="mb-5 mt-5">
     function create_default_slot_11(ctx) {
     	let col0;
     	let t;
@@ -57335,14 +57724,14 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const col0_changes = {};
 
-    			if (dirty & /*$$scope, dataset, selectedYear*/ 16396) {
+    			if (dirty & /*$$scope, dataset, selectedYear*/ 65548) {
     				col0_changes.$$scope = { dirty, ctx };
     			}
 
     			col0.$set(col0_changes);
     			const col1_changes = {};
 
-    			if (dirty & /*$$scope, dataset, selectedYear*/ 16396) {
+    			if (dirty & /*$$scope, dataset, selectedYear*/ 65548) {
     				col1_changes.$$scope = { dirty, ctx };
     			}
 
@@ -57370,14 +57759,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_11.name,
     		type: "slot",
-    		source: "(214:10) <Row class=\\\"mb-5 mt-5\\\">",
+    		source: "(233:8) <Row class=\\\"mb-5 mt-5\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (288:44) 
+    // (307:42) 
     function create_if_block_23(ctx) {
     	let collaborationbar;
     	let current;
@@ -57418,14 +57807,14 @@ var app = (function () {
     		block,
     		id: create_if_block_23.name,
     		type: "if",
-    		source: "(288:44) ",
+    		source: "(307:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (286:44) 
+    // (305:42) 
     function create_if_block_22(ctx) {
     	let collaborationbar;
     	let current;
@@ -57466,14 +57855,14 @@ var app = (function () {
     		block,
     		id: create_if_block_22.name,
     		type: "if",
-    		source: "(286:44) ",
+    		source: "(305:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (284:44) 
+    // (303:42) 
     function create_if_block_21(ctx) {
     	let collaborationbar;
     	let current;
@@ -57514,14 +57903,14 @@ var app = (function () {
     		block,
     		id: create_if_block_21.name,
     		type: "if",
-    		source: "(284:44) ",
+    		source: "(303:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (282:44) 
+    // (301:42) 
     function create_if_block_20(ctx) {
     	let collaborationbar;
     	let current;
@@ -57562,14 +57951,14 @@ var app = (function () {
     		block,
     		id: create_if_block_20.name,
     		type: "if",
-    		source: "(282:44) ",
+    		source: "(301:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (280:44) 
+    // (299:42) 
     function create_if_block_19(ctx) {
     	let collaborationbar;
     	let current;
@@ -57610,14 +57999,14 @@ var app = (function () {
     		block,
     		id: create_if_block_19.name,
     		type: "if",
-    		source: "(280:44) ",
+    		source: "(299:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (278:44) 
+    // (297:42) 
     function create_if_block_18(ctx) {
     	let collaborationbar;
     	let current;
@@ -57658,14 +58047,14 @@ var app = (function () {
     		block,
     		id: create_if_block_18.name,
     		type: "if",
-    		source: "(278:44) ",
+    		source: "(297:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (276:44) 
+    // (295:42) 
     function create_if_block_17(ctx) {
     	let collaborationbar;
     	let current;
@@ -57706,14 +58095,14 @@ var app = (function () {
     		block,
     		id: create_if_block_17.name,
     		type: "if",
-    		source: "(276:44) ",
+    		source: "(295:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (274:44) 
+    // (293:42) 
     function create_if_block_16(ctx) {
     	let collaborationbar;
     	let current;
@@ -57754,14 +58143,14 @@ var app = (function () {
     		block,
     		id: create_if_block_16.name,
     		type: "if",
-    		source: "(274:44) ",
+    		source: "(293:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (272:44) 
+    // (291:42) 
     function create_if_block_15(ctx) {
     	let collaborationbar;
     	let current;
@@ -57802,14 +58191,14 @@ var app = (function () {
     		block,
     		id: create_if_block_15.name,
     		type: "if",
-    		source: "(272:44) ",
+    		source: "(291:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (270:44) 
+    // (289:42) 
     function create_if_block_14(ctx) {
     	let collaborationbar;
     	let current;
@@ -57850,14 +58239,14 @@ var app = (function () {
     		block,
     		id: create_if_block_14.name,
     		type: "if",
-    		source: "(270:44) ",
+    		source: "(289:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (268:14) {#if selectedYear === 10}
+    // (287:12) {#if selectedYear === 10}
     function create_if_block_13(ctx) {
     	let collaborationbar;
     	let current;
@@ -57898,14 +58287,14 @@ var app = (function () {
     		block,
     		id: create_if_block_13.name,
     		type: "if",
-    		source: "(268:14) {#if selectedYear === 10}",
+    		source: "(287:12) {#if selectedYear === 10}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (267:12) <Col lg={{ size: 6, offset: 0 }}>
+    // (286:10) <Col lg={{ size: 6, offset: 0 }}>
     function create_default_slot_10(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -58018,14 +58407,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_10.name,
     		type: "slot",
-    		source: "(267:12) <Col lg={{ size: 6, offset: 0 }}>",
+    		source: "(286:10) <Col lg={{ size: 6, offset: 0 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (313:44) 
+    // (332:42) 
     function create_if_block_12(ctx) {
     	let committeebar;
     	let current;
@@ -58066,14 +58455,14 @@ var app = (function () {
     		block,
     		id: create_if_block_12.name,
     		type: "if",
-    		source: "(313:44) ",
+    		source: "(332:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (311:44) 
+    // (330:42) 
     function create_if_block_11(ctx) {
     	let committeebar;
     	let current;
@@ -58114,14 +58503,14 @@ var app = (function () {
     		block,
     		id: create_if_block_11.name,
     		type: "if",
-    		source: "(311:44) ",
+    		source: "(330:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (309:44) 
+    // (328:42) 
     function create_if_block_10(ctx) {
     	let committeebar;
     	let current;
@@ -58162,14 +58551,14 @@ var app = (function () {
     		block,
     		id: create_if_block_10.name,
     		type: "if",
-    		source: "(309:44) ",
+    		source: "(328:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (307:44) 
+    // (326:42) 
     function create_if_block_9(ctx) {
     	let committeebar;
     	let current;
@@ -58210,14 +58599,14 @@ var app = (function () {
     		block,
     		id: create_if_block_9.name,
     		type: "if",
-    		source: "(307:44) ",
+    		source: "(326:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (305:44) 
+    // (324:42) 
     function create_if_block_8(ctx) {
     	let committeebar;
     	let current;
@@ -58258,14 +58647,14 @@ var app = (function () {
     		block,
     		id: create_if_block_8.name,
     		type: "if",
-    		source: "(305:44) ",
+    		source: "(324:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (303:44) 
+    // (322:42) 
     function create_if_block_7(ctx) {
     	let committeebar;
     	let current;
@@ -58306,14 +58695,14 @@ var app = (function () {
     		block,
     		id: create_if_block_7.name,
     		type: "if",
-    		source: "(303:44) ",
+    		source: "(322:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (301:44) 
+    // (320:42) 
     function create_if_block_6(ctx) {
     	let committeebar;
     	let current;
@@ -58354,14 +58743,14 @@ var app = (function () {
     		block,
     		id: create_if_block_6.name,
     		type: "if",
-    		source: "(301:44) ",
+    		source: "(320:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (299:44) 
+    // (318:42) 
     function create_if_block_5(ctx) {
     	let committeebar;
     	let current;
@@ -58402,14 +58791,14 @@ var app = (function () {
     		block,
     		id: create_if_block_5.name,
     		type: "if",
-    		source: "(299:44) ",
+    		source: "(318:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (297:44) 
+    // (316:42) 
     function create_if_block_4(ctx) {
     	let committeebar;
     	let current;
@@ -58450,14 +58839,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(297:44) ",
+    		source: "(316:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (295:44) 
+    // (314:42) 
     function create_if_block_3$1(ctx) {
     	let committeebar;
     	let current;
@@ -58498,14 +58887,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3$1.name,
     		type: "if",
-    		source: "(295:44) ",
+    		source: "(314:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (293:14) {#if selectedYear === 10}
+    // (312:12) {#if selectedYear === 10}
     function create_if_block_2$1(ctx) {
     	let committeebar;
     	let current;
@@ -58546,14 +58935,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2$1.name,
     		type: "if",
-    		source: "(293:14) {#if selectedYear === 10}",
+    		source: "(312:12) {#if selectedYear === 10}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (292:12) <Col lg={{ size: 6, offset: 0 }}>
+    // (311:10) <Col lg={{ size: 6, offset: 0 }}>
     function create_default_slot_9(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -58666,14 +59055,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_9.name,
     		type: "slot",
-    		source: "(292:12) <Col lg={{ size: 6, offset: 0 }}>",
+    		source: "(311:10) <Col lg={{ size: 6, offset: 0 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (266:10) <Row class="mb-5 mt-5">
+    // (285:8) <Row class="mb-5 mt-5">
     function create_default_slot_8(ctx) {
     	let col0;
     	let t;
@@ -58713,14 +59102,14 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const col0_changes = {};
 
-    			if (dirty & /*$$scope, dataset, selectedYear*/ 16396) {
+    			if (dirty & /*$$scope, dataset, selectedYear*/ 65548) {
     				col0_changes.$$scope = { dirty, ctx };
     			}
 
     			col0.$set(col0_changes);
     			const col1_changes = {};
 
-    			if (dirty & /*$$scope, dataset, selectedYear*/ 16396) {
+    			if (dirty & /*$$scope, dataset, selectedYear*/ 65548) {
     				col1_changes.$$scope = { dirty, ctx };
     			}
 
@@ -58748,14 +59137,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_8.name,
     		type: "slot",
-    		source: "(266:10) <Row class=\\\"mb-5 mt-5\\\">",
+    		source: "(285:8) <Row class=\\\"mb-5 mt-5\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (213:8) <Container class="mb-5 mt-5" fluid={true}>
+    // (232:6) <Container class="mb-5 mt-5" fluid={true}>
     function create_default_slot_7(ctx) {
     	let row0;
     	let t;
@@ -58795,14 +59184,14 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const row0_changes = {};
 
-    			if (dirty & /*$$scope, dataset, selectedYear*/ 16396) {
+    			if (dirty & /*$$scope, dataset, selectedYear*/ 65548) {
     				row0_changes.$$scope = { dirty, ctx };
     			}
 
     			row0.$set(row0_changes);
     			const row1_changes = {};
 
-    			if (dirty & /*$$scope, dataset, selectedYear*/ 16396) {
+    			if (dirty & /*$$scope, dataset, selectedYear*/ 65548) {
     				row1_changes.$$scope = { dirty, ctx };
     			}
 
@@ -58830,14 +59219,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_7.name,
     		type: "slot",
-    		source: "(213:8) <Container class=\\\"mb-5 mt-5\\\" fluid={true}>",
+    		source: "(232:6) <Container class=\\\"mb-5 mt-5\\\" fluid={true}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (186:12) <Col lg={{ size: 6, offset: 0 }}>
+    // (203:10) <Col class="mb-5" lg={{ size: 6, offset: 0 }}>
     function create_default_slot_6(ctx) {
     	let continentstack;
     	let current;
@@ -58878,14 +59267,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_6.name,
     		type: "slot",
-    		source: "(186:12) <Col lg={{ size: 6, offset: 0 }}>",
+    		source: "(203:10) <Col class=\\\"mb-5\\\" lg={{ size: 6, offset: 0 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (189:12) <Col lg={{ size: 6, offset: 0 }}>
+    // (206:10) <Col class="mb-5" lg={{ size: 6, offset: 0 }}>
     function create_default_slot_5(ctx) {
     	let committeestacked;
     	let current;
@@ -58926,14 +59315,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5.name,
     		type: "slot",
-    		source: "(189:12) <Col lg={{ size: 6, offset: 0 }}>",
+    		source: "(206:10) <Col class=\\\"mb-5\\\" lg={{ size: 6, offset: 0 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (185:10) <Row class="mb-5 mt-5">
+    // (202:8) <Row class="mt-5">
     function create_default_slot_4(ctx) {
     	let col0;
     	let t;
@@ -58942,6 +59331,7 @@ var app = (function () {
 
     	col0 = new Col({
     			props: {
+    				class: "mb-5",
     				lg: { size: 6, offset: 0 },
     				$$slots: { default: [create_default_slot_6] },
     				$$scope: { ctx }
@@ -58951,6 +59341,7 @@ var app = (function () {
 
     	col1 = new Col({
     			props: {
+    				class: "mb-5",
     				lg: { size: 6, offset: 0 },
     				$$slots: { default: [create_default_slot_5] },
     				$$scope: { ctx }
@@ -58973,14 +59364,14 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const col0_changes = {};
 
-    			if (dirty & /*$$scope, dataset*/ 16392) {
+    			if (dirty & /*$$scope, dataset*/ 65544) {
     				col0_changes.$$scope = { dirty, ctx };
     			}
 
     			col0.$set(col0_changes);
     			const col1_changes = {};
 
-    			if (dirty & /*$$scope, dataset*/ 16392) {
+    			if (dirty & /*$$scope, dataset*/ 65544) {
     				col1_changes.$$scope = { dirty, ctx };
     			}
 
@@ -59008,14 +59399,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(185:10) <Row class=\\\"mb-5 mt-5\\\">",
+    		source: "(202:8) <Row class=\\\"mt-5\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (194:12) <Col lg={{ size: 6, offset: 3 }}>
+    // (211:10) <Col lg={{ size: 6, offset: 3 }}>
     function create_default_slot_3(ctx) {
     	let collaborationoverview;
     	let current;
@@ -59056,14 +59447,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(194:12) <Col lg={{ size: 6, offset: 3 }}>",
+    		source: "(211:10) <Col lg={{ size: 6, offset: 3 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (193:10) <Row class="mb-5 mt-5">
+    // (210:8) <Row class="mb-5">
     function create_default_slot_2(ctx) {
     	let col;
     	let current;
@@ -59088,7 +59479,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const col_changes = {};
 
-    			if (dirty & /*$$scope, dataset*/ 16392) {
+    			if (dirty & /*$$scope, dataset*/ 65544) {
     				col_changes.$$scope = { dirty, ctx };
     			}
 
@@ -59112,14 +59503,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(193:10) <Row class=\\\"mb-5 mt-5\\\">",
+    		source: "(210:8) <Row class=\\\"mb-5\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (184:8) <Container class="mb-5 mt-5" fluid={true}>
+    // (201:6) <Container class="mb-5 mt-5" fluid={true}>
     function create_default_slot_1(ctx) {
     	let row0;
     	let t;
@@ -59128,7 +59519,7 @@ var app = (function () {
 
     	row0 = new Row({
     			props: {
-    				class: "mb-5 mt-5",
+    				class: "mt-5",
     				$$slots: { default: [create_default_slot_4] },
     				$$scope: { ctx }
     			},
@@ -59137,7 +59528,7 @@ var app = (function () {
 
     	row1 = new Row({
     			props: {
-    				class: "mb-5 mt-5",
+    				class: "mb-5",
     				$$slots: { default: [create_default_slot_2] },
     				$$scope: { ctx }
     			},
@@ -59159,14 +59550,14 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const row0_changes = {};
 
-    			if (dirty & /*$$scope, dataset*/ 16392) {
+    			if (dirty & /*$$scope, dataset*/ 65544) {
     				row0_changes.$$scope = { dirty, ctx };
     			}
 
     			row0.$set(row0_changes);
     			const row1_changes = {};
 
-    			if (dirty & /*$$scope, dataset*/ 16392) {
+    			if (dirty & /*$$scope, dataset*/ 65544) {
     				row1_changes.$$scope = { dirty, ctx };
     			}
 
@@ -59194,14 +59585,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(184:8) <Container class=\\\"mb-5 mt-5\\\" fluid={true}>",
+    		source: "(201:6) <Container class=\\\"mb-5 mt-5\\\" fluid={true}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (322:4) <Container class="mb-5" fluid={true}>
+    // (341:2) <Container class="mb-5" fluid={true}>
     function create_default_slot(ctx) {
     	let div;
     	let footer;
@@ -59213,7 +59604,7 @@ var app = (function () {
     			div = element("div");
     			create_component(footer.$$.fragment);
     			attr_dev(div, "class", "d-flex justify-content-center");
-    			add_location(div, file$h, 322, 6, 12054);
+    			add_location(div, file$h, 341, 4, 12480);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -59239,7 +59630,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(322:4) <Container class=\\\"mb-5\\\" fluid={true}>",
+    		source: "(341:2) <Container class=\\\"mb-5\\\" fluid={true}>",
     		ctx
     	});
 
@@ -59249,29 +59640,23 @@ var app = (function () {
     function create_fragment$h(ctx) {
     	let link;
     	let t0;
-    	let body;
     	let div;
-    	let forkme;
-    	let t1;
     	let container0;
-    	let t2;
+    	let t1;
     	let container1;
-    	let t3;
+    	let t2;
     	let container2;
+    	let t3;
     	let t4;
-    	let t5;
     	let container3;
+    	let div_resize_listener;
     	let current;
-
-    	forkme = new Forkme({
-    			props: { url: "https://github.com/geo-conf/uist" },
-    			$$inline: true
-    		});
 
     	container0 = new Container({
     			props: {
     				class: "mb-5 mt-5",
-    				$$slots: { default: [create_default_slot_25] },
+    				fluid: "sm",
+    				$$slots: { default: [create_default_slot_27] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -59280,7 +59665,7 @@ var app = (function () {
     	container1 = new Container({
     			props: {
     				class: "mb-4 mt-4",
-    				$$slots: { default: [create_default_slot_20] },
+    				$$slots: { default: [create_default_slot_21] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -59290,7 +59675,7 @@ var app = (function () {
     			props: {
     				class: "mb-5",
     				fluid: true,
-    				$$slots: { default: [create_default_slot_16] },
+    				$$slots: { default: [create_default_slot_17] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -59312,25 +59697,22 @@ var app = (function () {
     		c: function create() {
     			link = element("link");
     			t0 = space();
-    			body = element("body");
     			div = element("div");
-    			create_component(forkme.$$.fragment);
-    			t1 = space();
     			create_component(container0.$$.fragment);
-    			t2 = space();
+    			t1 = space();
     			create_component(container1.$$.fragment);
-    			t3 = space();
+    			t2 = space();
     			create_component(container2.$$.fragment);
-    			t4 = space();
+    			t3 = space();
     			if (if_block) if_block.c();
-    			t5 = space();
+    			t4 = space();
     			create_component(container3.$$.fragment);
     			attr_dev(link, "rel", "stylesheet");
     			attr_dev(link, "href", "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css");
-    			add_location(link, file$h, 82, 2, 2008);
-    			attr_dev(div, "class", "main");
-    			add_location(div, file$h, 88, 2, 2147);
-    			add_location(body, file$h, 87, 0, 2138);
+    			add_location(link, file$h, 83, 2, 2035);
+    			attr_dev(div, "class", "main svelte-17zdsd1");
+    			add_render_callback(() => /*div_elementresize_handler*/ ctx[11].call(div));
+    			add_location(div, file$h, 88, 0, 2165);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -59338,39 +59720,37 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			append_dev(document.head, link);
     			insert_dev(target, t0, anchor);
-    			insert_dev(target, body, anchor);
-    			append_dev(body, div);
-    			mount_component(forkme, div, null);
-    			append_dev(div, t1);
+    			insert_dev(target, div, anchor);
     			mount_component(container0, div, null);
-    			append_dev(div, t2);
+    			append_dev(div, t1);
     			mount_component(container1, div, null);
-    			append_dev(div, t3);
+    			append_dev(div, t2);
     			mount_component(container2, div, null);
-    			append_dev(div, t4);
+    			append_dev(div, t3);
     			if (if_block) if_block.m(div, null);
-    			append_dev(div, t5);
+    			append_dev(div, t4);
     			mount_component(container3, div, null);
+    			div_resize_listener = add_resize_listener(div, /*div_elementresize_handler*/ ctx[11].bind(div));
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
     			const container0_changes = {};
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope, w*/ 65568) {
     				container0_changes.$$scope = { dirty, ctx };
     			}
 
     			container0.$set(container0_changes);
     			const container1_changes = {};
 
-    			if (dirty & /*$$scope, detailView*/ 16386) {
+    			if (dirty & /*$$scope, detailView*/ 65538) {
     				container1_changes.$$scope = { dirty, ctx };
     			}
 
     			container1.$set(container1_changes);
     			const container2_changes = {};
 
-    			if (dirty & /*$$scope, overviewStats*/ 16385) {
+    			if (dirty & /*$$scope, overviewStats*/ 65537) {
     				container2_changes.$$scope = { dirty, ctx };
     			}
 
@@ -59387,7 +59767,7 @@ var app = (function () {
     					if_block = create_if_block$2(ctx);
     					if_block.c();
     					transition_in(if_block, 1);
-    					if_block.m(div, t5);
+    					if_block.m(div, t4);
     				}
     			} else if (if_block) {
     				group_outros();
@@ -59401,7 +59781,7 @@ var app = (function () {
 
     			const container3_changes = {};
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope*/ 65536) {
     				container3_changes.$$scope = { dirty, ctx };
     			}
 
@@ -59409,7 +59789,6 @@ var app = (function () {
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(forkme.$$.fragment, local);
     			transition_in(container0.$$.fragment, local);
     			transition_in(container1.$$.fragment, local);
     			transition_in(container2.$$.fragment, local);
@@ -59418,7 +59797,6 @@ var app = (function () {
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(forkme.$$.fragment, local);
     			transition_out(container0.$$.fragment, local);
     			transition_out(container1.$$.fragment, local);
     			transition_out(container2.$$.fragment, local);
@@ -59429,13 +59807,13 @@ var app = (function () {
     		d: function destroy(detaching) {
     			detach_dev(link);
     			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(body);
-    			destroy_component(forkme);
+    			if (detaching) detach_dev(div);
     			destroy_component(container0);
     			destroy_component(container1);
     			destroy_component(container2);
     			if (if_block) if_block.d();
     			destroy_component(container3);
+    			div_resize_listener();
     		}
     	};
 
@@ -59462,6 +59840,7 @@ var app = (function () {
     	let selectedYear = defaultYear;
     	let dataset = undefined;
     	let imagesLoaded = false;
+    	let w; // window's width
 
     	// load the data first from online repo
     	jquery.getJSON("https://raw.githubusercontent.com/geo-conf/geo-dataset/main/dataset.json", data => {
@@ -59491,7 +59870,7 @@ var app = (function () {
     			b.selected = b.id === year;
     		});
 
-    		$$invalidate(5, logoButton = [...logoButton]);
+    		$$invalidate(6, logoButton = [...logoButton]);
     	}
 
     	function select(event) {
@@ -59517,6 +59896,11 @@ var app = (function () {
     	});
 
     	const click_handler = () => $$invalidate(1, detailView = !detailView);
+
+    	function div_elementresize_handler() {
+    		w = this.clientWidth;
+    		$$invalidate(5, w);
+    	}
 
     	$$self.$capture_state = () => ({
     		Col,
@@ -59547,6 +59931,7 @@ var app = (function () {
     		selectedYear,
     		dataset,
     		imagesLoaded,
+    		w,
     		logoButton,
     		highlightButton,
     		select,
@@ -59560,7 +59945,8 @@ var app = (function () {
     		if ("selectedYear" in $$props) $$invalidate(2, selectedYear = $$props.selectedYear);
     		if ("dataset" in $$props) $$invalidate(3, dataset = $$props.dataset);
     		if ("imagesLoaded" in $$props) $$invalidate(4, imagesLoaded = $$props.imagesLoaded);
-    		if ("logoButton" in $$props) $$invalidate(5, logoButton = $$props.logoButton);
+    		if ("w" in $$props) $$invalidate(5, w = $$props.w);
+    		if ("logoButton" in $$props) $$invalidate(6, logoButton = $$props.logoButton);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -59573,11 +59959,13 @@ var app = (function () {
     		selectedYear,
     		dataset,
     		imagesLoaded,
+    		w,
     		logoButton,
     		select,
     		overview,
     		yearlyStats,
-    		click_handler
+    		click_handler,
+    		div_elementresize_handler
     	];
     }
 
