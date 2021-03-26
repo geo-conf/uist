@@ -55251,19 +55251,19 @@ var app = (function () {
     			t0 = text("Data was ");
     			a0 = element("a");
     			a0.textContent = "collected";
-    			t2 = text(" directly from the\n            ");
+    			t2 = text("\n            directly from the\n            ");
     			a1 = element("a");
     			a1.textContent = "ACM digital library";
-    			t4 = text("\n            and the webpages of each conference's edition.\n            ");
+    			t4 = text("\n            and the webpages of each conference's edition. A\n            ");
     			a2 = element("a");
-    			a2.textContent = "A script";
+    			a2.textContent = "script";
     			t6 = text("\n            was used to and aggregate this data in a single\n            ");
     			a3 = element("a");
     			a3.textContent = "dataset";
-    			t8 = text(". ");
+    			t8 = text(".\n            ");
     			b0 = element("b");
     			b0.textContent = "Countries";
-    			t10 = text(" of affiliations are\n            reported as indicated by the authors of the papers and indicated\n            here following the\n            ");
+    			t10 = text("\n            of affiliations are reported as indicated by the authors of the\n            papers and indicated here following the\n            ");
     			a4 = element("a");
     			a4.textContent = "ISO 3166";
     			t12 = text("\n            country code standard. ");
@@ -55287,34 +55287,34 @@ var app = (function () {
     			b3 = element("b");
     			b3.textContent = "Collaborations";
     			t25 = text(" are counted as international and collaborations.\n            International collaborations are counted if the authors of the same paper\n            are from different countries. Intercontinental collaborations are a subset\n            of the former and are counted if two or more of the authors are from\n            institutions in different continents.");
-    			attr_dev(a0, "href", "");
+    			attr_dev(a0, "href", "https://github.com/geo-conf/scraper");
     			add_location(a0, file$h, 121, 21, 3384);
-    			attr_dev(a1, "href", "");
-    			add_location(a1, file$h, 122, 12, 3439);
-    			attr_dev(a2, "href", "");
-    			add_location(a2, file$h, 124, 12, 3545);
-    			attr_dev(a3, "href", "");
-    			add_location(a3, file$h, 126, 12, 3641);
+    			attr_dev(a1, "href", "https://dl.acm.org");
+    			add_location(a1, file$h, 123, 12, 3486);
+    			attr_dev(a2, "href", "https://github.com/geo-conf/miner");
+    			add_location(a2, file$h, 125, 12, 3612);
+    			attr_dev(a3, "href", "https://github.com/geo-conf/geo-dataset");
+    			add_location(a3, file$h, 127, 12, 3739);
     			attr_dev(b0, "class", "svelte-17zdsd1");
-    			add_location(b0, file$h, 126, 36, 3665);
+    			add_location(b0, file$h, 128, 12, 3814);
     			attr_dev(a4, "href", "https://www.iso.org/iso-3166-country-codes.html");
-    			add_location(a4, file$h, 129, 12, 3822);
+    			add_location(a4, file$h, 131, 12, 3971);
     			attr_dev(b1, "class", "svelte-17zdsd1");
-    			add_location(b1, file$h, 131, 35, 3943);
+    			add_location(b1, file$h, 133, 35, 4092);
     			attr_dev(a5, "href", "https://en.wikipedia.org/wiki/Continent");
-    			add_location(a5, file$h, 132, 12, 3996);
+    			add_location(a5, file$h, 134, 12, 4145);
     			attr_dev(a6, "href", "https://en.wikipedia.org/wiki/Continent");
-    			add_location(a6, file$h, 139, 12, 4453);
+    			add_location(a6, file$h, 141, 12, 4602);
     			attr_dev(li0, "class", "lead");
     			add_location(li0, file$h, 120, 10, 3345);
     			attr_dev(b2, "class", "svelte-17zdsd1");
-    			add_location(b2, file$h, 143, 28, 4591);
+    			add_location(b2, file$h, 145, 28, 4740);
     			attr_dev(li1, "class", "lead");
-    			add_location(li1, file$h, 142, 10, 4545);
+    			add_location(li1, file$h, 144, 10, 4694);
     			attr_dev(b3, "class", "svelte-17zdsd1");
-    			add_location(b3, file$h, 151, 12, 5095);
+    			add_location(b3, file$h, 153, 12, 5244);
     			attr_dev(li2, "class", "lead");
-    			add_location(li2, file$h, 150, 10, 5065);
+    			add_location(li2, file$h, 152, 10, 5214);
     			add_location(ul, file$h, 119, 8, 3330);
     		},
     		m: function mount(target, anchor) {
@@ -55422,20 +55422,20 @@ var app = (function () {
     	return block;
     }
 
-    // (161:4) <Row>
+    // (163:4) <Row>
     function create_default_slot_22(ctx) {
     	let p;
     	let t0;
     	let a0;
     	let t2;
     	let a1;
-    	let t3;
+    	let t4;
     	let a2;
-    	let t5;
+    	let t6;
     	let i;
-    	let t7;
+    	let t8;
     	let a3;
-    	let t9;
+    	let t10;
 
     	const block = {
     		c: function create() {
@@ -55445,27 +55445,28 @@ var app = (function () {
     			a0.textContent = "Andrea Bianchi";
     			t2 = text("\n        at the ");
     			a1 = element("a");
-    			t3 = text(" MAKinteract lab (");
+    			a1.textContent = "MAKinteract lab";
+    			t4 = text(" (");
     			a2 = element("a");
     			a2.textContent = "KAIST";
-    			t5 = text(", Korea).\n        ");
+    			t6 = text(", Korea).\n        ");
     			i = element("i");
     			i.textContent = "The views, opinions, data analysis, and visualization expressed in\n          this website are those of the author and by no means are meant to\n          represent those of the ACM or the author's institution and colleagues.";
-    			t7 = text("\n        Please report mistakes, incorrect data, or suggestions as\n        ");
+    			t8 = text("\n        Please report mistakes, incorrect data, or suggestions as\n        ");
     			a3 = element("a");
     			a3.textContent = "issues via Github";
-    			t9 = text(".\n        To contribute to the project, consider forking the repository.");
+    			t10 = text(".\n        To contribute to the project, consider forking the repository.");
     			attr_dev(a0, "href", "https://makinteract.kaist.ac.kr/andrea");
-    			add_location(a0, file$h, 162, 38, 5600);
+    			add_location(a0, file$h, 164, 38, 5749);
     			attr_dev(a1, "href", "https://makinteract.kaist.ac.kr");
-    			add_location(a1, file$h, 164, 15, 5693);
+    			add_location(a1, file$h, 166, 15, 5842);
     			attr_dev(a2, "href", "https://kaist.ac.kr/kr/");
-    			add_location(a2, file$h, 164, 77, 5755);
-    			add_location(i, file$h, 167, 8, 5835);
+    			add_location(a2, file$h, 166, 78, 5905);
+    			add_location(i, file$h, 169, 8, 5985);
     			attr_dev(a3, "href", "https://github.com/geo-conf/uist/issues");
-    			add_location(a3, file$h, 173, 8, 6160);
+    			add_location(a3, file$h, 175, 8, 6310);
     			attr_dev(p, "class", "lead");
-    			add_location(p, file$h, 161, 6, 5545);
+    			add_location(p, file$h, 163, 6, 5694);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -55473,13 +55474,13 @@ var app = (function () {
     			append_dev(p, a0);
     			append_dev(p, t2);
     			append_dev(p, a1);
-    			append_dev(p, t3);
+    			append_dev(p, t4);
     			append_dev(p, a2);
-    			append_dev(p, t5);
+    			append_dev(p, t6);
     			append_dev(p, i);
-    			append_dev(p, t7);
+    			append_dev(p, t8);
     			append_dev(p, a3);
-    			append_dev(p, t9);
+    			append_dev(p, t10);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(p);
@@ -55490,7 +55491,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_22.name,
     		type: "slot",
-    		source: "(161:4) <Row>",
+    		source: "(163:4) <Row>",
     		ctx
     	});
 
@@ -55628,7 +55629,7 @@ var app = (function () {
     	return block;
     }
 
-    // (183:8) <Button           on:click={overview}           active={overviewStats}           outline           color="primary">
+    // (185:8) <Button           on:click={overview}           active={overviewStats}           outline           color="primary">
     function create_default_slot_20(ctx) {
     	let t;
 
@@ -55648,14 +55649,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_20.name,
     		type: "slot",
-    		source: "(183:8) <Button           on:click={overview}           active={overviewStats}           outline           color=\\\"primary\\\">",
+    		source: "(185:8) <Button           on:click={overview}           active={overviewStats}           outline           color=\\\"primary\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (188:8) <Button           on:click={yearlyStats}           active={!overviewStats}           outline           color="primary">
+    // (190:8) <Button           on:click={yearlyStats}           active={!overviewStats}           outline           color="primary">
     function create_default_slot_19(ctx) {
     	let t;
 
@@ -55675,14 +55676,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_19.name,
     		type: "slot",
-    		source: "(188:8) <Button           on:click={yearlyStats}           active={!overviewStats}           outline           color=\\\"primary\\\">",
+    		source: "(190:8) <Button           on:click={yearlyStats}           active={!overviewStats}           outline           color=\\\"primary\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (182:6) <ButtonGroup>
+    // (184:6) <ButtonGroup>
     function create_default_slot_18(ctx) {
     	let button0;
     	let t;
@@ -55767,14 +55768,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_18.name,
     		type: "slot",
-    		source: "(182:6) <ButtonGroup>",
+    		source: "(184:6) <ButtonGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (180:2) <Container class="mb-5" fluid={true}>
+    // (182:2) <Container class="mb-5" fluid={true}>
     function create_default_slot_17(ctx) {
     	let div;
     	let buttongroup;
@@ -55793,7 +55794,7 @@ var app = (function () {
     			div = element("div");
     			create_component(buttongroup.$$.fragment);
     			attr_dev(div, "class", "d-flex justify-content-center");
-    			add_location(div, file$h, 180, 4, 6386);
+    			add_location(div, file$h, 182, 4, 6536);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -55828,14 +55829,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_17.name,
     		type: "slot",
-    		source: "(180:2) <Container class=\\\"mb-5\\\" fluid={true}>",
+    		source: "(182:2) <Container class=\\\"mb-5\\\" fluid={true}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (199:2) {#if dataset !== undefined}
+    // (201:2) {#if dataset !== undefined}
     function create_if_block$2(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -55908,14 +55909,14 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(199:2) {#if dataset !== undefined}",
+    		source: "(201:2) {#if dataset !== undefined}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (218:4) {:else}
+    // (220:4) {:else}
     function create_else_block$1(ctx) {
     	let t;
     	let container;
@@ -55998,14 +55999,14 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(218:4) {:else}",
+    		source: "(220:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (200:4) {#if overviewStats}
+    // (202:4) {#if overviewStats}
     function create_if_block_1$1(ctx) {
     	let container;
     	let current;
@@ -56055,14 +56056,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(200:4) {#if overviewStats}",
+    		source: "(202:4) {#if overviewStats}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (220:6) {#if imagesLoaded}
+    // (222:6) {#if imagesLoaded}
     function create_if_block_46(ctx) {
     	let container;
     	let current;
@@ -56110,14 +56111,14 @@ var app = (function () {
     		block,
     		id: create_if_block_46.name,
     		type: "if",
-    		source: "(220:6) {#if imagesLoaded}",
+    		source: "(222:6) {#if imagesLoaded}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (224:14) <Col xs="4" sm="4" md="2" lg="2" xl="2" class="mb-2">
+    // (226:14) <Col xs="4" sm="4" md="2" lg="2" xl="2" class="mb-2">
     function create_default_slot_16(ctx) {
     	let logo;
     	let t;
@@ -56168,14 +56169,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_16.name,
     		type: "slot",
-    		source: "(224:14) <Col xs=\\\"4\\\" sm=\\\"4\\\" md=\\\"2\\\" lg=\\\"2\\\" xl=\\\"2\\\" class=\\\"mb-2\\\">",
+    		source: "(226:14) <Col xs=\\\"4\\\" sm=\\\"4\\\" md=\\\"2\\\" lg=\\\"2\\\" xl=\\\"2\\\" class=\\\"mb-2\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (223:12) {#each logoButton as buttonData}
+    // (225:12) {#each logoButton as buttonData}
     function create_each_block(ctx) {
     	let col;
     	let current;
@@ -56229,14 +56230,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(223:12) {#each logoButton as buttonData}",
+    		source: "(225:12) {#each logoButton as buttonData}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (222:10) <Row class="justify-content-center">
+    // (224:10) <Row class="justify-content-center">
     function create_default_slot_15(ctx) {
     	let each_1_anchor;
     	let current;
@@ -56325,14 +56326,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_15.name,
     		type: "slot",
-    		source: "(222:10) <Row class=\\\"justify-content-center\\\">",
+    		source: "(224:10) <Row class=\\\"justify-content-center\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (221:8) <Container>
+    // (223:8) <Container>
     function create_default_slot_14(ctx) {
     	let row;
     	let current;
@@ -56381,14 +56382,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_14.name,
     		type: "slot",
-    		source: "(221:8) <Container>",
+    		source: "(223:8) <Container>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (255:42) 
+    // (257:42) 
     function create_if_block_45(ctx) {
     	let countrybar;
     	let current;
@@ -56429,14 +56430,14 @@ var app = (function () {
     		block,
     		id: create_if_block_45.name,
     		type: "if",
-    		source: "(255:42) ",
+    		source: "(257:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (253:42) 
+    // (255:42) 
     function create_if_block_44(ctx) {
     	let countrybar;
     	let current;
@@ -56477,14 +56478,14 @@ var app = (function () {
     		block,
     		id: create_if_block_44.name,
     		type: "if",
-    		source: "(253:42) ",
+    		source: "(255:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (251:42) 
+    // (253:42) 
     function create_if_block_43(ctx) {
     	let countrybar;
     	let current;
@@ -56525,14 +56526,14 @@ var app = (function () {
     		block,
     		id: create_if_block_43.name,
     		type: "if",
-    		source: "(251:42) ",
+    		source: "(253:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (249:42) 
+    // (251:42) 
     function create_if_block_42(ctx) {
     	let countrybar;
     	let current;
@@ -56573,14 +56574,14 @@ var app = (function () {
     		block,
     		id: create_if_block_42.name,
     		type: "if",
-    		source: "(249:42) ",
+    		source: "(251:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (247:42) 
+    // (249:42) 
     function create_if_block_41(ctx) {
     	let countrybar;
     	let current;
@@ -56621,14 +56622,14 @@ var app = (function () {
     		block,
     		id: create_if_block_41.name,
     		type: "if",
-    		source: "(247:42) ",
+    		source: "(249:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (245:42) 
+    // (247:42) 
     function create_if_block_40(ctx) {
     	let countrybar;
     	let current;
@@ -56669,14 +56670,14 @@ var app = (function () {
     		block,
     		id: create_if_block_40.name,
     		type: "if",
-    		source: "(245:42) ",
+    		source: "(247:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (243:42) 
+    // (245:42) 
     function create_if_block_39(ctx) {
     	let countrybar;
     	let current;
@@ -56717,14 +56718,14 @@ var app = (function () {
     		block,
     		id: create_if_block_39.name,
     		type: "if",
-    		source: "(243:42) ",
+    		source: "(245:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (241:42) 
+    // (243:42) 
     function create_if_block_38(ctx) {
     	let countrybar;
     	let current;
@@ -56765,14 +56766,14 @@ var app = (function () {
     		block,
     		id: create_if_block_38.name,
     		type: "if",
-    		source: "(241:42) ",
+    		source: "(243:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (239:42) 
+    // (241:42) 
     function create_if_block_37(ctx) {
     	let countrybar;
     	let current;
@@ -56813,14 +56814,14 @@ var app = (function () {
     		block,
     		id: create_if_block_37.name,
     		type: "if",
-    		source: "(239:42) ",
+    		source: "(241:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (237:42) 
+    // (239:42) 
     function create_if_block_36(ctx) {
     	let countrybar;
     	let current;
@@ -56861,14 +56862,14 @@ var app = (function () {
     		block,
     		id: create_if_block_36.name,
     		type: "if",
-    		source: "(237:42) ",
+    		source: "(239:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (235:12) {#if selectedYear === 10}
+    // (237:12) {#if selectedYear === 10}
     function create_if_block_35(ctx) {
     	let countrybar;
     	let current;
@@ -56909,14 +56910,14 @@ var app = (function () {
     		block,
     		id: create_if_block_35.name,
     		type: "if",
-    		source: "(235:12) {#if selectedYear === 10}",
+    		source: "(237:12) {#if selectedYear === 10}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (234:10) <Col lg={{ size: 6, offset: 0 }}>
+    // (236:10) <Col lg={{ size: 6, offset: 0 }}>
     function create_default_slot_13(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -57029,14 +57030,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_13.name,
     		type: "slot",
-    		source: "(234:10) <Col lg={{ size: 6, offset: 0 }}>",
+    		source: "(236:10) <Col lg={{ size: 6, offset: 0 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (280:42) 
+    // (282:42) 
     function create_if_block_34(ctx) {
     	let continentbar;
     	let current;
@@ -57077,14 +57078,14 @@ var app = (function () {
     		block,
     		id: create_if_block_34.name,
     		type: "if",
-    		source: "(280:42) ",
+    		source: "(282:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (278:42) 
+    // (280:42) 
     function create_if_block_33(ctx) {
     	let continentbar;
     	let current;
@@ -57125,14 +57126,14 @@ var app = (function () {
     		block,
     		id: create_if_block_33.name,
     		type: "if",
-    		source: "(278:42) ",
+    		source: "(280:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (276:42) 
+    // (278:42) 
     function create_if_block_32(ctx) {
     	let continentbar;
     	let current;
@@ -57173,14 +57174,14 @@ var app = (function () {
     		block,
     		id: create_if_block_32.name,
     		type: "if",
-    		source: "(276:42) ",
+    		source: "(278:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (274:42) 
+    // (276:42) 
     function create_if_block_31(ctx) {
     	let continentbar;
     	let current;
@@ -57221,14 +57222,14 @@ var app = (function () {
     		block,
     		id: create_if_block_31.name,
     		type: "if",
-    		source: "(274:42) ",
+    		source: "(276:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (272:42) 
+    // (274:42) 
     function create_if_block_30(ctx) {
     	let continentbar;
     	let current;
@@ -57269,14 +57270,14 @@ var app = (function () {
     		block,
     		id: create_if_block_30.name,
     		type: "if",
-    		source: "(272:42) ",
+    		source: "(274:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (270:42) 
+    // (272:42) 
     function create_if_block_29(ctx) {
     	let continentbar;
     	let current;
@@ -57317,14 +57318,14 @@ var app = (function () {
     		block,
     		id: create_if_block_29.name,
     		type: "if",
-    		source: "(270:42) ",
+    		source: "(272:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (268:42) 
+    // (270:42) 
     function create_if_block_28(ctx) {
     	let continentbar;
     	let current;
@@ -57365,14 +57366,14 @@ var app = (function () {
     		block,
     		id: create_if_block_28.name,
     		type: "if",
-    		source: "(268:42) ",
+    		source: "(270:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (266:42) 
+    // (268:42) 
     function create_if_block_27(ctx) {
     	let continentbar;
     	let current;
@@ -57413,14 +57414,14 @@ var app = (function () {
     		block,
     		id: create_if_block_27.name,
     		type: "if",
-    		source: "(266:42) ",
+    		source: "(268:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (264:42) 
+    // (266:42) 
     function create_if_block_26(ctx) {
     	let continentbar;
     	let current;
@@ -57461,14 +57462,14 @@ var app = (function () {
     		block,
     		id: create_if_block_26.name,
     		type: "if",
-    		source: "(264:42) ",
+    		source: "(266:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (262:42) 
+    // (264:42) 
     function create_if_block_25(ctx) {
     	let continentbar;
     	let current;
@@ -57509,14 +57510,14 @@ var app = (function () {
     		block,
     		id: create_if_block_25.name,
     		type: "if",
-    		source: "(262:42) ",
+    		source: "(264:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (260:12) {#if selectedYear === 10}
+    // (262:12) {#if selectedYear === 10}
     function create_if_block_24(ctx) {
     	let continentbar;
     	let current;
@@ -57557,14 +57558,14 @@ var app = (function () {
     		block,
     		id: create_if_block_24.name,
     		type: "if",
-    		source: "(260:12) {#if selectedYear === 10}",
+    		source: "(262:12) {#if selectedYear === 10}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (259:10) <Col lg={{ size: 6, offset: 0 }}>
+    // (261:10) <Col lg={{ size: 6, offset: 0 }}>
     function create_default_slot_12(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -57677,14 +57678,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_12.name,
     		type: "slot",
-    		source: "(259:10) <Col lg={{ size: 6, offset: 0 }}>",
+    		source: "(261:10) <Col lg={{ size: 6, offset: 0 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (233:8) <Row class="mb-5 mt-5">
+    // (235:8) <Row class="mb-5 mt-5">
     function create_default_slot_11(ctx) {
     	let col0;
     	let t;
@@ -57759,14 +57760,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_11.name,
     		type: "slot",
-    		source: "(233:8) <Row class=\\\"mb-5 mt-5\\\">",
+    		source: "(235:8) <Row class=\\\"mb-5 mt-5\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (307:42) 
+    // (309:42) 
     function create_if_block_23(ctx) {
     	let collaborationbar;
     	let current;
@@ -57807,14 +57808,14 @@ var app = (function () {
     		block,
     		id: create_if_block_23.name,
     		type: "if",
-    		source: "(307:42) ",
+    		source: "(309:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (305:42) 
+    // (307:42) 
     function create_if_block_22(ctx) {
     	let collaborationbar;
     	let current;
@@ -57855,14 +57856,14 @@ var app = (function () {
     		block,
     		id: create_if_block_22.name,
     		type: "if",
-    		source: "(305:42) ",
+    		source: "(307:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (303:42) 
+    // (305:42) 
     function create_if_block_21(ctx) {
     	let collaborationbar;
     	let current;
@@ -57903,14 +57904,14 @@ var app = (function () {
     		block,
     		id: create_if_block_21.name,
     		type: "if",
-    		source: "(303:42) ",
+    		source: "(305:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (301:42) 
+    // (303:42) 
     function create_if_block_20(ctx) {
     	let collaborationbar;
     	let current;
@@ -57951,14 +57952,14 @@ var app = (function () {
     		block,
     		id: create_if_block_20.name,
     		type: "if",
-    		source: "(301:42) ",
+    		source: "(303:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (299:42) 
+    // (301:42) 
     function create_if_block_19(ctx) {
     	let collaborationbar;
     	let current;
@@ -57999,14 +58000,14 @@ var app = (function () {
     		block,
     		id: create_if_block_19.name,
     		type: "if",
-    		source: "(299:42) ",
+    		source: "(301:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (297:42) 
+    // (299:42) 
     function create_if_block_18(ctx) {
     	let collaborationbar;
     	let current;
@@ -58047,14 +58048,14 @@ var app = (function () {
     		block,
     		id: create_if_block_18.name,
     		type: "if",
-    		source: "(297:42) ",
+    		source: "(299:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (295:42) 
+    // (297:42) 
     function create_if_block_17(ctx) {
     	let collaborationbar;
     	let current;
@@ -58095,14 +58096,14 @@ var app = (function () {
     		block,
     		id: create_if_block_17.name,
     		type: "if",
-    		source: "(295:42) ",
+    		source: "(297:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (293:42) 
+    // (295:42) 
     function create_if_block_16(ctx) {
     	let collaborationbar;
     	let current;
@@ -58143,14 +58144,14 @@ var app = (function () {
     		block,
     		id: create_if_block_16.name,
     		type: "if",
-    		source: "(293:42) ",
+    		source: "(295:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (291:42) 
+    // (293:42) 
     function create_if_block_15(ctx) {
     	let collaborationbar;
     	let current;
@@ -58191,14 +58192,14 @@ var app = (function () {
     		block,
     		id: create_if_block_15.name,
     		type: "if",
-    		source: "(291:42) ",
+    		source: "(293:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (289:42) 
+    // (291:42) 
     function create_if_block_14(ctx) {
     	let collaborationbar;
     	let current;
@@ -58239,14 +58240,14 @@ var app = (function () {
     		block,
     		id: create_if_block_14.name,
     		type: "if",
-    		source: "(289:42) ",
+    		source: "(291:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (287:12) {#if selectedYear === 10}
+    // (289:12) {#if selectedYear === 10}
     function create_if_block_13(ctx) {
     	let collaborationbar;
     	let current;
@@ -58287,14 +58288,14 @@ var app = (function () {
     		block,
     		id: create_if_block_13.name,
     		type: "if",
-    		source: "(287:12) {#if selectedYear === 10}",
+    		source: "(289:12) {#if selectedYear === 10}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (286:10) <Col lg={{ size: 6, offset: 0 }}>
+    // (288:10) <Col lg={{ size: 6, offset: 0 }}>
     function create_default_slot_10(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -58407,14 +58408,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_10.name,
     		type: "slot",
-    		source: "(286:10) <Col lg={{ size: 6, offset: 0 }}>",
+    		source: "(288:10) <Col lg={{ size: 6, offset: 0 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (332:42) 
+    // (334:42) 
     function create_if_block_12(ctx) {
     	let committeebar;
     	let current;
@@ -58455,14 +58456,14 @@ var app = (function () {
     		block,
     		id: create_if_block_12.name,
     		type: "if",
-    		source: "(332:42) ",
+    		source: "(334:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (330:42) 
+    // (332:42) 
     function create_if_block_11(ctx) {
     	let committeebar;
     	let current;
@@ -58503,14 +58504,14 @@ var app = (function () {
     		block,
     		id: create_if_block_11.name,
     		type: "if",
-    		source: "(330:42) ",
+    		source: "(332:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (328:42) 
+    // (330:42) 
     function create_if_block_10(ctx) {
     	let committeebar;
     	let current;
@@ -58551,14 +58552,14 @@ var app = (function () {
     		block,
     		id: create_if_block_10.name,
     		type: "if",
-    		source: "(328:42) ",
+    		source: "(330:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (326:42) 
+    // (328:42) 
     function create_if_block_9(ctx) {
     	let committeebar;
     	let current;
@@ -58599,14 +58600,14 @@ var app = (function () {
     		block,
     		id: create_if_block_9.name,
     		type: "if",
-    		source: "(326:42) ",
+    		source: "(328:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (324:42) 
+    // (326:42) 
     function create_if_block_8(ctx) {
     	let committeebar;
     	let current;
@@ -58647,14 +58648,14 @@ var app = (function () {
     		block,
     		id: create_if_block_8.name,
     		type: "if",
-    		source: "(324:42) ",
+    		source: "(326:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (322:42) 
+    // (324:42) 
     function create_if_block_7(ctx) {
     	let committeebar;
     	let current;
@@ -58695,14 +58696,14 @@ var app = (function () {
     		block,
     		id: create_if_block_7.name,
     		type: "if",
-    		source: "(322:42) ",
+    		source: "(324:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (320:42) 
+    // (322:42) 
     function create_if_block_6(ctx) {
     	let committeebar;
     	let current;
@@ -58743,14 +58744,14 @@ var app = (function () {
     		block,
     		id: create_if_block_6.name,
     		type: "if",
-    		source: "(320:42) ",
+    		source: "(322:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (318:42) 
+    // (320:42) 
     function create_if_block_5(ctx) {
     	let committeebar;
     	let current;
@@ -58791,14 +58792,14 @@ var app = (function () {
     		block,
     		id: create_if_block_5.name,
     		type: "if",
-    		source: "(318:42) ",
+    		source: "(320:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (316:42) 
+    // (318:42) 
     function create_if_block_4(ctx) {
     	let committeebar;
     	let current;
@@ -58839,14 +58840,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(316:42) ",
+    		source: "(318:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (314:42) 
+    // (316:42) 
     function create_if_block_3$1(ctx) {
     	let committeebar;
     	let current;
@@ -58887,14 +58888,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3$1.name,
     		type: "if",
-    		source: "(314:42) ",
+    		source: "(316:42) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (312:12) {#if selectedYear === 10}
+    // (314:12) {#if selectedYear === 10}
     function create_if_block_2$1(ctx) {
     	let committeebar;
     	let current;
@@ -58935,14 +58936,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2$1.name,
     		type: "if",
-    		source: "(312:12) {#if selectedYear === 10}",
+    		source: "(314:12) {#if selectedYear === 10}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (311:10) <Col lg={{ size: 6, offset: 0 }}>
+    // (313:10) <Col lg={{ size: 6, offset: 0 }}>
     function create_default_slot_9(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -59055,14 +59056,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_9.name,
     		type: "slot",
-    		source: "(311:10) <Col lg={{ size: 6, offset: 0 }}>",
+    		source: "(313:10) <Col lg={{ size: 6, offset: 0 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (285:8) <Row class="mb-5 mt-5">
+    // (287:8) <Row class="mb-5 mt-5">
     function create_default_slot_8(ctx) {
     	let col0;
     	let t;
@@ -59137,14 +59138,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_8.name,
     		type: "slot",
-    		source: "(285:8) <Row class=\\\"mb-5 mt-5\\\">",
+    		source: "(287:8) <Row class=\\\"mb-5 mt-5\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (232:6) <Container class="mb-5 mt-5" fluid={true}>
+    // (234:6) <Container class="mb-5 mt-5" fluid={true}>
     function create_default_slot_7(ctx) {
     	let row0;
     	let t;
@@ -59219,14 +59220,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_7.name,
     		type: "slot",
-    		source: "(232:6) <Container class=\\\"mb-5 mt-5\\\" fluid={true}>",
+    		source: "(234:6) <Container class=\\\"mb-5 mt-5\\\" fluid={true}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (203:10) <Col class="mb-5" lg={{ size: 6, offset: 0 }}>
+    // (205:10) <Col class="mb-5" lg={{ size: 6, offset: 0 }}>
     function create_default_slot_6(ctx) {
     	let continentstack;
     	let current;
@@ -59267,14 +59268,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_6.name,
     		type: "slot",
-    		source: "(203:10) <Col class=\\\"mb-5\\\" lg={{ size: 6, offset: 0 }}>",
+    		source: "(205:10) <Col class=\\\"mb-5\\\" lg={{ size: 6, offset: 0 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (206:10) <Col class="mb-5" lg={{ size: 6, offset: 0 }}>
+    // (208:10) <Col class="mb-5" lg={{ size: 6, offset: 0 }}>
     function create_default_slot_5(ctx) {
     	let committeestacked;
     	let current;
@@ -59315,14 +59316,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5.name,
     		type: "slot",
-    		source: "(206:10) <Col class=\\\"mb-5\\\" lg={{ size: 6, offset: 0 }}>",
+    		source: "(208:10) <Col class=\\\"mb-5\\\" lg={{ size: 6, offset: 0 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (202:8) <Row class="mt-5">
+    // (204:8) <Row class="mt-5">
     function create_default_slot_4(ctx) {
     	let col0;
     	let t;
@@ -59399,14 +59400,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(202:8) <Row class=\\\"mt-5\\\">",
+    		source: "(204:8) <Row class=\\\"mt-5\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (211:10) <Col lg={{ size: 6, offset: 3 }}>
+    // (213:10) <Col lg={{ size: 6, offset: 3 }}>
     function create_default_slot_3(ctx) {
     	let collaborationoverview;
     	let current;
@@ -59447,14 +59448,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(211:10) <Col lg={{ size: 6, offset: 3 }}>",
+    		source: "(213:10) <Col lg={{ size: 6, offset: 3 }}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (210:8) <Row class="mb-5">
+    // (212:8) <Row class="mb-5">
     function create_default_slot_2(ctx) {
     	let col;
     	let current;
@@ -59503,14 +59504,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(210:8) <Row class=\\\"mb-5\\\">",
+    		source: "(212:8) <Row class=\\\"mb-5\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (201:6) <Container class="mb-5 mt-5" fluid={true}>
+    // (203:6) <Container class="mb-5 mt-5" fluid={true}>
     function create_default_slot_1(ctx) {
     	let row0;
     	let t;
@@ -59585,14 +59586,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(201:6) <Container class=\\\"mb-5 mt-5\\\" fluid={true}>",
+    		source: "(203:6) <Container class=\\\"mb-5 mt-5\\\" fluid={true}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (341:2) <Container class="mb-5" fluid={true}>
+    // (343:2) <Container class="mb-5" fluid={true}>
     function create_default_slot(ctx) {
     	let div;
     	let footer;
@@ -59604,7 +59605,7 @@ var app = (function () {
     			div = element("div");
     			create_component(footer.$$.fragment);
     			attr_dev(div, "class", "d-flex justify-content-center");
-    			add_location(div, file$h, 341, 4, 12480);
+    			add_location(div, file$h, 343, 4, 12630);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -59630,7 +59631,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(341:2) <Container class=\\\"mb-5\\\" fluid={true}>",
+    		source: "(343:2) <Container class=\\\"mb-5\\\" fluid={true}>",
     		ctx
     	});
 
