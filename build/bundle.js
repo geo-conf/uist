@@ -55283,7 +55283,7 @@ var app = (function () {
     			t4 = text("\n            and the webpages of each conference's edition. A\n            ");
     			a2 = element("a");
     			a2.textContent = "script";
-    			t6 = text("\n            was used to and aggregate this data in a single\n            ");
+    			t6 = text("\n            was used to aggregate this data in a single\n            ");
     			a3 = element("a");
     			a3.textContent = "dataset";
     			t8 = text(".\n            ");
@@ -55312,7 +55312,7 @@ var app = (function () {
     			li2 = element("li");
     			b3 = element("b");
     			b3.textContent = "Collaborations";
-    			t25 = text(" are counted as international and collaborations.\n            International collaborations are counted if the authors of the same paper\n            are from different countries. Intercontinental collaborations are a subset\n            of the former and are counted if two or more of the authors are from\n            institutions in different continents.");
+    			t25 = text(" are counted as international and intercontinental.\n            International collaborations are counted if the authors of the same paper\n            are from different countries. Intercontinental collaborations are a subset\n            of the former and are counted if two or more of the authors are from\n            institutions in different continents.");
     			attr_dev(a0, "href", "https://github.com/geo-conf/scraper");
     			add_location(a0, file$h, 121, 21, 3384);
     			attr_dev(a1, "href", "https://dl.acm.org");
@@ -55320,27 +55320,27 @@ var app = (function () {
     			attr_dev(a2, "href", "https://github.com/geo-conf/miner");
     			add_location(a2, file$h, 125, 12, 3612);
     			attr_dev(a3, "href", "https://github.com/geo-conf/geo-dataset");
-    			add_location(a3, file$h, 127, 12, 3739);
+    			add_location(a3, file$h, 127, 12, 3735);
     			attr_dev(b0, "class", "svelte-17zdsd1");
-    			add_location(b0, file$h, 128, 12, 3814);
+    			add_location(b0, file$h, 128, 12, 3810);
     			attr_dev(a4, "href", "https://www.iso.org/iso-3166-country-codes.html");
-    			add_location(a4, file$h, 131, 12, 3971);
+    			add_location(a4, file$h, 131, 12, 3967);
     			attr_dev(b1, "class", "svelte-17zdsd1");
-    			add_location(b1, file$h, 133, 35, 4092);
+    			add_location(b1, file$h, 133, 35, 4088);
     			attr_dev(a5, "href", "https://en.wikipedia.org/wiki/Continent");
-    			add_location(a5, file$h, 134, 12, 4145);
+    			add_location(a5, file$h, 134, 12, 4141);
     			attr_dev(a6, "href", "https://en.wikipedia.org/wiki/Continent");
-    			add_location(a6, file$h, 141, 12, 4602);
+    			add_location(a6, file$h, 141, 12, 4598);
     			attr_dev(li0, "class", "lead");
     			add_location(li0, file$h, 120, 10, 3345);
     			attr_dev(b2, "class", "svelte-17zdsd1");
-    			add_location(b2, file$h, 145, 28, 4740);
+    			add_location(b2, file$h, 145, 28, 4736);
     			attr_dev(li1, "class", "lead");
-    			add_location(li1, file$h, 144, 10, 4694);
+    			add_location(li1, file$h, 144, 10, 4690);
     			attr_dev(b3, "class", "svelte-17zdsd1");
-    			add_location(b3, file$h, 153, 12, 5244);
+    			add_location(b3, file$h, 153, 12, 5240);
     			attr_dev(li2, "class", "lead");
-    			add_location(li2, file$h, 152, 10, 5214);
+    			add_location(li2, file$h, 152, 10, 5210);
     			add_location(ul, file$h, 119, 8, 3330);
     		},
     		m: function mount(target, anchor) {
@@ -55483,16 +55483,16 @@ var app = (function () {
     			a3.textContent = "issues via Github";
     			t10 = text(".\n        To contribute to the project, consider forking the repository.");
     			attr_dev(a0, "href", "https://makinteract.kaist.ac.kr/andrea");
-    			add_location(a0, file$h, 164, 38, 5749);
+    			add_location(a0, file$h, 164, 38, 5747);
     			attr_dev(a1, "href", "https://makinteract.kaist.ac.kr");
-    			add_location(a1, file$h, 166, 15, 5842);
+    			add_location(a1, file$h, 166, 15, 5840);
     			attr_dev(a2, "href", "https://kaist.ac.kr/kr/");
-    			add_location(a2, file$h, 166, 78, 5905);
-    			add_location(i, file$h, 169, 8, 5985);
+    			add_location(a2, file$h, 166, 78, 5903);
+    			add_location(i, file$h, 169, 8, 5983);
     			attr_dev(a3, "href", "https://github.com/geo-conf/uist/issues");
-    			add_location(a3, file$h, 175, 8, 6310);
+    			add_location(a3, file$h, 175, 8, 6308);
     			attr_dev(p, "class", "lead");
-    			add_location(p, file$h, 163, 6, 5694);
+    			add_location(p, file$h, 163, 6, 5692);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -55820,7 +55820,7 @@ var app = (function () {
     			div = element("div");
     			create_component(buttongroup.$$.fragment);
     			attr_dev(div, "class", "d-flex justify-content-center");
-    			add_location(div, file$h, 182, 4, 6536);
+    			add_location(div, file$h, 182, 4, 6534);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -59629,7 +59629,7 @@ var app = (function () {
     			div = element("div");
     			create_component(footer.$$.fragment);
     			attr_dev(div, "class", "d-flex justify-content-center");
-    			add_location(div, file$h, 344, 4, 12595);
+    			add_location(div, file$h, 344, 4, 12593);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
