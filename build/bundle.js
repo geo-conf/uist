@@ -53343,7 +53343,7 @@ var app = (function () {
     			div = element("div");
     			canvas_1 = element("canvas");
     			add_location(canvas_1, file$9, 92, 2, 2246);
-    			attr_dev(div, "class", "container svelte-1ch2a6t");
+    			attr_dev(div, "class", "container svelte-elhjxb");
     			add_location(div, file$9, 91, 0, 2220);
     		},
     		l: function claim(nodes) {
@@ -53570,7 +53570,7 @@ var app = (function () {
     			div = element("div");
     			canvas_1 = element("canvas");
     			add_location(canvas_1, file$a, 90, 2, 2226);
-    			attr_dev(div, "class", "container svelte-1ch2a6t");
+    			attr_dev(div, "class", "container svelte-elhjxb");
     			add_location(div, file$a, 89, 0, 2200);
     		},
     		l: function claim(nodes) {
@@ -53797,7 +53797,7 @@ var app = (function () {
     			div = element("div");
     			canvas_1 = element("canvas");
     			add_location(canvas_1, file$b, 88, 2, 2026);
-    			attr_dev(div, "class", "container svelte-1ch2a6t");
+    			attr_dev(div, "class", "container svelte-elhjxb");
     			add_location(div, file$b, 87, 0, 2000);
     		},
     		l: function claim(nodes) {
