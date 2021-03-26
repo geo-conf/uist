@@ -124,7 +124,7 @@
             <a href="https://dl.acm.org">ACM digital library</a>
             and the webpages of each conference's edition. A
             <a href="https://github.com/geo-conf/miner">script</a>
-            was used to and aggregate this data in a single
+            was used to aggregate this data in a single
             <a href="https://github.com/geo-conf/geo-dataset">dataset</a>.
             <b>Countries</b>
             of affiliations are reported as indicated by the authors of the papers
@@ -151,7 +151,7 @@
             which are is necessarily the same today).
           </li>
           <li class="lead">
-            <b>Collaborations</b> are counted as international and collaborations.
+            <b>Collaborations</b> are counted as international and intercontinental.
             International collaborations are counted if the authors of the same paper
             are from different countries. Intercontinental collaborations are a subset
             of the former and are counted if two or more of the authors are from
