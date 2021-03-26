@@ -119,14 +119,16 @@
       <Collapse isOpen={detailView}>
         <ul>
           <li class="lead">
-            Data was <a href="">collected</a> directly from the
-            <a href="">ACM digital library</a>
-            and the webpages of each conference's edition.
-            <a href="">A script</a>
+            Data was <a href="https://github.com/geo-conf/scraper">collected</a>
+            directly from the
+            <a href="https://dl.acm.org">ACM digital library</a>
+            and the webpages of each conference's edition. A
+            <a href="https://github.com/geo-conf/miner">script</a>
             was used to and aggregate this data in a single
-            <a href="">dataset</a>. <b>Countries</b> of affiliations are
-            reported as indicated by the authors of the papers and indicated
-            here following the
+            <a href="https://github.com/geo-conf/geo-dataset">dataset</a>.
+            <b>Countries</b>
+            of affiliations are reported as indicated by the authors of the
+            papers and indicated here following the
             <a href="https://www.iso.org/iso-3166-country-codes.html"
               >ISO 3166</a>
             country code standard. <b>Continents</b> are inferred using the
@@ -162,7 +164,7 @@
       <p class="lead">
         This project was developed by <a
           href="https://makinteract.kaist.ac.kr/andrea">Andrea Bianchi</a>
-        at the <a href="https://makinteract.kaist.ac.kr" /> MAKinteract lab (<a
+        at the <a href="https://makinteract.kaist.ac.kr">MAKinteract lab</a> (<a
           href="https://kaist.ac.kr/kr/">KAIST</a
         >, Korea).
         <i>
