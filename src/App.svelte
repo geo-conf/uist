@@ -22,6 +22,7 @@
   import CollaborationOverview from './chart/CollaborationOverview.svelte';
   import Forkme from './ui/Forkme.svelte';
   import Footer from './ui/Footer.svelte';
+  import Map from './chart/Map.svelte';
 
   let overviewStats = true;
   let detailView = false;
@@ -197,10 +198,13 @@
   </Container>
 
   <!-- Overview stats -->
-
   {#if dataset !== undefined}
     {#if overviewStats}
       <Container class="mb-5 mt-5" fluid={true}>
+        <Row class="mb-5">
+          <Map />
+        </Row>
+
         <Row class="mt-5">
           <Col class="mb-5" lg={{ size: 6, offset: 0 }}>
             <ContinentStack {dataset} />
