@@ -95,6 +95,6 @@
 
 <style>
   .container {
-    min-height: 200px;
+    min-height: 400px;
   }
 </style>
