@@ -102,18 +102,18 @@
       <p class="lead">
         This website showcases an <a
           href="https://github.com/orgs/geo-conf/dashboard">open-source</a>
-        and independent visualization project that provides some insights into the
-        geographical outreach and growth of the community of the
+        independent visualization project that provides some insights into the geographical
+        outreach and growth of the community of the
         <a href="http://uist.acm.org">UIST conference</a>. The graphs below are
         based upon
         <a href="https://github.com/geo-conf/geo-dataset">open-source data</a>
-        and show the main trends across the years or per year for each edition of
-        the conference.
+        and show the main trends across ten years of editions of the UIST conference.
       </p>
     </Row>
     <Row>
       <h2 on:click={() => (detailView = !detailView)} class="pointer-hand">
-        👉 Click for details about data collection and analysis
+        👉 <span class="underline">
+          Click for details about data collection and analysis</span>
       </h2>
     </Row>
     <Row class="mb-2">
@@ -123,12 +123,12 @@
             Data was <a href="https://github.com/geo-conf/scraper">collected</a>
             directly from the
             <a href="https://dl.acm.org">ACM digital library</a>
-            and the webpages of each conference's edition. A
-            <a href="https://github.com/geo-conf/miner">script</a>
+            and the webpages of each UIST conference's edition. A
+            <a href="https://github.com/geo-conf/miner">custom script</a>
             was used to aggregate this data in a single
             <a href="https://github.com/geo-conf/geo-dataset">dataset</a>.
             <b>Countries</b>
-            of affiliations are reported as indicated by the authors of the papers
+            of affiliations are collected as indicated by the authors of the papers
             and indicated here following the
             <a href="https://www.iso.org/iso-3166-country-codes.html"
               >ISO 3166</a>
@@ -138,8 +138,8 @@
             >. Countries of affiliation are counted only once per paper, no
             matter how many authors from institutions of the same country
             participated in the paper. If authors belong to institutions from
-            different countries, each country is counted once per paper. Color
-            coding follows the same notation as
+            different countries, each country is counted once per paper. The
+            color coding in the graphs follows the same notation as
             <a href="https://en.wikipedia.org/wiki/Continent">Wikipedia</a>.
           </li>
 
@@ -149,29 +149,26 @@
             editions of UIST. Program chairs or conference organizers with other
             roles are not included in the reported numbers. Affiliations were considered
             as listed on the websites (i.e., the affiliation at the time of the event,
-            which are is necessarily the same today).
+            which are not necessarily the same today).
           </li>
           <li class="lead">
             <b>Collaborations</b> are counted as international and intercontinental.
-            International collaborations are counted if the authors of the same paper
-            are from different countries. Intercontinental collaborations are a subset
-            of the former and are counted if two or more of the authors are from
-            institutions in different continents.
+            International collaborations are counted when the authors of the same
+            paper are from different countries. Intercontinental collaborations are
+            a subset of the these and are counted if two or more of the authors are
+            from institutions located in different continents.
           </li>
         </ul>
       </Collapse>
     </Row>
     <Row>
       <p class="lead">
-        This project was developed by <a
-          href="https://makinteract.kaist.ac.kr/andrea">Andrea Bianchi</a>
-        at the <a href="https://makinteract.kaist.ac.kr">MAKinteract lab</a> (<a
-          href="https://kaist.ac.kr/kr/">KAIST</a
-        >, Korea).
         <i>
           The views, opinions, data analysis, and visualization expressed in
-          this website are those of the author and by no means are meant to
-          represent those of the ACM or the author's institution and colleagues.
+          this website are those of the <a
+            href="https://makinteract.kaist.ac.kr/andrea">author</a> and by no means
+          are meant to represent those of the UIST conference organizers and committees,
+          the ACM, or the author's institution and colleagues.
         </i>
         Please report mistakes, incorrect data, or suggestions as
         <a href="https://github.com/geo-conf/uist/issues">issues via Github</a>.
@@ -202,7 +199,7 @@
     {#if overviewStats}
       <Container class="mb-5 mt-5" fluid={true}>
         <Row class="mb-5">
-          <Map />
+          <Map {dataset} />
         </Row>
 
         <Row class="mt-5">
@@ -367,6 +364,10 @@
   }
 
   b {
+    text-decoration: underline;
+  }
+
+  .underline {
     text-decoration: underline;
   }
 </style>

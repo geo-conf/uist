@@ -1,16 +1,20 @@
 <script>
   import * as am4core from '@amcharts/amcharts4/core';
   import * as am4maps from '@amcharts/amcharts4/maps';
-  import worldLow from '@amcharts/amcharts4-geodata/worldLow';
+  import worldMap from '@amcharts/amcharts4-geodata/worldHigh';
   import { onMount } from 'svelte';
+  import _ from 'lodash';
+
+  export let dataset;
   let chartdiv;
-  // Create map instance
+  let countryCounter = [];
 
   onMount(async () => {
+    // Create map instance
     const chart = am4core.create('chartdiv', am4maps.MapChart);
 
     // Set map definition
-    chart.geodata = worldLow;
+    chart.geodata = worldMap;
 
     // Set projection
     chart.projection = new am4maps.projections.Miller();
@@ -20,6 +24,29 @@
 
     // Make map load polygon (like country names) data from GeoJSON
     polygonSeries.useGeodata = true;
+
+    // Configure series
+    const polygonTemplate = polygonSeries.mapPolygons.template;
+    polygonTemplate.tooltipText = '{name}';
+    polygonTemplate.fill = am4core.color('#999');
+
+    // Create hover state and set alternative fill color
+    const hs = polygonTemplate.states.create('hover');
+    hs.properties.fill = am4core.color('#ffc83b');
+
+    // Remove Antarctica
+    polygonSeries.exclude = ['AQ'];
+
+    // Add heat rule
+    polygonSeries.heatRules.push({
+      property: 'fill',
+      target: polygonSeries.mapPolygons.template,
+      min: am4core.color('#ffffff'),
+      max: am4core.color('#0086fb'),
+    });
+
+    // Add expectancy data
+    polygonSeries.data = countryCounter;
   });
 </script>
 

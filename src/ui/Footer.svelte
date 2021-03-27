@@ -6,11 +6,12 @@
 
 <footer>
   <div class="text-center">
-    Copyrights by <a href="http://makinteract.kaist.ac.kr">MAKinteract lab</a> at
-    KAIST.
+    Made with ❤️ by <a href="http://makinteract.kaist.ac.kr">MAKinteract lab</a
+    >.
   </div>
   <div class="text-center">
-    Source code available from <a href="https://github.com/geo-conf/uist">
+    Source code and datasets available on <a
+      href="https://github.com/geo-conf/uist">
       Github
     </a><i class="bi bi-github" />
   </div>
