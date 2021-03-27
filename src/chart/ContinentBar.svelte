@@ -10,7 +10,7 @@
   export let year = 10;
   export let title = `Papers per geographic region of affiliation in 20${year}`;
   export let xAxis = '';
-  export let fontSize = 20;
+  export let fontSize = 12;
 
   let canvas;
 
@@ -21,17 +21,6 @@
   const labels = continent.map(({ value }) => getContinentName(value));
   const occurrences = _.map(continent, 'occurrences');
   const colors = _.map(continent, 'value').map((c) => getContinentColor(c));
-
-  function updateFontSize() {
-    fontSize = Math.floor(window.innerWidth / 100);
-    if (fontSize < 15) fontSize = 15;
-    if (fontSize > 25) fontSize = 25;
-    Chart.defaults.global.defaultFontSize = fontSize;
-  }
-
-  window.onresize = function () {
-    updateFontSize();
-  };
 
   // The chart
   onMount(async () => {
@@ -93,6 +82,6 @@
 
 <style>
   .container {
-    min-height: 400px;
+    min-height: 500px;
   }
 </style>

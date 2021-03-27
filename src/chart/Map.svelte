@@ -9,6 +9,19 @@
   let chartdiv;
   let countryCounter = [];
 
+  const countries = _.flatten(_.map(dataset, 'papers.countryList'));
+
+  const cmap = new Map();
+  for (let { value: country, occurrences: value } of countries) {
+    if (cmap.has(country)) {
+      cmap.set(country, cmap.get(country) + value);
+    } else {
+      cmap.set(country, value);
+    }
+  }
+  countryCounter = [...cmap].map(([id, value]) => ({ id, value }));
+  console.log(countryCounter);
+
   onMount(async () => {
     // Create map instance
     const chart = am4core.create('chartdiv', am4maps.MapChart);
@@ -27,7 +40,7 @@
 
     // Configure series
     const polygonTemplate = polygonSeries.mapPolygons.template;
-    polygonTemplate.tooltipText = '{name}';
+    polygonTemplate.tooltipText = '{id}: {value} papers';
     polygonTemplate.fill = am4core.color('#999');
 
     // Create hover state and set alternative fill color
@@ -41,8 +54,9 @@
     polygonSeries.heatRules.push({
       property: 'fill',
       target: polygonSeries.mapPolygons.template,
-      min: am4core.color('#ffffff'),
-      max: am4core.color('#0086fb'),
+      min: am4core.color('#6aaee9'),
+      max: am4core.color('#062e52'),
+      logarithmic: true,
     });
 
     // Add expectancy data

@@ -10,15 +10,15 @@
   export let year = 10;
   export let title = `Papers per country of affiliation in 20${year}`;
   export let xAxis = '';
-  export let fontSize = 20;
+  export let fontSize = 15;
   let canvas;
 
-  function updateFontSize() {
-    fontSize = Math.floor(window.innerWidth / 100);
-    if (fontSize < 15) fontSize = 15;
-    if (fontSize > 25) fontSize = 25;
-    Chart.defaults.global.defaultFontSize = fontSize;
-  }
+  // function updateFontSize() {
+  //   fontSize = Math.floor(window.innerWidth / 100);
+  //   if (fontSize < 7) fontSize = 7;
+  //   if (fontSize > 25) fontSize = 25;
+  //   Chart.defaults.global.defaultFontSize = fontSize;
+  // }
 
   const data = dataset.find(({ year: y }) => year === y);
   const countries = data.papers.countryList;
@@ -27,11 +27,11 @@
   const labels = countries.map(({ value }) => value);
   const occurrences = _.map(countries, 'occurrences');
   const colors = _.map(countries, 'continent').map((c) => getContinentColor(c));
-  updateFontSize();
+  // updateFontSize();
 
-  window.onresize = () => {
-    updateFontSize();
-  };
+  // window.onresize = () => {
+  //   updateFontSize();
+  // };
 
   // The chart
   onMount(async () => {
@@ -90,6 +90,6 @@
 
 <style>
   .container {
-    min-height: 400px;
+    min-height: 500px;
   }
 </style>
