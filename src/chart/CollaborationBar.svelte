@@ -7,7 +7,7 @@
   export let year = 10;
   export let title = `Inter-regional collaborations in 20${year}`;
   export let xAxis = '';
-  export let fontSize = 20;
+  export let fontSize = 15;
 
   let canvas;
 
@@ -17,19 +17,6 @@
   const labels = ['INTERNATIONAL', 'INTERCONTINENTAL'];
   const occurrences = [collab.international, collab.interContinental];
   const colors = ['#7FBDF7', '#2772DE'];
-
-  updateFontSize();
-
-  function updateFontSize() {
-    fontSize = Math.floor(window.innerWidth / 100);
-    if (fontSize < 15) fontSize = 15;
-    if (fontSize > 25) fontSize = 25;
-    Chart.defaults.global.defaultFontSize = fontSize;
-  }
-
-  window.onresize = function () {
-    updateFontSize();
-  };
 
   // The chart
   onMount(async () => {

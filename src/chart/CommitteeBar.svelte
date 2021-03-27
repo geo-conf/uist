@@ -10,7 +10,7 @@
   export let year = 10;
   export let title = `Committee members per geographic region in 20${year}`;
   export let xAxis = '';
-  export let fontSize = 20;
+  export let fontSize = 15;
 
   let canvas;
 
@@ -21,19 +21,6 @@
   const labels = continent.map(({ value }) => getContinentName(value));
   const occurrences = _.map(continent, 'occurrences');
   const colors = _.map(continent, 'value').map((c) => getContinentColor(c));
-
-  updateFontSize();
-
-  function updateFontSize() {
-    fontSize = Math.floor(window.innerWidth / 100);
-    if (fontSize < 15) fontSize = 15;
-    if (fontSize > 25) fontSize = 25;
-    Chart.defaults.global.defaultFontSize = fontSize;
-  }
-
-  window.onresize = function () {
-    updateFontSize();
-  };
 
   // The chart
   onMount(async () => {

@@ -76,11 +76,6 @@
 <style>
   #chartdiv {
     width: 100%;
-    height: 38vh;
-  }
-  .test {
-    width: 100%;
-    height: 38vh;
-    /* background-color: red; */
+    height: 45vh;
   }
 </style>
