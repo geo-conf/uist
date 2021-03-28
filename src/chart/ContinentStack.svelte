@@ -53,7 +53,6 @@
     saData.push(data.SA);
   }
 
-
   // The chart
   onMount(async () => {
     Chart.defaults.global.defaultFontSize = fontSize;

@@ -13,7 +13,6 @@
 
   const cmap = new Map();
   for (let i = 0; i < countries.length; i += 1) {
-    // for (const { value: country, occurrences: value } of countries) {
     const { value: country, occurrences: value } = countries[i];
     if (cmap.has(country)) {
       cmap.set(country, cmap.get(country) + value);
@@ -22,7 +21,6 @@
     }
   }
   countryCounter = [...cmap].map(([id, value]) => ({ id, value }));
-  console.log(countryCounter);
 
   onMount(async () => {
     // Create map instance
