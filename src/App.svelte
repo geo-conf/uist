@@ -8,8 +8,6 @@
     Collapse,
   } from 'sveltestrap';
 
-  import { onMount } from 'svelte';
-
   import jQ from 'jquery';
   import Title from './ui/Title.svelte';
   import Logo from './ui/Logo.svelte';
@@ -31,7 +29,6 @@
   const defaultYear = 20;
   let selectedYear = defaultYear;
   let dataset;
-  let imagesLoaded = false;
   let w; // window's width
   let logoButton = [];
 
@@ -63,12 +60,6 @@
       dataset = data;
     }
   );
-
-  onMount(() => {
-    if ('loading' in HTMLImageElement.prototype) {
-      imagesLoaded = true;
-    }
-  });
 
   for (let year = startYear; year <= endYear; year += 1) {
     logoButton.unshift({
@@ -206,7 +197,7 @@
 
   <!-- Overview stats -->
   {#if dataset !== undefined}
-    {#if !overviewStats}
+    {#if overviewStats}
       <Container class="mb-5 mt-5" fluid={true}>
         <Row class="mb-5">
           <Map {dataset} />
@@ -230,17 +221,16 @@
       <!-- Stats per year -->
     {:else}
       <!-- Grid of all UIST buttons -->
-      {#if imagesLoaded}
-        <Container>
-          <Row class="justify-content-center">
-            {#each logoButton as buttonData}
-              <Col xs="4" sm="4" md="2" lg="2" xl="2" class="mb-2">
-                <Logo on:click={select} {...buttonData} />
-              </Col>
-            {/each}
-          </Row>
-        </Container>
-      {/if}
+
+      <Container>
+        <Row class="justify-content-center">
+          {#each logoButton as buttonData}
+            <Col xs="4" sm="4" md="2" lg="2" xl="2" class="mb-2">
+              <Logo on:click={select} {...buttonData} />
+            </Col>
+          {/each}
+        </Row>
+      </Container>
 
       <Container class="mb-5 mt-5" fluid={true}>
         <Row>
