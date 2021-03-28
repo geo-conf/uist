@@ -7,7 +7,7 @@
 
   const dispatch = createEventDispatcher();
 
-  function forward(event) {
+  function forward() {
     dispatch('click', { id });
   }
 </script>
