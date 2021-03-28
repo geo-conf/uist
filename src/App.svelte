@@ -103,11 +103,11 @@
         This website showcases an <a
           href="https://github.com/orgs/geo-conf/dashboard">open-source</a>
         independent visualization project that provides some insights into the geographical
-        outreach and growth of the community of the
-        <a href="http://uist.acm.org">UIST conference</a>. The graphs below are
-        based upon
+        outreach and growth of the
+        <a href="http://uist.acm.org">UIST conference</a> community. The graphs
+        below are based upon
         <a href="https://github.com/geo-conf/geo-dataset">open-source data</a>
-        and show the main trends across ten years of editions of the UIST conference.
+        and show emerging main trends since 2010.
       </p>
     </Row>
     <Row>
@@ -155,7 +155,7 @@
             <b>Collaborations</b> are counted as international and intercontinental.
             International collaborations are counted when the authors of the same
             paper are from different countries. Intercontinental collaborations are
-            a subset of the these and are counted if two or more of the authors are
+            a subset of these, and are counted if two or more of the authors are
             from institutions located in different continents.
           </li>
         </ul>
