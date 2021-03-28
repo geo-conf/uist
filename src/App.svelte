@@ -8,7 +8,7 @@
     Collapse,
   } from 'sveltestrap';
 
-  import { beforeUpdate, onMount } from 'svelte';
+  import { onMount } from 'svelte';
 
   import jQ from 'jquery';
   import Title from './ui/Title.svelte';
@@ -30,34 +30,10 @@
   const endYear = 20;
   const defaultYear = 20;
   let selectedYear = defaultYear;
-  let dataset = undefined;
+  let dataset;
   let imagesLoaded = false;
   let w; // window's width
-
-  // load the data first from online repo
-  jQ.getJSON(
-    'https://raw.githubusercontent.com/geo-conf/geo-dataset/main/dataset.json',
-    (data) => {
-      dataset = data;
-    }
-  );
-
-  onMount(() => {
-    if ('loading' in HTMLImageElement.prototype) {
-      imagesLoaded = true;
-    }
-  });
-
   let logoButton = [];
-  for (let year = startYear; year <= endYear; year += 1) {
-    logoButton.unshift({
-      id: year,
-      imgSrc: `./images/uist${year}.jpeg`,
-      selected: false,
-    });
-  }
-
-  highlightButton(defaultYear);
 
   function highlightButton(year) {
     logoButton.forEach((b) => {
@@ -73,12 +49,36 @@
     highlightButton(selectedYear);
   }
 
-  function overview(event) {
+  function overview() {
     overviewStats = true;
   }
-  function yearlyStats(event) {
+  function yearlyStats() {
     overviewStats = false;
   }
+
+  // load the data first from online repo
+  jQ.getJSON(
+    'https://raw.githubusercontent.com/geo-conf/geo-dataset/main/dataset.json',
+    (data) => {
+      dataset = data;
+    }
+  );
+
+  onMount(() => {
+    if ('loading' in HTMLImageElement.prototype) {
+      imagesLoaded = true;
+    }
+  });
+
+  for (let year = startYear; year <= endYear; year += 1) {
+    logoButton.unshift({
+      id: year,
+      imgSrc: `./images/uist${year}.jpeg`,
+      selected: false,
+    });
+  }
+
+  highlightButton(defaultYear);
 </script>
 
 <svelte:head>
@@ -100,8 +100,8 @@
   <Container class="mb-4 mt-4">
     <Row>
       <p class="lead">
-        This website showcases an <a
-          href="https://github.com/orgs/geo-conf/dashboard">open-source</a>
+        This website showcases an <a href="https://github.com/geo-conf"
+          >open-source</a>
         independent visualization project that provides some insights into the geographical
         outreach and growth of the
         <a href="http://uist.acm.org">UIST conference</a> community. The graphs
@@ -111,7 +111,11 @@
       </p>
     </Row>
     <Row>
-      <h2 on:click={() => (detailView = !detailView)} class="pointer-hand">
+      <h2
+        on:click={() => {
+          detailView = !detailView;
+        }}
+        class="pointer-hand">
         👉 <span class="underline">
           Click for details about data collection and analysis</span>
       </h2>
@@ -140,7 +144,12 @@
             participated in the paper. If authors belong to institutions from
             different countries, each country is counted once per paper. The
             color coding in the graphs follows the same notation as
-            <a href="https://en.wikipedia.org/wiki/Continent">Wikipedia</a>.
+            <a href="https://en.wikipedia.org/wiki/Continent">Wikipedia</a>. The
+            map is displayed using
+            <a
+              href="https://en.wikipedia.org/wiki/Miller_cylindrical_projection"
+              >Miller cylindrical projection</a>
+            as provided by <a href="https://www.amcharts.com">amCharts</a>.
           </li>
 
           <li class="lead">
