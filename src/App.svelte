@@ -132,8 +132,9 @@
             was used to aggregate this data in a single
             <a href="https://github.com/geo-conf/geo-dataset">dataset</a>.
             <b>Countries</b>
-            of affiliations are collected as indicated by the authors of the papers
-            and indicated here following the
+            of affiliations are collected as indicated by the
+            <i>authors of the papers</i>
+            and reported here following the
             <a href="https://www.iso.org/iso-3166-country-codes.html"
               >ISO 3166</a>
             country code standard. <b>Continents</b> are inferred using the
