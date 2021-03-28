@@ -206,7 +206,7 @@
 
   <!-- Overview stats -->
   {#if dataset !== undefined}
-    {#if overviewStats}
+    {#if !overviewStats}
       <Container class="mb-5 mt-5" fluid={true}>
         <Row class="mb-5">
           <Map {dataset} />
