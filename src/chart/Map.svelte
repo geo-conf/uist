@@ -43,6 +43,13 @@
     polygonTemplate.tooltipText = '{id}: {value} papers';
     polygonTemplate.fill = am4core.color('#999');
 
+    // Don't show tooltip where there is no record
+    polygonTemplate.events.on('over', (ev) => {
+      if (ev.target.dataItem.value === undefined) {
+        ev.target.tooltipText = '';
+      }
+    });
+
     // Create hover state and set alternative fill color
     const hs = polygonTemplate.states.create('hover');
     hs.properties.fill = am4core.color('#ffc83b');
@@ -64,13 +71,6 @@
   });
 </script>
 
-<svelte:head>
-  <!-- <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-  <script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
-  <script src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js"></script> -->
-</svelte:head>
-
-<!-- <div class="test" bind:this={chartdiv} /> -->
 <div bind:this={chartdiv} id="chartdiv" />
 
 <style>

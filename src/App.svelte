@@ -100,8 +100,8 @@
   <Container class="mb-4 mt-4">
     <Row>
       <p class="lead">
-        This website showcases an <a
-          href="https://github.com/orgs/geo-conf/dashboard">open-source</a>
+        This website showcases an <a href="https://github.com/geo-conf"
+          >open-source</a>
         independent visualization project that provides some insights into the geographical
         outreach and growth of the
         <a href="http://uist.acm.org">UIST conference</a> community. The graphs
@@ -144,7 +144,12 @@
             participated in the paper. If authors belong to institutions from
             different countries, each country is counted once per paper. The
             color coding in the graphs follows the same notation as
-            <a href="https://en.wikipedia.org/wiki/Continent">Wikipedia</a>.
+            <a href="https://en.wikipedia.org/wiki/Continent">Wikipedia</a>. The
+            map is displayed using
+            <a
+              href="https://en.wikipedia.org/wiki/Miller_cylindrical_projection"
+              >Miller cylindrical projection</a>
+            as provided by <a href="https://www.amcharts.com">amCharts</a>.
           </li>
 
           <li class="lead">
