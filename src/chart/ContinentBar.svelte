@@ -10,7 +10,7 @@
   export let year = 10;
   export let title = `Papers per geographic region of affiliation in 20${year}`;
   export let xAxis = '';
-  export let fontSize = 12;
+  export let fontSize = 15;
 
   let canvas;
 
