@@ -8,7 +8,7 @@
     Collapse,
   } from 'sveltestrap';
 
-  import { beforeUpdate, onMount } from 'svelte';
+  import { onMount } from 'svelte';
 
   import jQ from 'jquery';
   import Title from './ui/Title.svelte';
@@ -30,34 +30,10 @@
   const endYear = 20;
   const defaultYear = 20;
   let selectedYear = defaultYear;
-  let dataset = undefined;
+  let dataset;
   let imagesLoaded = false;
   let w; // window's width
-
-  // load the data first from online repo
-  jQ.getJSON(
-    'https://raw.githubusercontent.com/geo-conf/geo-dataset/main/dataset.json',
-    (data) => {
-      dataset = data;
-    }
-  );
-
-  onMount(() => {
-    if ('loading' in HTMLImageElement.prototype) {
-      imagesLoaded = true;
-    }
-  });
-
   let logoButton = [];
-  for (let year = startYear; year <= endYear; year += 1) {
-    logoButton.unshift({
-      id: year,
-      imgSrc: `./images/uist${year}.jpeg`,
-      selected: false,
-    });
-  }
-
-  highlightButton(defaultYear);
 
   function highlightButton(year) {
     logoButton.forEach((b) => {
@@ -73,12 +49,36 @@
     highlightButton(selectedYear);
   }
 
-  function overview(event) {
+  function overview() {
     overviewStats = true;
   }
-  function yearlyStats(event) {
+  function yearlyStats() {
     overviewStats = false;
   }
+
+  // load the data first from online repo
+  jQ.getJSON(
+    'https://raw.githubusercontent.com/geo-conf/geo-dataset/main/dataset.json',
+    (data) => {
+      dataset = data;
+    }
+  );
+
+  onMount(() => {
+    if ('loading' in HTMLImageElement.prototype) {
+      imagesLoaded = true;
+    }
+  });
+
+  for (let year = startYear; year <= endYear; year += 1) {
+    logoButton.unshift({
+      id: year,
+      imgSrc: `./images/uist${year}.jpeg`,
+      selected: false,
+    });
+  }
+
+  highlightButton(defaultYear);
 </script>
 
 <svelte:head>
@@ -111,7 +111,11 @@
       </p>
     </Row>
     <Row>
-      <h2 on:click={() => (detailView = !detailView)} class="pointer-hand">
+      <h2
+        on:click={() => {
+          detailView = !detailView;
+        }}
+        class="pointer-hand">
         👉 <span class="underline">
           Click for details about data collection and analysis</span>
       </h2>

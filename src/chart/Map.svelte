@@ -12,7 +12,7 @@
   const countries = _.flatten(_.map(dataset, 'papers.countryList'));
 
   const cmap = new Map();
-  for (let { value: country, occurrences: value } of countries) {
+  for (const { value: country, occurrences: value } of countries) {
     if (cmap.has(country)) {
       cmap.set(country, cmap.get(country) + value);
     } else {
