@@ -55,7 +55,7 @@
 
   // load the data first from online repo
   jQ.getJSON(
-    'https://raw.githubusercontent.com/geo-conf/geo-dataset/main/dataset.json',
+    'https://raw.githubusercontent.com/geo-conf/geo-dataset-uist/main/dataset.json',
     (data) => {
       dataset = data;
     }
@@ -173,7 +173,8 @@
         </i>
         Please report mistakes, incorrect data, or suggestions as
         <a href="https://github.com/geo-conf/uist/issues">issues via Github</a>.
-        To contribute to the project, consider forking the repository.
+        To contribute to the project, consider forking the repository. Thank you
+        🙏.
       </p>
     </Row>
   </Container>
