@@ -8,8 +8,6 @@
     Collapse,
   } from 'sveltestrap';
 
-  import { onMount } from 'svelte';
-
   import jQ from 'jquery';
   import Title from './ui/Title.svelte';
   import Logo from './ui/Logo.svelte';
@@ -31,7 +29,6 @@
   const defaultYear = 20;
   let selectedYear = defaultYear;
   let dataset;
-  let imagesLoaded = false;
   let w; // window's width
   let logoButton = [];
 
@@ -58,17 +55,11 @@
 
   // load the data first from online repo
   jQ.getJSON(
-    'https://raw.githubusercontent.com/geo-conf/geo-dataset/main/dataset.json',
+    'https://raw.githubusercontent.com/geo-conf/geo-dataset-uist/main/dataset.json',
     (data) => {
       dataset = data;
     }
   );
-
-  onMount(() => {
-    if ('loading' in HTMLImageElement.prototype) {
-      imagesLoaded = true;
-    }
-  });
 
   for (let year = startYear; year <= endYear; year += 1) {
     logoButton.unshift({
@@ -132,8 +123,9 @@
             was used to aggregate this data in a single
             <a href="https://github.com/geo-conf/geo-dataset">dataset</a>.
             <b>Countries</b>
-            of affiliations are collected as indicated by the authors of the papers
-            and indicated here following the
+            of affiliations are collected as indicated by the
+            <i>authors of the papers</i>
+            and reported here following the
             <a href="https://www.iso.org/iso-3166-country-codes.html"
               >ISO 3166</a>
             country code standard. <b>Continents</b> are inferred using the
@@ -181,7 +173,8 @@
         </i>
         Please report mistakes, incorrect data, or suggestions as
         <a href="https://github.com/geo-conf/uist/issues">issues via Github</a>.
-        To contribute to the project, consider forking the repository.
+        To contribute to the project, consider forking the repository. Thank you
+        🙏.
       </p>
     </Row>
   </Container>
@@ -229,17 +222,16 @@
       <!-- Stats per year -->
     {:else}
       <!-- Grid of all UIST buttons -->
-      {#if imagesLoaded}
-        <Container>
-          <Row class="justify-content-center">
-            {#each logoButton as buttonData}
-              <Col xs="4" sm="4" md="2" lg="2" xl="2" class="mb-2">
-                <Logo on:click={select} {...buttonData} />
-              </Col>
-            {/each}
-          </Row>
-        </Container>
-      {/if}
+
+      <Container>
+        <Row class="justify-content-center">
+          {#each logoButton as buttonData}
+            <Col xs="4" sm="4" md="2" lg="2" xl="2" class="mb-2">
+              <Logo on:click={select} {...buttonData} />
+            </Col>
+          {/each}
+        </Row>
+      </Container>
 
       <Container class="mb-5 mt-5" fluid={true}>
         <Row>

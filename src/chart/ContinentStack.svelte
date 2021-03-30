@@ -5,9 +5,9 @@
 
   import { getContinentColor, getContinentName } from './common';
 
-  export let title = `Papers per geographic region of affiliation`;
+  export let title = 'Papers per geographic region of affiliation';
   export let fontSize = 20;
-  export let dataset = undefined;
+  export let dataset;
 
   let canvas;
 
@@ -53,17 +53,6 @@
     saData.push(data.SA);
   }
 
-  function updateFontSize() {
-    fontSize = Math.floor(window.innerWidth / 100);
-    if (fontSize < 15) fontSize = 15;
-    if (fontSize > 25) fontSize = 25;
-    Chart.defaults.global.defaultFontSize = fontSize;
-  }
-
-  window.onresize = function () {
-    updateFontSize();
-  };
-
   // The chart
   onMount(async () => {
     Chart.defaults.global.defaultFontSize = fontSize;
@@ -71,7 +60,7 @@
     const myChart = new Chart(canvas, {
       type: 'bar',
       data: {
-        labels: labels,
+        labels,
         datasets: [
           {
             label: getContinentName('AF'),
@@ -122,7 +111,7 @@
               stacked: true,
               scaleLabel: {
                 display: true,
-                labelString: `years`,
+                labelString: 'years',
               },
             },
           ],

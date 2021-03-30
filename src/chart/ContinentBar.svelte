@@ -6,7 +6,7 @@
 
   import { getContinentColor, getContinentName } from './common';
 
-  export let dataset = undefined;
+  export let dataset;
   export let year = 10;
   export let title = `Papers per geographic region of affiliation in 20${year}`;
   export let xAxis = '';
@@ -31,7 +31,7 @@
       label: 'By continent',
       xAxisID: '# papers',
       data: {
-        labels: labels,
+        labels,
         datasets: [
           {
             data: occurrences,

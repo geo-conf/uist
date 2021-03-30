@@ -12,7 +12,8 @@
   const countries = _.flatten(_.map(dataset, 'papers.countryList'));
 
   const cmap = new Map();
-  for (const { value: country, occurrences: value } of countries) {
+  for (let i = 0; i < countries.length; i += 1) {
+    const { value: country, occurrences: value } = countries[i];
     if (cmap.has(country)) {
       cmap.set(country, cmap.get(country) + value);
     } else {
@@ -20,7 +21,6 @@
     }
   }
   countryCounter = [...cmap].map(([id, value]) => ({ id, value }));
-  console.log(countryCounter);
 
   onMount(async () => {
     // Create map instance

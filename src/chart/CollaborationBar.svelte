@@ -3,7 +3,7 @@
   // library that creates chart objects in page
   import Chart from 'chart.js';
 
-  export let dataset = undefined;
+  export let dataset;
   export let year = 10;
   export let title = `Inter-regional collaborations in 20${year}`;
   export let xAxis = '';
@@ -27,7 +27,7 @@
       label: 'By continent',
       xAxisID: '# papers',
       data: {
-        labels: labels,
+        labels,
         datasets: [
           {
             data: occurrences,

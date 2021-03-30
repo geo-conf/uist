@@ -6,7 +6,7 @@
 
   import { getContinentColor } from './common';
 
-  export let dataset = undefined;
+  export let dataset;
   export let year = 10;
   export let title = `Papers per country of affiliation in 20${year}`;
   export let xAxis = '';
