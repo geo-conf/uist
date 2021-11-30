@@ -25,8 +25,8 @@
   let overviewStats = true;
   let detailView = false;
   const startYear = 10;
-  const endYear = 20;
-  const defaultYear = 20;
+  const endYear = 21;
+  const defaultYear = 21;
   let selectedYear = defaultYear;
   let dataset;
   let w; // window's width
@@ -258,6 +258,8 @@
               <CountryBar {dataset} year={19} />
             {:else if selectedYear === 20}
               <CountryBar {dataset} year={20} />
+            {:else if selectedYear === 21}
+              <CountryBar {dataset} year={21} />
             {/if}
           </Col>
           <Col lg={{ size: 6, offset: 0 }}>
@@ -283,6 +285,8 @@
               <CollaborationBar {dataset} year={19} />
             {:else if selectedYear === 20}
               <CollaborationBar {dataset} year={20} />
+            {:else if selectedYear === 21}
+              <CollaborationBar {dataset} year={21} />
             {/if}
           </Col>
         </Row>
@@ -310,6 +314,8 @@
               <ContinentBar {dataset} year={19} />
             {:else if selectedYear === 20}
               <ContinentBar {dataset} year={20} />
+            {:else if selectedYear === 21}
+              <ContinentBar {dataset} year={21} />
             {/if}
           </Col>
 
@@ -336,6 +342,8 @@
               <CommitteeBar {dataset} year={19} />
             {:else if selectedYear === 20}
               <CommitteeBar {dataset} year={20} />
+            {:else if selectedYear === 21}
+              <CommitteeBar {dataset} year={21} />
             {/if}
           </Col>
         </Row>
