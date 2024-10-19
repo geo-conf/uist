@@ -25,8 +25,8 @@
   let overviewStats = true;
   let detailView = false;
   const startYear = 10;
-  const endYear = 21;
-  const defaultYear = 21;
+  const endYear = 24;
+  const defaultYear = 24;
   let selectedYear = defaultYear;
   let dataset;
   let w; // window's width
@@ -260,6 +260,12 @@
               <CountryBar {dataset} year={20} />
             {:else if selectedYear === 21}
               <CountryBar {dataset} year={21} />
+            {:else if selectedYear === 22}
+              <CountryBar {dataset} year={22} />
+            {:else if selectedYear === 23}
+              <CountryBar {dataset} year={23} />
+            {:else if selectedYear === 24}
+              <CountryBar {dataset} year={24} />
             {/if}
           </Col>
           <Col lg={{ size: 6, offset: 0 }}>
@@ -287,6 +293,12 @@
               <CollaborationBar {dataset} year={20} />
             {:else if selectedYear === 21}
               <CollaborationBar {dataset} year={21} />
+            {:else if selectedYear === 22}
+              <CollaborationBar {dataset} year={22} />
+            {:else if selectedYear === 23}
+              <CollaborationBar {dataset} year={23} />
+            {:else if selectedYear === 24}
+              <CollaborationBar {dataset} year={24} />
             {/if}
           </Col>
         </Row>
@@ -316,6 +328,12 @@
               <ContinentBar {dataset} year={20} />
             {:else if selectedYear === 21}
               <ContinentBar {dataset} year={21} />
+            {:else if selectedYear === 22}
+              <ContinentBar {dataset} year={22} />
+            {:else if selectedYear === 23}
+              <ContinentBar {dataset} year={23} />
+            {:else if selectedYear === 24}
+              <ContinentBar {dataset} year={24} />
             {/if}
           </Col>
 
@@ -344,6 +362,12 @@
               <CommitteeBar {dataset} year={20} />
             {:else if selectedYear === 21}
               <CommitteeBar {dataset} year={21} />
+            {:else if selectedYear === 22}
+              <CommitteeBar {dataset} year={22} />
+            {:else if selectedYear === 23}
+              <CommitteeBar {dataset} year={23} />
+            {:else if selectedYear === 24}
+              <CommitteeBar {dataset} year={24} />
             {/if}
           </Col>
         </Row>
