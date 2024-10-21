@@ -6,7 +6,7 @@
 
 <footer>
   <div class="text-center">
-    Made with ❤️ by <a href="http://makinteract.kaist.ac.kr">MAKinteract lab</a
+    Made with ❤️ by <a href="http://make.kaist.ac.kr">Make lab</a
     >.
   </div>
   <div class="text-center">
