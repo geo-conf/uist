@@ -145,6 +145,11 @@
           </li>
 
           <li class="lead">
+          The papers are counted in the following way. <b>If a paper has authors from multiple countries, the paper is counted for each country, but only once</b>. If a paper has authors from multiple institutions in the same country, the paper is counted only once for that country. If a paper has authors from multiple institutions in different countries, all countries receive a point.
+          <br />
+          For example, if a paper has six authors, three affiliated with an institution in South Korea, two in the USA, and one in Japan, each of the three countries (South Korea, USA, Japan) will be counted once. Thus, the total number of papers reported in the graphs does not represent the total number of submissions at the conference, as each paper might contribute to multiple countries and geographical regions, but rather the geographical outreach in terms of accepted papers.</li>
+
+          <li class="lead">
             The list of the <b>committee members</b> (Associate Chairs a.k.a. ACs
             in the papers track) was obtained from the web pages of the individual
             editions of UIST. Program chairs or conference organizers with other
